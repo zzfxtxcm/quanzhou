@@ -1,0 +1,271 @@
+// Place all the styles related to the GroupBuyings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here:  http: //sass-lang.com/
+
+// 大图滚动
+//= require custom/galleryview
+
+/*电商*/
+.ttf {
+	height: 312px;
+	background-color: #FFF;
+	overflow: hidden;
+}
+
+.ttf_cont {
+	height: 243px;
+	position: relative;
+}
+
+.border_bot {
+	background-color: #FFF;
+}
+
+.border_top {
+	height: 44px;
+	line-height: 44px;
+	border: 1px solid #e7e7e7;
+  span {
+    padding: 0 10px;
+    display: inline-block;
+    color: #595959;
+    font-weight: bold;
+    font-family: "微软雅黑";
+  }
+}
+
+.border_cont {
+	border: 1px solid #e7e7e7;
+	border-top: none;
+	margin-top: 1px;
+	padding: 10px;
+}
+
+#mar3Nav{
+	position: absolute;
+	top: -30px;
+	right: 20px;
+  ul, ol {
+    list-style:  none outside none;
+    li {
+      width: 12px;
+      height: 11px;
+      margin: 0 3px;
+      cursor: pointer;
+      background: url(asset_path("cur.jpg")) -17px 0 no-repeat;
+      text-indent: -9999px;
+      float: left;
+      &.navOn {
+        background-position:  0 0;
+      }
+    }
+  }
+}
+
+.marquee {
+  li {
+    width: 850px !important;
+    float: left !important;
+    overflow: hidden;
+    margin-right: 0 !important;
+  }
+  .pic {
+    float: left  !important;
+    margin-right: 18px;
+  }
+}
+
+#scrollable-1 {
+	position: relative;
+	width: 824px;
+	height: 243px;
+	overflow: hidden;
+	margin: 0 auto;
+  ul, ol {
+    list-style: none outside none;
+    padding: 0;margin: 0;
+    li {
+      float: left;
+      width: 265px;
+      height: 243px;
+      margin-right: 18px;
+      h2 {
+        color: #f18137;
+        font-size: 14px;
+        font-weight: bold;
+        padding-left: 10px;
+        line-height: 15px;
+        a {
+          color: #f18137;
+        }
+        span {
+          width: 37px;
+          height: 16px;
+          background-position: 0 0;
+          color: #FFF;
+          line-height: 16px;
+          text-align: center;
+          font-size: 12px;
+          font-weight: normal;
+          margin-left: 3px;
+          vertical-align: top;
+          display: inline-block;
+          *display: inline;
+          *zoom: 1;
+          padding-left: 5px;
+        }
+      }
+      p {
+        color: #808080;
+        line-height: 22px;
+        padding-left: 10px;
+        &.blue {
+          color: #3a9acb;
+        }
+      }
+    }
+  }
+}
+
+.dsyh {
+  background: url(asset_path("youhui_tfh.jpg"));
+	width: 327px;
+	height: 65px;
+	h3 {
+		color: #FFF;
+		margin-left: 2px;
+	}
+}
+
+.nj_tip {
+	float: left;
+	margin-top: 10px;
+	.nav-tabs > li > a {
+		line-height: 8px;
+		margin-right: 8px;
+	}
+	p {
+		line-height: 18px;
+	}
+}
+
+.nj_xtime {
+	border: 1px dotted #e7e7e7;
+	border-right: 0;
+	border-left: 0;
+	height: 50px;
+	margin-top: 10px;
+	width: 740px;
+}
+
+.njleft_tfh {
+	width: 367px;
+	height: 276px;
+	padding: 5px;
+	position: relative;
+}
+
+.nj_title_bg {
+	background-color: #ecf7fe;
+	width: 367px;
+	height: 45px;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	-moz-opacity: .6;
+	position: absolute;
+	left: 4px; top: 4px;
+}
+
+.nj_title {
+	width: 357px;
+	height: 45px;
+	line-height: 45px;
+	padding-left: 10px;
+	position: absolute;
+	left: 4px; top: 4px;
+	color: #515151;
+	font-size: 22px;
+	font-family: "微软雅黑";
+	a {
+		color: #515151;
+	}
+}
+
+.njleft_tfh {
+	.timerbg {
+		width: 367px;
+		height: 30px;
+		left: 4px;
+		bottom: 4px;
+	}
+	.timer {
+		width: 317px;
+		height: 30px;
+		line-height: 30px;
+		padding-left: 50px;
+		left: 4px;
+		bottom: 4px;
+		span {
+			margin-top: 5px;
+		}
+	}
+}
+
+.djs {
+	display: none;
+}
+
+.timerbg {
+	height: 44px;
+	background-color: #000;
+	opacity: .8;
+	-moz-opacity: .8;
+	filter: alpha(opacity=80);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 340px;
+}
+
+.timer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 330px;
+	height: 44px;
+	padding-left: 10px;
+	color: #FFF;
+	font-size: 14px;
+	line-height: 44px;
+	span {
+		width: 24px;
+		height: 22px;
+		background-position: -154px 0;
+		float: left;
+		line-height: 22px;
+		text-align: center;
+		color: #ffdd3e;
+		margin: 10px 8px 0;
+	}
+	b {
+		float: left;
+	}
+}
+
+.nj_timer b {
+	font-size: 16px;
+	color: #fd2a00;
+	font-weight: bold;
+	margin-left: 25px;
+}
+
+/*电商页*/
+.dsinfo_ad img {
+	width: 1170px;
+	height: auto;
+	margin-top: 20px;
+}
+
+.dstj img {
+	margin: 0;
+}

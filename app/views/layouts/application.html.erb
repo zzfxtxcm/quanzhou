@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title><%= full_title(yield(:title)) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%= stylesheet_link_tag "application",
+                          "custom",
+                          "custom/base",
+                          "custom/common",
+                          "custom/font-awesome.min",
+                          "custom/bootstrop3code",
+                          params[:controller],
+                          media: "all", "data-turbolinks-track" => true %>
+  <!--[if lte IE 6]>
+    <%= stylesheet_link_tag "bootstrap/bootstrap-ie6.css", media: "all", "data-turbolinks-track" => true %>
+  <![endif]-->
+  <!--[if lte IE 7]>
+    <%= stylesheet_link_tag "bootstrap/ie.css", media: "all", "data-turbolinks-track" => true %>
+  <![endif]-->
+  <%= javascript_include_tag "application",
+                              params[:controller],
+                              "custom/ad_ls",
+                              "custom/stickUp.min",
+                              "data-turbolinks-track" => true %>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <%= render 'layouts/header' %>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-#{key}">
+        <button class="close" data-dismiss="alert" type="button"><%= value %></button>
+      </div>
+    <% end %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
+    <!--[if lte IE 6]>
+      <%= javascript_include_tag "bootstrap/bootstrap-ie.js", "data-turbolinks-track" => true %>
+    <![endif]-->
+  </body>
+  </html>

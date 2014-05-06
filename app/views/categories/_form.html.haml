@@ -1,0 +1,7 @@
+= form_for @category do |f|
+  = f.hidden_field :parent_id
+  %p
+    = f.label :name, "New category"
+    = f.text_area :name
+  %p
+    = f.submit "Post Category"

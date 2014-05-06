@@ -1,0 +1,30 @@
+.mb20{style: "border-bottom:1px  dotted #CCC"}
+  %table.mb20
+    %tr
+      %td{width: "270px;"}
+        = link_to image_tag(new_home.new_home_thumb, alt: new_home.name, :style => "height:150px; width:230px"), new_home
+      %td{width: "440px"}
+        %h5.cl
+          [#{Area.find(new_home.area_id).name}]
+          = link_to new_home.name, new_home
+          %span.label.label-important.ml10{style: "background:#f65c52"}
+            = Status.find(new_home.status_id).name
+        %p 楼盘动态：鑫荣花苑二期：稀世臻品花园掘金旺铺同步预约
+        %p 楼吧点评：经过鑫荣花苑二期，看到那开始动工了！
+        %p 售楼电话：#{new_home.tel}
+        %p
+          户型图
+          %span.cr (8)
+          实景图
+          %span.cr> (31)
+          动态
+          %span.cr (23)
+          点评
+          %span.cr (5)
+          问房
+          %span.cr (2)
+          团购
+          %span.cr> (56)
+          地图
+      %td{style: "text-align:center"}
+        %h3.mt20.cr #{new_home.price}元/m ²

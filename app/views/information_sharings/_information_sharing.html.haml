@@ -1,0 +1,11 @@
+%div{style: "border-bottom:1px solid #CCC; margin-bottom:20px;"}
+  %p.f16.cl
+    %p.f16.cl
+      = information_sharing.title
+  %p.f14 
+    = information_sharing.content.first(120)
+    = "..." if information_sharing.content.length > 120
+  %p.f12.cr
+    下载地址：
+    = link_to information_sharing.url ,"http://"+""+information_sharing.url
+    

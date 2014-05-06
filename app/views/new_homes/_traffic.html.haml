@@ -1,0 +1,161 @@
+.prdt.pull-left.pt20
+  .title_l{align: "center", style: "width:150px;"}
+    %p.fb 楼盘地图
+  .title_r{style: "width:762px;"}
+  .clearfix
+  .mt10.mb10
+    #traffic_map{style: "width:912px; height:564px"}
+  .title_l{align: "center", style: "width:150px;"}
+    %p.fb 周边交通
+  .title_r{style: "width:762px;"}
+  .clearfix
+  .f14.m10.lh200{style: "width:888px;"}
+    %p
+      公交：
+      - @new_home.bus.split(",").each do |line|
+        = link_to "#{line}路", new_home_path(@new_home.id, type: "traffic", bus_lines: line), class: "btn btn-link"
+      %span.text-error
+        （点击可以显示相应的公交路线）
+    %p
+      售楼处地址：#{@new_home.project_address}
+  .title_l{align: "center", style: "width:150px;"}
+    %p.fb 周边配套
+  .title_r{style: "width:762px;"}
+  .clearfix
+  .f14.m10.lh200{style: "width:888px;"}
+    %p 小区内部配套：#{@new_home.neighborhoods}
+    %p 学校：#{@new_home.school}
+    %p 购物中心：#{@new_home.shopping}
+    %p 银行：#{@new_home.bank}
+
+.pull-right.pt20{style: "width:244px;"}
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        同价位楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        周边楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        热门楼盘推荐
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 板块
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+
+:javascript
+  function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r!=null) return unescape(r[2]); return null;
+  }
+
+  // 百度地图API功能
+  var map = new BMap.Map("traffic_map");
+  var point = new BMap.Point(#{@new_home.map_address});
+  map.centerAndZoom(point,16);
+  map.enableScrollWheelZoom();
+
+  map.addControl(new BMap.NavigationControl());
+  map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN}));  //左下角，仅包含平移按钮
+
+  map.addControl(new BMap.ScaleControl());
+
+  map.addControl(new BMap.OverviewMapControl());
+  map.addControl(new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右上角，打开
+
+  map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));     //2D图，卫星图
+
+
+
+  if (GetQueryString("bus_lines")) {
+    var busline = new BMap.BusLineSearch(map,{
+      renderOptions:{map:map,panel:"r-result"},
+        onGetBusListComplete: function(result){
+        if(result) {
+          var fstLine = result.getBusListItem(0);//获取第一个公交列表显示到map上
+            busline.getBusLine(fstLine);
+        }
+      }
+    });
+
+    function busSearch(){
+        var busName = GetQueryString("bus_lines");
+        busline.getBusList(busName);
+    }
+
+    setTimeout(function(){
+        busSearch();
+    },1500);
+  } else {
+    var marker = new BMap.Marker(point);  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+  }

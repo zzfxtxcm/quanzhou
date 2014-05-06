@@ -1,0 +1,67 @@
+#miniTop
+  .miniLogin
+    %label 用户名：
+    %input#username.loginTxtInt{ name: "username", type: "text" }
+    %label 密码：
+    %input#password.loginTxtInt{ name: "password", type: "password" }
+    %input{ name: "action", type: "hidden", value: "login" }
+    %input{ name: "r", type: "hidden", value: "3" }
+    %input.loginBut{ type: "submit", value: "登录" }
+    %a.regBut 注册
+  .miniright
+    = link_to "首页", root_path
+    = link_to "新房", new_homes_path
+    = link_to "二手房", "#"
+    = link_to "团购", group_buyings_path
+.clearfix
+.container
+  .pull-left.mt20
+    = link_to image_tag("logo.png"), "/"
+  .pull-left.mt30.ml30
+    .tabbable
+      %ul.nav.nav-tabs#myTab{ style: "margin:0;" }
+        %li.active
+          %a{ "data-toggle" => "tab", href: "#tab1" } 综合
+        %li
+          %a{ "data-toggle" => "tab", href: "#tab2" } 新房
+        %li
+          %a{ href: "#tab3" } 租房
+        %li
+          %a{ href: "#tab4" } 团购
+        %li
+          %a{ href: "#tab5" } 专题
+      .tab-content#myTabContent
+        .tab-pane.fade.active.in#tab1
+          = form_tag information_index_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 525px", :placeholder => "请输入关键字"
+            %button.btn.btn-danger{ type: "submit" }
+              搜索
+        .tab-pane#tab2
+          = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+            = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 525px", :placeholder => "请输入关键字"
+            %button.btn.btn-danger{ type: "submit" }
+              搜索
+        #tab3.tab-pane
+/ 导航
+:javascript
+  jQuery(function($) {
+    $(document).ready( function() {
+      $('.newnav').stickUp();
+    });
+  });
+%div{ style: "height: 20px" }
+#toc_container.newnav{ align: "center" }
+  = link_to "首页", root_path, target: "_blank"
+  |
+  = link_to "资讯", information_index_path, target: "_blank"
+  |
+  = link_to "新房", new_homes_path, target: "_blank"
+  |
+  = link_to "团购", group_buyings_path, target: "_blank"
+  |
+  = link_to "地图找房", map_path, target: "_blank"
+  |
+  %a{href: "#", target: "_blank"}> 租房
+  |
+  %a{href: "#", target: "_blank"} 二手房
+/ header end

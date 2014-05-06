@@ -1,0 +1,514 @@
+-provide(:title, '漳州房产网,漳州买房，漳州新房，漳州房价，漳州楼盘，漳州二手房，漳州租房')
+.container
+  / 左边
+  .pull-left{style: "width:242px;"}
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          楼盘推荐
+          = link_to "更多>", new_homes_path, :class => "pull-right f14"
+      .panel-body
+        - @areas[0..5].each do |area|
+          %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
+            %h4.f16.mt5.mb5{style: "color:#f65c52"} #{area.name}
+            %p
+              - NewHome.where(area_id: area.id).limit(4).each do |new_home|
+                = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 帮你找房
+      .panel-body
+        %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
+          %h4.f16.mt5.mb5{style: "color:#f65c52"} 价格
+          %p
+            = render_option_of_single_price_index(3000, 4000, "")
+            = render_option_of_single_price_index(4000, 5000, "color: #333")
+            = render_option_of_single_price_index(6000, 7000, "color: #333")
+            = render_option_of_single_price_index(7000, 8000, "color: #333")
+            = render_option_of_single_price_index(8000, 20000, "color: #333")
+        %div{style: " height:75px;"}
+          %h4.f16.mt5.mb5{style: "color:#f65c52"} 面积
+          %p
+            - AreaRange.limit(1).each do |item|
+              = render_option_of_single_area_range_index(item.name, item.id, "")
+            - AreaRange.offset(1).each do |item|
+              = render_option_of_single_area_range_index(item.name, item.id, "color: #333")
+        = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
+          = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 3px 0 0 0"
+          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
+          = select_tag :section_id, options_from_collection_for_select(@sections, 'id', 'name'), prompt: "请选择版块", class: "selectS", id: "area", style: "margin: 3px 0"
+          = text_field_tag :keyword, params[:keyword], :class => "form-control", :id => "keyword", :style => "width: 110px", :placeholder => "请输入关键字"
+          %button.btn.btn-danger{ type: "submit", style: "height: 28px; width: 58px" }
+            搜索
+  / 左边end
+  / 右边
+  .pull-left.ml20
+    .pull-left
+      = image_tag("tmp/ad.jpg", alt: "", :style => "height:58px; width:900px")
+    .clearfix
+    .pull-left.pt10
+      = image_tag("jrtt.gif")
+    .pull-left.ml10
+      - Information.where(information_type_id: 1).limit(1).each do |information|
+        %h3
+          = link_to information.title.first(30), information, :class => "cl", target: "_blank"
+          %span.cl
+            = "..." if information.title.length >31
+        %p
+          = information.description.first(60)
+          = "..." if information.description.length > 60
+          = link_to "详情", information, :class => "cr", target: "_blank"
+    / 右边中
+  .l_new2.pull-left.ml20{style: "border-right: 1px solid #EEEEEE; width:410px;"}
+    .title_l
+      %p 楼盘速递
+    .title_r
+      = link_to '更多', information_index_path(:information_type_id => 2), :class => 'pull-right mt5', target: "_blank"
+    .pull-left.mt10
+      %ul
+        - Information.where(information_type_id: 2).limit(7).each do |information|
+          %li
+            = link_to information.title.first(26), information, target: "_blank"
+    .clearfix
+    .title_l
+      %p 楼盘优惠
+    .title_r
+      = link_to '更多', information_index_path(:information_type_id => 3), :class => 'pull-right mt5', target: "_blank"
+    .pull-left.mt10
+      %ul
+        - Information.where(information_type_id: 3).limit(7).each do |information|
+          %li
+            = link_to information.title.first(26), information, target: "_blank"
+    .clearfix
+    .title_l
+      %p 楼盘评测
+    .title_r
+      = link_to '更多', information_index_path(:information_type_id => 4), :class => 'pull-right mt5', target: "_blank"
+    .pull-left.mt10
+      %ul
+        - Information.where(information_type_id: 12).limit(7).each do |information|
+          %li
+            = link_to information.title.first(26), information, target: "_blank"
+    / 右边右
+  .pull-left.ml20{style: "width:475px;"}
+    .pt5.pl5.pb5{style: "border: 1px solid #EEEEEE;"}
+      .clearfix
+      .imageRotation
+        .imageBox{style: "width: 924px;"}
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/gad1.jpg")
+          %a{href: "", target: "_blank"}
+            = image_tag("tmp/gad2.jpg")
+        .titleBox
+          %p.active{style: "bottom:0px;"}
+            %span 本地化房产团购、电商门户
+          %p{style: "bottom: -40px;"} 电商第一门户为目标
+        .icoBox
+          %span{rel: "1"} 1
+          %span{rel: "2"} 2
+      :javascript
+        $(document).ready(function() {
+          $(".imageRotation").each(function(){
+            // 获取有关参数
+            var imageRotation = this,  // 图片轮换容器
+              imageBox = $(imageRotation).children(".imageBox")[0],  // 图片容器
+              titleBox = $(imageRotation).children(".titleBox")[0],  // 标题容器
+              titleArr = $(titleBox).children(),  // 所有标题（数组）
+              icoBox = $(imageRotation).children(".icoBox")[0],  // 图标容器
+              icoArr = $(icoBox).children(),  // 所有图标（数组）
+              imageWidth = $(imageRotation).width(),  // 图片宽度
+              imageNum = $(imageBox).children().size(),  // 图片数量
+              imageReelWidth = imageWidth*imageNum,  // 图片容器宽度
+              activeID = parseInt($($(icoBox).children(".active")[0]).attr("rel")),  // 当前图片ID
+              nextID = 0,  // 下张图片ID
+              setIntervalID,  // setInterval() 函数ID
+              intervalTime = 4000,  // 间隔时间
+              imageSpeed =500,  // 图片动画执行速度
+              titleSpeed =250;  // 标题动画执行速度
+            // 设置 图片容器 的宽度
+            $(imageBox).css({'width' : imageReelWidth + "px"});
+            // 图片轮换函数
+            var rotate=function(clickID){
+              if(clickID){ nextID = clickID; }
+              else{ nextID=activeID<=1 ? activeID+1 : 1; }
+              // 交换图标
+              $(icoArr[activeID-1]).removeClass("active");
+              $(icoArr[nextID-1]).addClass("active");
+              // 交换标题
+              $(titleArr[activeID-1]).animate(
+                {bottom:"-40px"},
+                titleSpeed,
+                function(){
+                  $(titleArr[nextID-1]).animate({bottom:"0px"} , titleSpeed);
+                }
+              );
+              // 交换图片
+              $(imageBox).animate({left:"-"+(nextID-1)*imageWidth+"px"} , imageSpeed);
+              // 交换IP
+              activeID = nextID;
+            }
+            setIntervalID=setInterval(rotate,intervalTime);
+            $(imageBox).hover(
+              function(){ clearInterval(setIntervalID); },
+              function(){ setIntervalID=setInterval(rotate,intervalTime); }
+            );
+            $(icoArr).click(function(){
+              clearInterval(setIntervalID);
+              var clickID = parseInt($(this).attr("rel"));
+              rotate(clickID);
+              setIntervalID=setInterval(rotate,intervalTime);
+            });
+          });
+        });
+    %div{style: "border: 1px solid #EEEEEE; height:234px; margin-top:10px;"}
+      = link_to image_tag("tmp/ad1.jpg", :class => "pt5 pl5", :style => "width:462px; height:222px;"), group_buyings_path, target: "_blank"
+    .mt10{style: "height:240px; width:473px "}
+      .title_l
+        %p 楼市日历
+      .title_r{style: "width:380px;"}
+        %a.pull-right.mt5{href: "/information?information_type_id=8", target: "_blank"} 更多
+      .clearfix
+      .pull-left{style: "width:450px;"}
+        #navbarExample.navbar.navbar-static.m0{style: "width: 473px; padding-top:10px;"}
+          .navbar-inner
+            .container
+              %ul.nav
+                - 6.times do |n|
+                  %li.active
+                    = link_to "#{ (Time.now + n.month).strftime("%m").to_i }月份", "#activity#{ n }"
+        .scrollspy-example{"data-offset" => "0", "data-spy" => "scroll", "data-target" => "#navbarExample", style: "height:150px; overflow:auto; position:relative; width:463px; padding-left:10px;border: 1px solid #EEEEEE; "}
+          - 6.times do |n|
+            %h4{ id: "activity#{ n }" }
+              #{ (Time.now + n.month).strftime("%m").to_i }月份
+            - Activity.where("opening_time >= ? AND opening_time <= ?", Time.now.beginning_of_month+n.month, Time.now.end_of_month+n.month).each do |item|
+              %p
+                = link_to item.title+" (#{item.opening_time.strftime("%Y-%m-%d")})"
+  / end 右边右
+  / 右边end
+
+  / 二楼新房板块
+  .clearfix
+  .pull-left{style: "background:url(#{asset_path 'ban.gif'}); height:53px; width:103px;"}
+  .pull-left{style: "background:url(#{asset_path 'ban2.gif'});height:53px; width: 1067px; background-repeat:repeat-x"}
+    %h4{style: "color:#FFF; margin-top:24px;"} 新房
+  .clearfix.mb15
+  / 左边
+  .pull-left{style: "width:248px;"}
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          新房推荐
+          = link_to '更多', new_homes_path, :class => 'pull-right mt5', target: "_blank"
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 区属
+              %th 价格
+          - NewHome.limit(8).each do |item|
+            %tr
+              %td
+                = link_to item.name, item
+              %td
+                = Area.find(item.area_id).name
+              %td #{ item.price }元/m&sup2
+    = render 'shared/intention_to_register_form'
+    .p5
+      = image_tag("tmp/jjsx.gif", alt: "")
+
+  / end 左边
+  / 右边
+  .pull-left
+    / 右边中
+    .l_new3.pull-left.ml10{style: "border-right: 1px solid #EEEEEE; width:420px;"}
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab"} 今日话题
+        #myTabContent.tab-content
+          .tab-pane.fade.active.in
+            - Information.where(information_type_id: 5).limit(1).each do |information|
+              %h3{style: "margin:0"}
+                = link_to information.title.first(32), information ,:class => "cl",:style => "font-size:24px", target: "_blank"
+              %p{style: "color:#999"} #{information.source} #{information.created_at.strftime("%Y-%m-%d")}
+              %div{style: "margin:20px 0px 20px 0px; border-bottom:1px dotted #CCC; height:90px"}
+                %p
+                  = information.description.first(58)
+                  = "..." if information.description.length > 59
+                  = link_to "[详情]", information ,:class => "cr", target: "_blank"
+                %p
+                  %a.cr.pull-right{href: ""} 往期>
+              %ul
+                - Information.where(information_type_id: 5).limit(3).offset(1).each do |information|
+                  %li
+                    = link_to information.title.first(26), information, target: "_blank"
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#l_hot"} 楼市资讯
+        #myTabContent.tab-content
+          #l_hot.tab-pane.fade.active.in
+            %ul
+              - Information.where(information_type_id: 6).limit(6).offset(1).each do |information|
+                %li
+                  = link_to information.title.first(26), information, target: "_blank"
+      %div{style: "width:400px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#act"} 楼市观点
+        #myTabContent.tab-content
+          #act.tab-pane.fade.active.in
+            %ul
+              - Information.where(information_type_id: 7).limit(6).offset(1).each do |information|
+                %li
+                  = link_to information.title.first(26), information, target: "_blank"
+    / end右边中
+    / 右边右
+    .pull-left.l_new3{style: "width:465px;"}
+      %div{style: "width:465px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#act"} 楼盘活动
+        #myTabContent.tab-content
+          #act.tab-pane.fade.active.in
+            .pull-left.pt10{style: " width:174px;"}
+              - Information.where(information_type_id: 8).limit(2).each do |information|
+                = image_tag(information.information_thumb, alt: "", :style => "height:100px; width:175px; margin-bottom:10px;", target: "_blank")
+            .loushiguandian
+              - Information.where(information_type_id: 8).limit(2).each do |information|
+                %h4
+                  = link_to information.title.first(14), information, :class=> "cr", target: "_blank"
+                .mt5{style: "height:80px"}
+                  %p.f14
+                    = information.description.first(50)
+                    = link_to "[查看详情]", information,:class => "cr", target: "_blank"
+            .clearfix
+            .mb10{style: "border-top:1px dotted #333;"}
+            %ul
+              - Information.where(information_type_id: 8).limit(6).offset(1).each do |information|
+                %li
+                  = link_to information.title, information, target: "_blank"
+      .pt10{style: "width:465px"}
+        = image_tag("tmp/newh.jpg", alt: "",:style =>" height:320px;width:465px;")
+      / %div{style: "width:465px;"}
+      /   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+      /     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+      /       %a{"data-toggle" => "tab", href: "#act"}   专题  
+      /   #myTabContent.tab-content
+      /     #act.tab-pane.fade.active.in
+      /       .pull-left.pt10{style: " width:174px;"}
+      /         %a{href: ""}
+      /           = image_tag("tmp/ad9.gif", alt: "")
+      /       .loushiguandian
+      /         %h4
+      /           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
+      /         %p.f14.m0
+      /           4月7日，漳州角美万达广场商铺投资经营体验会将在角美万达广场营销,漳州角美万达广场商铺投资经营体验会将在角美万达广场营销
+      /           %a.cl{href: ""} [详情]
+      /       .clearfix
+      /       .mb10{style: "border-top:1px dotted #333;"}
+      /       %ul
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 水岸新城：经典手工彩绘DIY欢乐季圆满落幕圆满落幕
+      /         %li
+      /           %a{href: ""} 4月1日 | 丽园君悦：房产/投资理财讲座圆满成功圆满落幕
+  / end 右边右
+  / end 右边右
+  / end 右边
+  / -二楼end
+  / 三楼地产圈
+  .dcq
+    .clearfix
+    .pull-left{style: "background:url(#{asset_path("ban.gif")}); height:53px; width:103px;"}
+    .pull-left{style: "background:url(#{asset_path("ban2.gif")});height:53px; width: 1067px; background-repeat:repeat-x"}
+      %h4{style: "color:#FFF; margin-top:24px;"} 地产圈
+    .clearfix
+    .pull-left{style: "width:900px;"}
+      .pull-left.mt10.mb10
+        .title3_l
+          %p 名人堂
+        .title3_r{align: "right", style: "width:777px"}
+          %a{href: ""} 更多
+      / picrotate_left start
+      .blk_18
+        %a.LeftBotton{href: "javascript:void(0);", onmousedown: "ISL_GoUp_1()", onmouseout: "ISL_StopUp_1()", onmouseup: "ISL_StopUp_1()", target: "_self"}
+        #ISL_Cont_1.pcont
+          .ScrCont
+            #List1_1
+              - Character.all.limit(8).each do |item|
+                .pl
+                  = link_to image_tag(item.character_thumb, alt: item.name, :style => "height:160px; width:130px"),item, target: "_blank"
+                  %h4
+                    = link_to item.name.first(8), item, target: "_blank"
+                  %p
+                    = item.title.first(13)
+            #List2_1
+        %a.RightBotton{href: "javascript:void(0);", onmousedown: "ISL_GoDown_1()", onmouseout: "ISL_StopDown_1()", onmouseup: "ISL_StopDown_1()", target: "_self"}
+      .c
+      :javascript
+        <!--
+        picrun_ini()
+        -->
+      / picrotate_left end
+      .activity
+        .title3_l
+          %p 活动
+        .title3_r{align: "right", style: "width:777px"}
+          %a{href: ""} 更多
+        .clearfix.m0
+        .pull-left.mt10{style: "width:265px;"}
+          - Information.where(information_type_id: 8).limit(1).each do |information|
+            = image_tag(information.information_thumb, alt: "", :style => "height:170px; width:260px;")
+        .pull-left.mt10.ml10{style: "width:322px; border-right:1px solid #CCC"}
+          - Information.where(information_type_id: 8).limit(1).each do |information|
+            %h4
+              = link_to information.title.first(40), information,:class => "cl f16", target: "_blank"
+            %p
+              = information.description.first(300)
+              = link_to "[查看详情]", information,:class => "cr", target: "_blank"
+        .activity_list
+          %ul
+            - Information.where(information_type_id: 8).limit(5).offset(1).each do |information|
+              %li
+                = link_to information.title.first(17), information, target: "_blank"
+    .pull-left.mt10.ml20
+      .title2_l
+        %h4.f16.cr{style: "margin:0px"} 资料分享
+      .title2_r{align: "right", style: "width:140px;"}
+        %a{href: "/information_sharings"} 更多
+      .clearfix
+      .pull-left
+        %table.table.table-condensed.pull-left{style: "width:215px; margin-bottom:5px;"}
+          - InformationSharing.limit(6).each do |sharp|
+            %tr
+              %td
+                = link_to sharp.title.first(17), sharp, target: "_blank"
+      .clearfix
+      .pull-left
+        = link_to image_tag("tmp/xw.gif", alt: "", :style => "height:260px; width:226px;"),'about#join', target: "_blank"
+    .pull-left.mt10
+      .title3_l
+        %p 品牌展示
+      .title3_r{align: "right", style: "width:1048px"}
+        %a{href: ""} 更多
+      .clearfix
+      #demo.mt20.mb20
+        #indemo
+          #demo1
+            - 12.times do |n|
+              = image_tag("tmp/#{n+1}.jpg")
+          #demo2
+      :javascript
+        <!--
+        var speed=20;
+        var tab=document.getElementById("demo");
+        var tab1=document.getElementById("demo1");
+        var tab2=document.getElementById("demo2");
+        tab2.innerHTML=tab1.innerHTML;
+        function Marquee(){
+          if(tab2.offsetWidth-tab.scrollLeft<=0)
+            tab.scrollLeft-=tab1.offsetWidth
+          else{
+            tab.scrollLeft++;
+          }
+        }
+        var MyMar=setInterval(Marquee,speed);
+        tab.onmouseover=function() {clearInterval(MyMar)};
+        tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+        -->
+  / 三楼end
+  / 4楼购房百科
+  .baike
+    .clearfix
+    .pull-left{style: "background:url(#{asset_path("ban.gif")}); height:53px; width:103px;"}
+    .pull-left{style: "background:url(#{asset_path("ban2.gif")});height:53px; width: 1067px; background-repeat:repeat-x"}
+      %h4{style: "color:#FFF; margin-top:24px;"} 购房百科
+    .pull-left.mt10{style: "width:305px; border-right:1px solid #CCC"}
+      .title3_l
+        %p 购房须知
+      .title3_r{align: "right", style: "width:168px"}
+        = link_to '更多', information_index_path(:information_type_id => 9)
+      .clearfix
+      .mt10.mb10
+        %ul
+          - Information.where(information_type_id: 9).limit(4).each do |information|
+            %li
+              = link_to information.title.first(40), information, target: "_blank"
+      .title3_l
+        %p 购房警示
+      .title3_r{align: "right", style: "width:168px"}
+        = link_to '更多', information_index_path(:information_type_id => 10)
+      .clearfix
+      .mt10.mb10
+        %ul
+          - Information.where(information_type_id: 10).limit(4).each do |information|
+            %li
+              = link_to information.title.first(40), information, target: "_blank"
+    .pull-left.mt10{style: " width:415px; border-right:1px solid #CCC ; margin-left:15px;"}
+      .title3_l
+        %p 房事八卦
+      .title3_r{align: "right", style: "width:278px"}
+        = link_to '更多', information_index_path(:information_type_id => 13), target: "_blank"
+      .clearfix
+      - Information.where("information_type_id = 13 AND information_thumb IS NOT NULL").limit(1).each do |information|
+        .pull-left.pt10{style: " width:174px;"}
+          = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
+        %div{style: "float:left; width:212px; margin-left:10px;"}
+          %h4.m0
+            = link_to information.title.first(14), information, :class => "cr f14"
+          %p.f12.m0
+            = information.description.first(60)
+            = link_to "[详情]", information, :class => "cl", target: "_blank"
+      .clearfix
+      .mb10{style: "border-top:1px dotted #333; width:400px;"}
+      %ul
+        - Information.where(information_type_id: 13).limit(8).each do |information|
+          %li
+            = link_to information.title.first(26), information, target: "_blank"
+    .pull-left.mt10{style: " margin-left:15px;width:405px;"}
+      .title3_l
+        %p 家居轶事
+      .title3_r{align: "right", style: "width:278px"}
+        = link_to '更多', information_index_path(:information_type_id => 14), target: "_blank"
+      .clearfix
+        - Information.where("information_type_id = 14 AND information_thumb IS NOT NULL").limit(1).each do |information|
+          .pull-left.pt10{style: " width:174px;"}
+            = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
+          %div{style: "float:left; width:212px; margin-left:10px;"}
+            %h4.m0
+              = link_to information.title.first(14), information, :class => "cr f14", target: "_blank"
+            %p.f12.m0
+              = information.description.first(60)
+              = link_to "[详情]", information, :class => "cl", target: "_blank"
+      .clearfix
+      .mb10{style: "border-top:1px dotted #333; width:400px;"}
+      %ul
+        - Information.where(information_type_id: 14).limit(8).each do |information|
+          %li
+            = link_to information.title.first(26), information
+    .clearfix
+    .tool
+      / 友情链接
+      %table.table.table-bordered
+        %tr
+          %td{bgcolor: "#ececec", width: "192px;"}
+            %p{align: "center"}
+              %strong 友情链接
+            %a.ml30{href: ""}
+              %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
+          %td.yqlj
+            %a 百度贴吧
+
+      / end友情链接
+  / end楼购房百科
+/ con end

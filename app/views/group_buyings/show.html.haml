@@ -1,0 +1,254 @@
+- new_home = NewHome.find(@group_buying.new_home_id)
+- developers = Developers.find(new_home.developers_id)
+-provide(:title, '漳州房地产团购列表')
+/ 导航
+.tgnav
+  .container
+    .active
+      %a{href: "#"} 淘房汇
+.container
+  .dsinfo_ad
+    = image_tag("dslc.gif")
+  / 左边
+  .pull-left.mr15.mt20{style: "width:244px; "}
+    %table.mb20{border: "0", width: "244px"}
+      %tr
+        %td{height: "48px", style: "background: url(#{asset_path("dsyh.gif")}) no-repeat; margin:0px;", width: "80px"}
+          %p{style: "float:left ; color:#FFF; font-size:18px ; margin:0px 0px 20px 15px;"} 优惠
+        %td.cw{style: "background: url(#{asset_path("dsyh1.gif")})  repeat-x; width:163px;"}
+          %a1 #{ new_home.name }
+      %tr
+        %td{colspan: "2", style: "border:1px solid #e7e7e7; border-top:0; font-size:14px; line-height:25px;"}
+          .pl10{style: "color: #666"}
+            %div{style: "background: url(#{asset_path("dsjb.gif")}) no-repeat; height:38px;"}
+            %p
+              项目地址：
+              %span.cr #{new_home.project_address}
+            %p
+              开发商：
+              %span.cr #{developers.name}
+            %p
+              主力户型：
+              %span.cr 70-135m²高附赠户型
+            %p
+              交付标准：
+              %span.cr 地暖精装
+            %p
+              %a{href: "http://wpa.qq.com/msgrd?v=3&uin=398663666&site=qq&menu=yes", target: "_blank"}
+                %img{alt: "点击这里给我发消息", border: "0", src: "http://wpa.qq.com/pa?p=2:398663666:41", title: "点击这里给我发消息"}/
+                电话：#{new_home.tel}
+    .mt20.mb20{style: "border:2px solid #2db8ad; width:242px;"}
+      %br/
+      .pl10.pr10
+        %p{align: "center", style: "font-weight:bolder; font-size:16px"} 团购优惠时间
+        %p.cr{align: "center"}
+          #{@group_buying.start_time.strftime("%Y-%m-%d")}
+          &nbsp;-&nbsp;
+          #{@group_buying.end_time.strftime("%Y-%m-%d")}
+        .progress.progress-info
+          .bar{style: "width: 70%; background:#2db8ad;"}
+        %p{align: "center"}
+          %a.btn.cw.btn-large{style: "background:#f65c52"} 立即抢购
+        %p{a: "", align: "center"}
+          %span.cr.f20> 20000
+          人关注
+          %span.cr.f20> 100
+          人报名
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          大家正在买
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 注册用户
+              %th 活动状态
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          购房工具
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table{style: "width:215px;"}
+          %tr
+            %td
+              = link_to image_tag("tool1.gif", alt: ""), "#"
+            %td
+              = link_to image_tag("tool2.gif", alt: ""), "#"
+          %tr
+            %td
+              = link_to image_tag("tool3.gif", alt: ""), "#"
+            %td
+              = link_to image_tag("tool4.gif", alt: ""), "#"
+          %tr
+            %td
+              = link_to image_tag("tool5.gif", alt: ""), "#"
+          %td
+  / end左边
+  .pull-left
+    %img.img-polaroid.mt10{src: "upload/img/ds.gif", style: "width:900px; height:85px;"}/
+    / 图片轮播
+    %div{style: " border:1px solid #CCC ; width:810px; margin:20px 0px 20px 40px; padding-left:10px; padding-top:10px;"}
+      #photos.galleryview
+        .panel
+          %img{src: "upload/img/01.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图
+        .panel
+          %img{src: "upload/img/02.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图2
+        .panel
+          %img{src: "upload/img/03.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图3
+        .panel
+          %img{src: "upload/img/04.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图4
+        .panel
+          %img{src: "upload/img/06.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图5
+        .panel
+          %img{src: "upload/img/05.jpg"}/
+          .panel-overlay
+            %h2 CSS楼盘主观图
+        .panel
+          %img{src: "upload/img/07.jpg"}/
+          .panel-overlay
+            %h2 焦点幻灯片
+        .panel
+          %img{src: "upload/img/08.jpg"}/
+          .panel-overlay
+            %h2 楼盘主观图
+        %ul.filmstrip
+          %li
+            %img{alt: "Effet du soleil", src: "upload/img/frame-01.jpg", title: "Effet du soleil"}/
+          %li
+            %img{alt: "Eden", src: "upload/img/frame-02.jpg", title: "Eden"}/
+          %li
+            %img{alt: "Snail on the Corn", src: "upload/img/frame-03.jpg", title: "Snail on the Corn"}/
+          %li
+            %img{alt: "Flowers", src: "upload/img/frame-04.jpg", title: "Flowers"}/
+          %li
+            %img{alt: "Alone Beach", src: "upload/img/frame-06.jpg", title: "Alone Beach"}/
+          %li
+            %img{alt: "Sunrise Trees", src: "upload/img/frame-05.jpg", title: "Sunrise Trees"}/
+          %li
+            %img{alt: "Waterfall", src: "upload/img/frame-07.jpg", title: "Waterfall"}/
+          %li
+            %img{alt: "Death Valley", src: "upload/img/frame-08.jpg", title: "Death Valley"}/
+    / end 图片轮播
+    .title3_l
+      %p 活动说明
+    .title3_r{align: "right", style: "width:787px;"}
+    .clearfix
+    .f14.p10{style: "color: #666; border:1px solid #E7E7E7; border-top:0"}
+      = @group_buying.explanation
+    %div{style: "width:907px; margin-top:20px;"}
+      %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad; margin:0;"}
+        %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#d_hot"} 项目介绍
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#lou"} 项目描述
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#w_new"} 配套资源
+      #myTabContent.tab-content{style: "border:1px solid #e7e7e7; color:#616161;"}
+        #d_hot.tab-pane.fade.active.in.ml20.m5
+          %table.lh180.f14
+            %tr
+              %td{width: "420px;"} 当前均价：#{ new_home.price }元/㎡
+              %td{width: "420px;"} 售楼地址：#{ new_home.sales_address }
+            %tr
+              %td 地段商圈：沃尔玛商圈/中心城区
+              %td 项目优势：学区房、海景房
+            %tr
+              %td 物业类别：#{ PropertyType.find(new_home.property_type_id).name }
+              %td 总房源数：3200套
+            %tr
+              %td 面积区间：#{ AreaRange.find(new_home.area_range_id).name }㎡
+              %td 绿 化 率：#{ new_home.greening_rate }
+            %tr
+              %td 交房时间：2016年4月
+              %td 容 积 率：2.3
+            %tr
+              %td 小区车位：1500个
+              %td 建筑面积：300000㎡
+            %tr
+              %td 建筑类别：多层
+              %td 占地面积：60000㎡
+            %tr
+              %td 开 发 商：迪拜jimlam国际石油贸易有限公司
+              %td 项目地址：XXXXXXXXX
+        #lou.tab-pane.fade ddddddd
+        #w_new.tab-pane.fade bnn
+    %table.mt20{border: "0", width: "907px"}
+      %tr
+        %td.cw{height: "32px", style: "background: url(img/t_2.gif) no-repeat; margin:0px;", width: "122px"}
+          %a1 总户型图
+        %td{align: "right", style: "background:#ececec ; color:#2db8ad"}
+          %a.pr10.cl{href: ""}> 浏览最多
+          |
+          %a.pl10.pr10.cl{href: ""} 切换列表页
+      %tr
+        %td{colspan: "2", style: "border:1px solid #e7e7e7;"}
+          .prhxtinfo.pull-left.ml10.mr10
+            %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
+            %table
+              %tr
+                %td{colspan: "2"}
+                  %h4.cl 画虎国际f-3 e-2户型图 92m²
+              %tr
+                %td 户型 ：3室 2厅
+                %td 面积96m²
+              %tr
+                %td 浏览：1660次
+                %td
+                  %span.label.label-important 查看评论
+          .prhxtinfo.pull-left.ml10.mr10
+            %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
+            %table
+              %tr
+                %td{colspan: "2"}
+                  %h4.cl 画虎国际f-3 e-2户型图 92m²
+              %tr
+                %td 户型 ：3室 2厅
+                %td 面积96m²
+              %tr
+                %td 浏览：1660次
+                %td
+                  %span.label.label-important 查看评论
+          .prhxtinfo.pull-left.ml10.mr10
+            %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
+            %table
+              %tr
+                %td{colspan: "2"}
+                  %h4.cl 画虎国际f-3 e-2户型图 92m²
+              %tr
+                %td 户型 ：3室 2厅
+                %td 面积96m²
+              %tr
+                %td 浏览：1660次
+                %td
+                  %span.label.label-important 查看评论
+    .m20{style: "margin-left:300px;"}
+      %a.btn.cw.btn-large{style: "background:#f65c52"} 我要参与
+  / end 右边

@@ -1,0 +1,284 @@
+zh-CN:
+  active_admin:
+    admin_users: # 管理员
+      menu:
+        admin_user: "管理员"
+    users: # 会员
+      title: "会员管理"
+      menu:
+        user: "会员"
+      list:
+        email: "电子邮箱"
+        sign_in_count: "登录次数"
+        created_at: "创建时间"
+      search:
+        email: "电子邮箱"
+        created_at: "创建时间"
+    information_sharing: # 资料分享
+      title: "资料分享"
+      menu:
+        information_sharing: "资料分享"
+      list:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
+        information_sharing_thumb: "缩略图"
+      search:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
+        information_sharing_thumb: "缩略图"
+      form:
+        title: "标题"
+        content: "内容说明"
+        url: "下载地址"
+        information_sharing_thumb: "缩略图"
+    information: # 信息
+      title: "信息管理"
+      menu:
+        information: "信息"
+      list:
+        title: "标题"
+        category: "分类"
+        source: "来源"
+        new_home: "所属楼盘"
+      form:
+        category: "信息分类"
+        title: "标题"
+        information_thumb: "缩略图"
+        source: "来源"
+        keywords: "关键词"
+        description: "描述"
+        content: "内容"
+        new_home: "所属楼盘"
+        information_type: "前台位置"
+      search:
+        category: "信息分类"
+        title: "标题"
+        source: "来源"
+        created_at: "创建时间"
+        new_home: "所属楼盘"
+        information_type: "前台位置"
+    statuses: # 状态管理
+      title: "状态管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    areas: # 房产区域
+      title: "区域管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    developers: # 房产开发商
+      title: "开发商管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    sections: # 版块管理
+      title: "版块管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    property_types: # 物业类型
+      title: "物业管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    construction_categories: # 建筑类型
+      title: "建筑类型管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    area_ranges: # 面积区间
+      title: "面积区间管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    project_features: # 项目特色
+      title: "项目特色管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+      search:
+        name: "名称"
+        created_at: "创建时间"
+    new_homes:
+      title: "新房管理"
+      menu:
+        new_home: "新房管理"
+      list:
+        name: "名称"
+      form:
+        name: "名称"
+        price: "均价"
+        tel: "咨询电话"
+        map_address: "地图"
+        project_address: "项目地址"
+        sales_address: "售楼地址"
+        area: "区域"
+        section: "版块"
+        developers: "开发商"
+        agents: "代理商"
+        covers: "占地面积"
+        gfa: "建筑面积"
+        pool_area: "公摊面积"
+        parking: "车位情况"
+        number_users: "总户数"
+        construction_category: "建筑类型"
+        building_towers: "建筑栋数"
+        floors_case: "楼层情况"
+        main_units: "主力户型"
+        house_area: "户型面积"
+        area_range: "面积区间"
+        greening_rate: "绿化率"
+        volume_rate: "容积率"
+        fit: "装修情况"
+        property: "产权"
+        school: "学校"
+        hospital: "医院"
+        bank: "银行"
+        shopping: "购物中心"
+        neighborhoods: "小区配套"
+        landscapes: "自然景物"
+        bus: "公交"
+        car: "自驾"
+        property_type: "物业类型"
+        project_features: "项目特色"
+        content: "内容"
+        status: "状态"
+        new_home_thumb: "缩略图"
+      search:
+        status: "状态"
+        area: "区域"
+        developers: "开发商"
+        name: "名称"
+        price: "均价"
+        created_at: "创建时间"
+    alubms:
+      alubms: "相册"
+    apartment:
+      apartment: "户型图"
+    information_estate_openeds:
+      title: "开盘信息管理"
+      list:
+        title: "标题"
+        new_home: "所属房产"
+        opening_time: "开盘时间"
+        delivery_time: "交付时间"
+      search:
+        new_home: "所属房产"
+      form:
+        new_home: "所属房产"
+        title: "标题"
+        price: "均价"
+        opening_time: "开盘时间"
+        delivery_time: "交付时间"
+    intention_to_registers:
+      menu:
+        intention_to_register: "意向登记"
+      title: "意向登记"
+      list:
+        new_home: "意向楼盘"
+        name: "姓名"
+        tel: "联系电话"
+        qq: "QQ"
+      search:
+        new_home: "所属楼盘"
+        created_at: "填写时间"
+    group_buyings:
+      group_buying: "团购"
+      title: "团购管理"
+      menu:
+        group_buying: "团购"
+      list:
+        new_home: "所属楼盘"
+        start_time: "开团时间"
+        end_time: "结束时间"
+      search:
+        new_home: "所属楼盘"
+        start_time: "开团时间"
+        end_time: "结束时间"
+        recommend: "推荐"
+      form:
+        new_home: "所属楼盘"
+        explanation: "团购说明"
+        start_time: "开团时间"
+        end_time: "结束时间"
+        recommend: "推荐"
+    activities:
+      menu:
+        activity: "活动管理"
+      title: "活动管理"
+      list:
+        title: "标题"
+        opening_time: "活动时间"
+      search:
+        title: "标题"
+        opening_time: "活动时间"
+      form:
+        title: "标题"
+        content: "内容"
+        opening_time: "活动时间"
+    characters:
+      menu:
+        character: "名人堂"
+      title: "名人堂"
+      list:
+        name: "姓名"
+        title: "标题"
+        character_thumb: "照片"
+      search:
+        name: "姓名"
+      form:
+        name: "姓名"
+        title: "标题"
+        content: "内容"
+        character_thumb: "照片"
+  activerecord:
+    models:
+      user: "会员"
+      information: "信息"
+      area: "区域"
+      developers: "开发商"
+      section: "版块"
+      new_home: "新房"
+      property_type: "物业类型"
+      construction_category: "建筑类型"
+      area_range: "面积区间"
+      project_features: "项目特色"
+      information_estate_opened: "开盘信息"
+      group_buying: "团购"
+      intention_to_register: "意向登记"
+      activity: "活动"
+      character: "名人"
+      album: "相册"
+      apartment: "户型图"

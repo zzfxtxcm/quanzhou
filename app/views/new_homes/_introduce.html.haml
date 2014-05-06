@@ -1,0 +1,337 @@
+.prdt.pull-left.pt20
+  %table.prbase{width: "908px;"}
+    %tr
+      %td{style: "background:#2db8ad;", width: "153px;"}
+        %h3{style: "margin:0px"} 基本信息
+      %td{align: "right", style: "background:#ececec"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 参考均价
+            %td
+              %h4 #{@new_home.price}元/m&sup2
+            %td{style: "text-align:center;background:#ececec", width: "136px"}
+              %a1 咨询电话
+            %td
+              %h4
+                = @new_home.tel
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 项目地址
+            %td
+              %a2
+                = @new_home.project_address
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 售楼地址
+            %td
+              %a2
+                = @new_home.sales_address
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 区域/板块
+            %td
+              %a2
+                = Area.find(@new_home.area_id).name
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 开发商
+            %td
+              %a2
+                = Developers.find(@new_home.developers_id).name
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 销售许可证
+            %td
+              %a2
+
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 代理商
+            %td
+              %a2
+                = @new_home.agents
+  %table.prbase2{width: "908px;"}
+    %tr
+      %td{style: "background:#2db8ad;", width: "153px;"}
+        %h3{style: "margin:0px"} 建筑信息
+      %td{align: "right", style: " background:#ececec"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 占地面积
+            %td{width: "285px;"} #{@new_home.covers}平方米
+            %td{style: "text-align:center;background:#ececec", width: "136px"}
+              %a1 建筑面积
+            %td #{@new_home.gfa}m&sup2
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 公摊面积
+            %td
+              %a2
+                = @new_home.pool_area
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 车位情况
+            %td
+              %a2
+                = @new_home.parking
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 总户数
+            %td
+              %a2
+                = @new_home.number_users
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 建筑类别
+            %td
+              %a2
+                = ConstructionCategory.find(@new_home.construction_category_id).name if !@new_home.construction_category_id.nil?
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 建筑栋数
+            %td
+              %a2
+                = @new_home.building_towers
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 楼层情况
+            %td
+              %a2
+                = @new_home.floors_case
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 主力户型
+            %td
+              %a2
+                = @new_home.main_units
+                %a{href: "", style: " color:#f65c52"} [查看户型]
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 户型面积
+            %td
+              %a2 #{@new_home.house_area}m&sup2
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 绿化率
+            %td
+              %a2 #{@new_home.greening_rate}%
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 容积率
+            %td
+              %a2
+                = @new_home.volume_rate
+          %tr
+            %td{style: "text-align:center; background:#ececec"}
+              %a1 装修情况
+            %td
+              %a2
+                = @new_home.fit
+            %td{style: "text-align:center;background:#ececec"}
+              %a1 产权
+            %td
+              %a2
+                = @new_home.property
+  %table.prbase2{width: "908px;"}
+    %tr
+      %td{style: "background:#2db8ad;", width: "153px;"}
+        %h3{style: "margin:0px"} 周边配套
+      %td{align: "right", style: " background:#ececec"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 学校
+            %td
+              = @new_home.school
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 医院
+            %td
+              = @new_home.hospital
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 银行
+            %td
+              = @new_home.bank
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 购物中心
+            %td
+              = @new_home.shopping
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 小区配套
+            %td
+              = @new_home.neighborhoods
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 自然景观
+            %td
+              = @new_home.landscapes
+  %table.prbase2{width: "908px;"}
+    %tr
+      %td{style: "background:#2db8ad;", width: "153px;"}
+        %h3{style: "margin:0px"} 交通情况
+      %td{align: "right", style: "background:#ececec"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 公交
+            %td
+              = @new_home.bus
+          %tr
+            %td{style: "text-align:center; background:#ececec", width: "136px"}
+              %a1 自驾
+            %td
+              = @new_home.car
+  %table.prbase2{width: "908px;"}
+    %tr
+      %td{style: "background:#2db8ad;", width: "153px;"}
+        %h3{style: "margin:0px"} 楼盘介绍
+      %td{align: "right", style: "background:#ececec"}
+    %tr
+      %td{colspan: "2"}
+        = @new_home.content.html_safe
+  -# %table.prbase2{width: "908px;"}
+  -#   %tr
+  -#     %td{style: "background:#2db8ad;", width: "153px;"}
+  -#       %h3{style: "margin:0px"} 楼栋开盘信息
+  -#     %td{align: "right", style: " background:#ececec"}
+  -#   %tr
+  -#     %td{colspan: "2"}
+  -#       .mt10.mb10
+  -#         %a1
+  -#           12、13、14、号楼 当前均价
+  -#           %span{style: "color:#f65c52"} 12000元/m²
+  -#       %table.table.table-bordered
+  -#         %tr
+  -#           %td{style: "text-align:center; background:#ececec"} 开盘时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#         %tr
+  -#           %td{style: "text-align:center; background:#ececec"} 交付变准
+  -#           %td{style: "text-align:center; "} 精装修
+  -#           %td{style: "text-align:center; background:#ececec"} 建筑类别
+  -#           %td{style: "text-align:center; "} 小高层
+  -#           %td{style: "text-align:center; background:#ececec"} 建筑类列
+  -#           %td{style: "text-align:center; "} 住宅
+  -#       .mt10.mb10
+  -#         %a1
+  -#           12、13、14、号楼 当前均价
+  -#           %span{style: "color:#f65c52"} 12000元/m²
+  -#       %table.table.table-bordered
+  -#         %tr
+  -#           %td{style: "text-align:center; background:#ececec"} 开盘时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#           %td{style: "text-align:center; background:#ececec"} 交付时间
+  -#           %td{style: "text-align:center; color:#f65c52"} 2013-14-21
+  -#         %tr
+  -#           %td{style: "text-align:center; background:#ececec"} 交付变准
+  -#           %td{style: "text-align:center; "} 精装修
+  -#           %td{style: "text-align:center; background:#ececec"} 建筑类别
+  -#           %td{style: "text-align:center; "} 小高层
+  -#           %td{style: "text-align:center; background:#ececec"} 建筑类列
+  -#           %td{style: "text-align:center; "} 住宅
+/ 右边
+.pull-right.pt20{style: "width:244px;"}
+  #property-map.mb10{style: "width:244px; height:244px"}
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        同价位楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        - NewHome.where(price: @new_home.price).limit(6).each do |new_home|
+          %tr
+            %td
+              = link_to new_home.name, new_home
+            %td #{new_home.price}元/m&sup2
+            %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        周边楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        热门楼盘推荐
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 板块
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/m&sup2
+          %td 芗城
+  %div
+    %table.prbase2{width: "243px;"}
+      %tr
+        %td{style: "background:#2db8ad;", width: "100px;"}
+          %h4{style: "margin:0px 0px 0px 5px; line-height:200%; color:#FFF"} 购房工具
+        %td{align: "right", style: " background:#ececec"}
+      %tr
+        %td{colspan: "2"}
+          %div
+            = link_to image_tag("tool1.gif", alt: ""), "#", :class => "mt20"
+            = link_to image_tag("tool2.gif", alt: ""), "#", :class => "mt20"
+            = link_to image_tag("tool3.gif", alt: ""), "#", :class => "mt20"
+            = link_to image_tag("tool4.gif", alt: ""), "#", :class => "mt20"
+            = link_to image_tag("tool5.gif", alt: ""), "#", :class => "mt20"
+/ end 右边
+
+:javascript
+  // 百度地图API功能
+  var map = new BMap.Map("property-map");
+  var point = new BMap.Point(#{@new_home.map_address});
+  map.centerAndZoom(point,16);
+  map.enableScrollWheelZoom();
+  var marker1 = new BMap.Marker(point);
+  map.addOverlay(marker1);
+  var infoWindow1 = new BMap.InfoWindow("#{@new_home.name} - #{@new_home.project_address}");
+  marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+  map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));

@@ -1,0 +1,27 @@
+en:
+  active_admin:
+    admin_users:
+      menu:
+        admin_user: "Admin Users"
+    users:
+      title: "Users"
+      menu:
+        user: "Users"
+      list:
+        email: "Email"
+        sign_in_count: "Sign In Count"
+        created_at: "created_at"
+      search:
+        email: "Email"
+        created_at: "created_at"
+    information:
+      title: "information"
+      menu:
+        information: "information"
+      list:
+      form:
+        category: "category"
+  activerecord:
+    models:
+      user: "Users"
+      information: "information"

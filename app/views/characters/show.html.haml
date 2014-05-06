@@ -1,0 +1,23 @@
+.container
+  .mb20.pull-left
+    当前位置：
+    %a{href: ""} 馨窝网
+    \>
+    %a{href: ""} 人物专访 
+  .clearfix
+  .pull-left.content{style: "width:900px;"}
+    .top
+      .l
+        %h1
+          = @Characters.name
+        %p
+          #{@Characters.created_at.strftime("%Y-%m-%d %H:%M")}　来源: 馨窝网
+    .tj
+    .clearfix
+    .news_body
+      = @Characters.content.html_safe
+
+    / end fenxiang
+  .pull-left.ml20
+    %div{ style: "width:240px;" }
+      = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")

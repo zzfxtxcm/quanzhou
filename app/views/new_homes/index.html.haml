@@ -1,0 +1,89 @@
+-provide(:title, '漳州新房,漳州房产网')
+.container
+  .mb20.pull-left
+    当前位置：
+    %a{href: ""} 馨窝网
+    \>
+    %a{href: ""} 房产
+    \>
+    %a 新房
+    \>
+    %a.cl 楼盘列表
+  .clearfix
+  .pull-left
+    .panel.panel-primary.prlistl{style: "margin:0; width:900px;"}
+      .panel-heading{style: "background:#2db8ad"}
+        %h3.panel-title.cw 快速搜索
+      .panel-body
+        %p.f14
+          %strong 区域：
+          = render_option_of_total_area(params[:area_id])
+          - Area.all.each do |item|
+            = render_option_of_single_area(item.name, item.id)
+        %p.f14
+          %strong 价格：
+          = render_option_of_total_price(params[:mix], params[:max])
+          = render_option_of_single_price(3000, 4000)
+          = render_option_of_single_price(4000, 5000)
+          = render_option_of_single_price(5000, 6000)
+          = render_option_of_single_price(6000, 7000)
+          = render_option_of_single_price(7000, 8000)
+          = render_option_of_single_price(8000, 20000)
+        %p.f14
+          %strong 面积：
+          = render_option_of_total_area_range(params[:area_range_id])
+          - AreaRange.all.each do |item|
+            = render_option_of_single_area_range(item.name, item.id)
+    .prlist2
+      %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
+        %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#d_hot"} 全部
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#lou"} 热推
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#w_new"} 已售完
+        %li{style: "border-bottom: 1px solid #2db8ad;"}
+          %a{"data-toggle" => "tab", href: "#w_new"} 地图找房
+      #myTabContent.tab-content
+        #d_hot.tab-pane.fade.active.in
+          %table{width: "900px;"}
+            %tr
+              %td
+                .btn-toolbar
+                  .btn-group
+                    %a.btn{href: "#"}
+                      时间
+                      %i.icon-arrow-down
+                    %a.btn{href: "#"}
+                      价格
+                      %i.icon-arrow-down
+                    %a.btn{href: "#"}
+                      点击
+                      %i.icon-arrow-down
+                    %a.btn{href: "#"}
+                      评分
+                      %i.icon-arrow-down
+                    %a.btn{href: "#"}
+                      开盘时间
+                      %i.icon-arrow-down
+              %td{align: "right"}
+                - if @new_homes.any?
+                  共有
+                  %span.cr>
+                    = @new_homes.count
+                  个楼盘
+          - @new_homes.each do |new_home|
+            = render new_home
+
+          .fenye
+            .pagination.pull-right{style: "margin-top:0px;"}
+              = will_paginate
+        #lou.tab-pane.fade
+        #w_new.tab-pane.fade
+  .pull-left.ml20
+    = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
+/ con end

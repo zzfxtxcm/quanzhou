@@ -1,0 +1,118 @@
+-provide(:title, '漳州房地产团购列表')
+/ 导航
+.tgnav
+  .container
+    .active
+      %a{href: "#"} 淘房汇
+.mt10.clearfix.container
+  / 左边
+  .pull-left{style: "width:907px;"}
+    :javascript
+      $(function() {
+      		jQuery('.marquee').kxbdSuperMarquee({
+      		  distance:850,
+      		  time:4,
+      		  navId:'#mar3Nav',
+      		  direction:'left'
+      		});
+      	  });
+    .ttf.border_bot
+      .border_top
+        %span.f20 特推房源
+      .border_cont.ttf_cont
+        #mar3Nav
+        #scrollable-1.marquee
+          %ul{style: "width:5100px;"}
+            %li
+              - @group_buyings.where("NOT recommend").limit(3).each do |group_buying|
+                .pic
+                  = link_to image_tag(NewHome.find(group_buying.new_home_id).new_home_thumb, :style => "width:265px; height:166px", :title => NewHome.find(group_buying.new_home_id).name), :rel => "nofollow", :target => "_blank"
+                  %h2
+                    = link_to NewHome.find(group_buying.new_home_id).name, :target => "_blank"
+                    %span 热卖中
+                  %p.blue
+                  %p 限时抢购：#{ group_buying.start_time.strftime("%Y-%m-%d") } - #{ group_buying.end_time.strftime("%Y-%m-%d") }
+              - @group_buyings.where("NOT recommend").limit(3).offset(3).each do |group_buying|
+                .pic
+                  = link_to image_tag(NewHome.find(group_buying.new_home_id).new_home_thumb, :style => "width:265px; height:166px", :title => NewHome.find(group_buying.new_home_id).name), :rel => "nofollow", :target => "_blank"
+                  %h2
+                    = link_to NewHome.find(group_buying.new_home_id).name, :target => "_blank"
+                    %span 热卖中
+                  %p.blue
+                  %p 限时抢购：#{ group_buying.start_time.strftime("%Y-%m-%d") } - #{ group_buying.end_time.strftime("%Y-%m-%d") }
+              - @group_buyings.where("NOT recommend").limit(3).offset(6).each do |group_buying|
+                .pic
+                  = link_to image_tag(NewHome.find(group_buying.new_home_id).new_home_thumb, :style => "width:265px; height:166px", :title => NewHome.find(group_buying.new_home_id).name), :rel => "nofollow", :target => "_blank"
+                  %h2
+                    = link_to NewHome.find(group_buying.new_home_id).name, :target => "_blank"
+                    %span 热卖中
+                  %p.blue
+                  %p 限时抢购：#{ group_buying.start_time.strftime("%Y-%m-%d") } - #{ group_buying.end_time.strftime("%Y-%m-%d") }
+
+    .mt20{style: " border:1px solid  #F3F3F3;"}
+      .title3_l
+        %p 正在进行
+      .title3_r{align: "right", style: "width:783px;"}
+      .clearfix
+      %p.f14.ml10.mt10
+        %strong 区域：
+        %a{href: ""} 不限
+        - @areas.each do |area|
+          |
+          = area.name
+      / 团购开始
+      - @group_buyings.each do |group_buying|
+        = render group_buying
+
+      = will_paginate
+  / end 左边
+  / 右边
+  .pull-left.ml15{style: "width:244px;"}
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          大家正在买
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 注册用户
+              %th 活动状态
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+          %tr
+            %td 136****0123
+            %td 成功报名保利中央公园
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          购房工具
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table{style: "width:215px;"}
+          %tr
+            %td
+              = link_to image_tag("tool1.gif", alt: ""), "#"
+            %td
+              = link_to image_tag("tool2.gif", alt: ""), "#"
+          %tr
+            %td
+              = link_to image_tag("tool3.gif", alt: ""), "#"
+            %td
+              = link_to image_tag("tool4.gif", alt: ""), "#"
+          %tr
+            %td
+              = link_to image_tag("tool5.gif", alt: ""), "#"
+            %td
+  / 右边

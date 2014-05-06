@@ -1,0 +1,33 @@
+-provide(:title, '漳州房产资讯')
+.container
+  .mb20.pull-left
+    当前位置：
+    %a{href: ""} 馨窝网
+    \>
+    %a{href: ""} 漳州房产
+    \>
+    = succeed ">" do
+      %a 漳州新闻
+    %a.cl 正文
+  .clearfix
+  .pull-left.content{style: "width:900px;"}
+    .top
+      .l
+        %h1
+          = @information.title
+        %p
+          #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source}
+      .review
+        %p
+          = @information.description
+    .tj
+      - Information.limit(4).each do |information|
+        = link_to information.title, information, target: "_blank"
+    .clearfix
+    .news_body
+      = @information.content.html_safe
+
+    / end fenxiang
+  .pull-left.ml20
+    %div{ style: "width:240px;" }
+      = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")

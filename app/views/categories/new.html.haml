@@ -1,0 +1,7 @@
+%h1
+  Reply
+
+= render @category.parent if @category.parent
+= render "form"
+
+= link_to "Back to Category", categories_path

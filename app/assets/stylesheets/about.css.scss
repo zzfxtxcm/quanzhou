@@ -1,0 +1,22 @@
+// Place all the styles related to the about controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.about-left {
+  float: left;
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+  a {
+  	color: #666;
+  }
+}
+
+.about-right {
+  float: left;
+  padding-left: 30px;
+  p {
+    font-size: 14px;
+    line-height: 28px;
+  }
+}

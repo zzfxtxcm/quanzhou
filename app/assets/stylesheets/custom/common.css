@@ -1,0 +1,26 @@
+/*通用*/
+body { font-size:12px; font-family:"宋体", Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun,  Heiti, "黑体", sans-serif; }
+
+.container { max-width: none !important; width: 1170px; }
+.containerb {   margin: 0 auto;width: 1170px; }
+/* 颜色 */
+.cBlack { color: #000; }
+.cF96 { color: #f96; }
+.c9C9 { color: #9c9; }
+a{ color:#333;
+	}
+/* 头部 */
+#myTab .active a { background: #2db8ad; color:#FFF }
+#myTab  a { background:#e9e9e9; }
+
+.collapse a{
+	  color: #777777;
+  
+    padding: 10px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+	}
+
+/* 底部 */
+.contact a { color: #000; }
+.projectList a { color: #000; padding-right:5px; padding-left:5px; }

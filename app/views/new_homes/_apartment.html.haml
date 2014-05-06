@@ -1,0 +1,39 @@
+.prhxt.mt20.pull-left
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title 全部户型图
+    .panel-body
+      %h4.f16.mt5.mb5 面积查询
+      %a
+        %li 91-120m² (2)
+      %a
+        %li 91-120m²(2)
+      %h4.f16.mt5.mb5 厅室查询
+      %a
+        %li 二室 (2)
+      %a
+        %li 三室 (2)
+      %a
+        %li 四室(2)
+/ 全部户型图
+.prhxtall.pull-left.ml20.mt20{style: "width:907px;"}
+  .title3_l
+    %p 活动
+  .title3_r{align: "right", style: "width:785px;"}
+    %a.cl{href: ""} 浏览最多
+    %span.cl |
+    %a.pl10.pr10.cl{href: ""} 切换列表页
+  - @apartments.each do |item|
+    .prhxtinfo.pull-left.ml10.mr10
+      = image_tag(item.apartment_thumb, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px; height:118px")
+      %table
+        %tr
+          %td{colspan: "2"}
+            %h4.cl= item.name
+        %tr
+          %td 户型：#{item.apartment_name}
+          %td 面积：#{item.area}m²
+        %tr
+          %td 浏览：1660次
+          %td
+            %span.label.label-important 查看评论

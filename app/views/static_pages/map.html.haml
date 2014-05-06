@@ -1,0 +1,155 @@
+%script{src: "http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo", type: "text/javascript"}
+= form_tag '', :method => :get, :class => "form-inline", :role => "form" do
+  .selectItemhidden#selectItem
+    .selectItemcont#selectItemCount
+      #selectSub
+        #r-result{ :style => "width: 20%; float: right;" }
+          #search{ :style => "margin-top: 10px; margin-left: 10px;" }
+            搜索
+            = text_field_tag :map_keyword, "", :class => "form-control", :id => "map_keyword", :style => "width: 100px", :size => "20",:placeholder => "请输入楼盘"
+            %button.btn.btn-danger{ type: "submit", style: "height: 28px; width: 58px", onclick: "MblogDotccMap(document.getElementById('map_keyword').value)" }
+              搜索
+          #results_info{ :style => "margin-top: 10px; margin-left: 10px;" }
+        #l-map{ :style => "height: 650px; width: 80%; float: left;" }
+.clearfix
+:javascript
+  var map = new BMap.Map("l-map");
+  var point = new BMap.Point(117.676205,24.517065);
+
+  map.centerAndZoom(point, 13);
+  // 控件
+
+  map.addControl(new BMap.NavigationControl());
+  map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT, type: BMAP_NAVIGATION_CONTROL_PAN}));  //左下角，仅包含平移按钮
+
+  map.addControl(new BMap.ScaleControl());
+
+  map.addControl(new BMap.OverviewMapControl());
+  map.addControl(new BMap.OverviewMapControl({isOpen:true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));   //右上角，打开
+
+  map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP]}));     //2D图，卫星图
+
+
+
+
+  function MblogDotccMap(keyword) {
+    var local = new BMap.LocalSearch(map, {renderOptions: {map: map, panel: "results_info"}});
+    map.panBy(point);
+    local.search(keyword);
+    local.getResults();
+  }
+
+  // 加载值到输入框
+  map.addEventListener('click', function(e){ document.getElementById('new_home_map_address').value = e.point.lng + ', ' + e.point.lat;});
+
+  // 复杂的自定义覆盖物
+  function ComplexCustomOverlay(point, text, price, project_address, show, tel){
+    this._point = point;
+    this._text = text;
+    this._price = price;
+    this._project_address = project_address;
+    this._show = show;
+    this._tel = tel;
+  }
+  ComplexCustomOverlay.prototype = new BMap.Overlay();
+  ComplexCustomOverlay.prototype.initialize = function(map){
+    this._map = map;
+    var div = this._div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+    div.style.backgroundColor = "#EE5D5B";
+    div.style.border = "1px solid #BC3B3A";
+    div.style.color = "white";
+    div.style.height = "18px";
+    div.style.padding = "2px";
+    div.style.lineHeight = "18px";
+    div.style.whiteSpace = "nowrap";
+    div.style.MozUserSelect = "none";
+    div.style.fontSize = "12px"
+    var span = this._span = document.createElement("span");
+    div.appendChild(span);
+    span.appendChild(document.createTextNode(this._text));
+    var that = this;
+
+    var arrow = this._arrow = document.createElement("div");
+    arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+    arrow.style.position = "absolute";
+    arrow.style.width = "11px";
+    arrow.style.height = "10px";
+    arrow.style.top = "22px";
+    arrow.style.left = "10px";
+    arrow.style.overflow = "hidden";
+    div.appendChild(arrow);
+
+    div.onmouseover = function(){
+      // this.style.backgroundColor = "#6BADCA";
+      // this.style.borderColor = "#0000ff";
+      // this.getElementsByTagName("span")[0].innerHTML = that._overText;
+      // arrow.style.backgroundPosition = "0px -20px";
+
+      var opts = {
+        width : 350,     // 信息窗口宽度
+        // height: 100,     // 信息窗口高度
+        title : "<b>"+that._text+"</b>"  // 信息窗口标题
+      }
+      var content = "<table class='table'>\
+                       <tr>\
+                         <td>\
+                           <div class='pull-left'>\
+                             均价：<span style='color:#ff7d00; font-size:16px''><strong>"+that._price+"</strong></span>元/㎡\
+                             <br>\
+                             楼盘地址："+that._project_address+"\
+                             <br>\
+                             <a href='/new_homes/"+that._show+"' target='_blank'>查看楼盘详情&gt;&gt;</a>\
+                           </div>\
+                           <div class='pull-right'>\
+                             <img src='/uploads/new_home/new_home_thumb/"+that._show+"/small_thumb.jpg'>\
+                           </div>\
+                         </td>\
+                       </tr>\
+                       <tr>\
+                         <td>\
+                           如果您对楼盘有兴趣&nbsp;可拨打以下电话咨询\
+                           <br>\
+                           <h4 style='color:#007acc'>"+that._tel+"</h4>\
+                         </td>\
+                       </tr>\
+                     </table>\
+                     ";
+      var infoWindow = new BMap.InfoWindow(content, opts);  // 创建信息窗口对象
+      map.openInfoWindow(infoWindow, that._point);      // 打开信息窗口
+
+    }
+
+    div.onmouseout = function(){
+      this.style.backgroundColor = "#EE5D5B";
+      this.style.borderColor = "#BC3B3A";
+      this.getElementsByTagName("span")[0].innerHTML = that._text;
+      arrow.style.backgroundPosition = "0px 0px";
+    }
+
+    map.getPanes().labelPane.appendChild(div);
+
+    return div;
+  }
+  ComplexCustomOverlay.prototype.draw = function(){
+    var map = this._map;
+    var pixel = map.pointToOverlayPixel(this._point);
+    this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+    this._div.style.top  = pixel.y - 30 + "px";
+  }
+
+  var map_keyword = "#{@map_keyword}";
+
+  var new_homes = #{@new_homes.to_json};
+
+  for(var item in new_homes){
+    var map_address = new_homes[item].map_address.split(",");
+    var name = new_homes[item].name;
+    var price = new_homes[item].price;
+    var project_address = new_homes[item].project_address;
+    var show = new_homes[item].id;
+    var tel = new_homes[item].tel;
+    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(map_address[0], map_address[1]), name, price, project_address, show, tel);
+    map.addOverlay(myCompOverlay);
+  }

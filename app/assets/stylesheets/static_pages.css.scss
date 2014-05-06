@@ -1,0 +1,340 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$white: #fff;
+
+/*首页 */
+
+.loginBut{
+  background:#2db8ad;
+  border: medium none;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 5px;
+  margin-top: 3px;
+  text-align: center;
+  vertical-align: top;
+  width: 37px;
+  font-size:9px;
+}
+/*左右滚轮特效stats*/
+
+.imageRotation {
+  height: 270px;
+  width: 462px;
+  overflow: hidden;
+  /*--超出容器的所有元素都不可见--*/
+  position: relative;
+  /*--相对定位--*/
+}
+
+/*-------------图片容器---------------*/
+
+.imageBox {
+  position: absolute;
+  /*--固定定位--*/
+  height: 270px;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  img {
+    display: block;
+    height: 270px;
+    width: 462px;
+    float: left;
+    border: none;
+  }
+}
+
+/*-------------标题容器---------------*/
+
+.titleBox {
+  position: absolute;
+  bottom: 0px;
+  width: 462px;
+  height: 40px;
+  overflow: hidden;
+  p {
+    font-size:16px;
+    font-weight:bolder;
+    position: absolute;
+    bottom: -40px;
+    width: 462px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px 10px;
+    line-height: 40px;
+    z-index: 1;
+    background-color: #000;
+    color: #fff;
+    font-family: "微软雅黑","yahei";
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    -webkit-opacity: 0.5;
+    filter: alpha(opacity = 50);
+    span {
+      opacity: 1;
+      -moz-opacity: 1;
+      -webkit-opacity: 1;
+      filter: alpha(opacity = 100);
+    }
+    &.active {
+      bottom: 0px;
+    }
+  }
+}
+
+/*-------------图标容器---------------*/
+
+.icoBox {
+  position: absolute;
+  /*--固定定位--*/
+  bottom: 14px;
+  right: 15px;
+  width: 76px;
+  height: 12px;
+  text-align: center;
+  line-height: 40px;
+  z-index: 2;
+  span {
+    display: block;
+    float: left;
+    height: 12px;
+    width: 12px;
+    margin-left: 3px;
+    overflow: hidden;
+    background: url(asset_path("ico.png")) 0px 0px no-repeat;
+    cursor: pointer;
+    &.active {
+      background-position: 0px -12px;
+      cursor: default;
+    }
+  }
+}
+/*左右滚轮特效end*/
+/* 左侧菜单 */
+.areaa {
+  color: #2db8ad;
+  padding-right: 20px;
+  float: left;
+}
+
+.areab {
+  color: #2db8ad;
+  padding-right: 15px;
+  float: left;
+}
+
+.selectS {
+	width: 120px;
+	height: 28px;
+  font-size: 12px
+}
+
+/*楼盘速递*/
+.l_new2 {
+  h4 {
+    font-size: 16px;
+    color: #f65c52;
+    line-height: 150%;
+  }
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
+  }
+}
+
+.l_new3 {
+  display: inline;
+  margin-left: 10px;
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+  .tab-pane ul li {
+    font-size: 9px;
+  }
+}
+
+/*楼市观点*/
+
+.loushiguandian {
+  width: 270px;
+  float: left;
+  margin: 0px 10px 0px 10px;
+  h4 {
+    font-size: 14px;
+    color: #f65c52;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+}
+
+/*楼盘评测*/
+.lou_test {
+  h4 {
+    font-size: 16px;
+    color: #f65c52;
+  }
+  li {
+    font-size: 14px;
+    line-height: 250%;
+    margin-left: 5px;
+  }
+}
+/*地产圈*/
+.dcq {
+  li {
+    font-size: 16px;
+    line-height: 200%;
+    margin-left: 5px;
+  }
+  h4 {
+    font-size: 16px;
+    color: #f65c52;
+  }
+}
+
+	/*名人堂图片滚动*/
+.blk_18 {
+  overflow: hidden;
+  zoom: 1;
+  font-size: 9pt;
+  border: 1px solid #e3e3e3;
+  background: #eee;
+  width: 897px;
+  margin-top: 8px;
+  .pcont {
+    width: 840px;
+    float: left;
+    overflow: hidden;
+    padding-left: 5px;
+  }
+  .ScrCont {
+    width: 32766px;
+    zoom: 1;
+    margin-left: -5px;
+  }
+  #List1_1, #List2_1 {
+    float: left;
+  }
+  .LeftBotton, .RightBotton {
+    width: 15px;
+    height: 74px;
+    float: left;
+    background: url(asset_path("ax.gif")) no-repeat;
+  }
+  .LeftBotton {
+    background-position: 0 0;
+    margin: 58px 5px 0;
+  }
+  .RightBotton {
+    background-position: 0 -100px;
+    margin: 58px 1px 10px 5px;
+  }
+  .LeftBotton:hover {
+    background-position: -20px 0;
+  }
+  .RightBotton:hover {
+    background-position: -20px -100px;
+  }
+  .pl {
+    img {
+      display: block;
+      cursor: pointer;
+      border: none;
+      margin: 6px auto 1px auto;
+    }
+    width: 167px;
+    border: 1px solid #f3f3f3;
+    float: left;
+    float: left;
+    text-align: center;
+    line-height: 24px;
+    h4 {
+      font-size: 14px;
+      margin: 0;
+      color: #666;
+    }
+  }
+  a.pl:hover {
+    border: 1px solid #5dacec;
+    color: #5dacec;
+    background: #fff;
+  }
+}
+/*活动*/
+
+.activity {
+  width: 900px;
+  float: left;
+  margin-top: 10px;
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
+  }
+}
+
+.activity_list {
+  margin-top: 10px;
+  width: 300px;
+  float: left;
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+}
+
+/*代理公司滚动*/
+#demo {
+  background: #FFF;
+  overflow:hidden;
+  border: 1px dashed #CCC;
+  width: 1170px;
+  img {
+    border: 3px solid #F2F2F2;
+  }
+}
+#indemo {
+  float: left;
+  width: 800%;
+}
+#demo1 {
+  float: left;
+}
+
+#demo2 {
+  float: left;
+} 
+
+
+/*购房百科*/
+
+.baike {
+  ul li {
+    list-style-type: disc;
+    font-size: 9px;
+  }
+  a {
+    font-size: 14px;
+    line-height: 30px;
+  }
+}
+
+.tool {
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+}
+
+.yqlj a {
+  margin-left: 30px;
+  float: left;
+}

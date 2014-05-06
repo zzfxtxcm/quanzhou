@@ -1,0 +1,54 @@
+.prhxt.mt20.pull-left
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title 相册分类
+    .panel-body
+      %h4.f16.mt5.mb5 效果图（4）
+      %h4.f16.mt5.mb5 交通图（1）
+      %h4.f16.mt5.mb5 户型图（4）
+      %h4.f16.mt5.mb5 实景图（61）
+      %h4.f16.mt5.mb5 样板图（32）
+      %a
+        %li 客厅 (2)
+      %a
+        %li 厨房(2)
+      %a
+        %li 卧室 (2)
+      %a
+        %li 卫浴 (2)
+      %a
+        %li 书房(2)
+      %a
+        %li 阳台(3)
+      %a
+        %li 餐厅(2)
+      %a
+        %li 其他(2)
+/ 全部户型图
+.prhxtall.pull-left.ml20.mt20{style: "width:907px;"}
+  .title3_l
+    %p 实景图
+  .title3_r{align: "right", style: "width:785px;"}
+    %a.cl{href: ""} 浏览最多
+    %span.cl |
+    %a.pl10.pr10.cl{href: ""} 切换列表页
+  %table{border: "0", width: "907px"}
+    %tr
+      %td{colspan: "2"}
+        - @albums.each do |item|
+          .prhxtinfo.pull-left.ml10.mr10
+            = image_tag(item.url, :class => "img-polaroid", :style => "padding:10px; width:236px; height:138px")
+            %table
+              %tr
+                %td{colspan: "2"}
+                  %h4.cl= item.name
+              %tr
+                %td{align: " center", colspan: "2"}
+                  浏览：
+                  %span.cr> 1660
+                  次
+
+.fenye.mr30
+  .pagination.pull-right{style: "margin-top:0px;"}
+    = will_paginate @albums
+  -# %p.pull-right.mt10.mr10 每页显示14条，共有1110条记录

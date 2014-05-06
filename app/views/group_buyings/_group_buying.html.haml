@@ -1,0 +1,79 @@
+- new_home = NewHome.where(id: group_buying.new_home_id)
+- area = Area.where(id: new_home.first.area_id)
+%div{style: "width:750px; margin-left:70px; margin-bottom:20px;"}
+  .pull-left{style: "width:367px ; height:275px;"}
+    :javascript
+      $(function(){
+        //倒计时
+        //必选参数-初始时间，整型格式或整型字符窜格式，支持正负数
+        $.countdown({
+          time:#{(DateTime.parse(group_buying.end_time.to_s) -
+                  DateTime.parse(Time.now.to_s))*
+                  24*60*60},
+          id:"clock189", //必选参数-倒计时时钟的容器ID，支持jquery对象
+          newTime: 0, //可选参数-循环计时则从该参数值计时，默认为无
+          circle:1, //可选参数-循环开关，0 为 不循环，1为循环，默认为不循环
+          callback:function(){ //可选参数-回调函数，计时结束可用AJAX回调，默认为无
+            window.location.reload();
+          }
+        });
+
+         $(".njleft_tfh").bind("mouseover",function(){
+              $(this).find(".djs").show();
+         }).bind("mouseout",function(){
+            $(this).find(".djs").hide();
+         });
+      });
+    .njleft_tfh
+      = link_to image_tag(new_home.first.new_home_thumb, :style => "width:367px; height:275px", :alt => new_home.name), group_buying, :rel => "nofollow", :target => "_blank"
+      .nj_title_bg
+      .nj_title
+        [#{area.first.name}]
+        = link_to "#{new_home.first.name}", group_buying
+      .djs{style: "display: none;"}
+        .timerbg
+        .timer
+          %b 剩余
+          #clock189
+  .pull-left.ml20{style: "width:350px"}
+    .pull-left.dsyh
+      %h3 银河湾紫苑商铺5万享30万
+    .nj_tip
+      %div{style: "width:350px;"}
+        %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad; margin:0;"}
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#d_hot"} 楼盘详情
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#lou"} 楼市观点
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            %a{"data-toggle" => "tab", href: "#w_new"} 一周热点
+        #myTabContent.tab-content{style: "border:1px solid #e7e7e7; color:#616161;"}
+          #d_hot.tab-pane.fade.active.in.ml10.m5
+            %p 当前均价：#{group_buying.price}元/㎡
+            %p 项目地址：#{new_home.first.project_address}
+            %p 主力户型：90㎡小三房
+            %p 配套资源：沃尔玛商圈；中行、建行、兴业；
+            %p 妇幼医院；巷口小学、漳州实验中学
+            %p 现场优惠：
+          #lou.tab-pane.fade ddddddd
+          #w_new.tab-pane.fade bnn
+    / end nj_tip
+  .clearfix
+  .nj_xtime
+    %table.f14.mt10.ml20{width: "740px;"}
+      %tr
+        %td
+          %p
+            %span.cl.f16>
+              %strong 限时抢购：
+            #{group_buying.start_time.strftime("%Y-%m-%d")}
+            &nbsp;-&nbsp;
+            #{group_buying.end_time.strftime("%Y-%m-%d")}
+        %td
+          %span.f20.cr> 20000
+          人关注
+          %span.f20.cr> 100
+          人报名
+        %td
+          %a.btn.cw{style: "background:#f65c52"} 我要参加
+/ end团购

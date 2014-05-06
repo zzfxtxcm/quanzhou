@@ -1,0 +1,4 @@
+.container
+  .tree.well
+    = nested_categories @categories.arrange(:order => :id)
+    = render "form"

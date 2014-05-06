@@ -1,0 +1,28 @@
+.container
+  .mb20.pull-left
+    当前位置：
+    = link_to "馨窝网", root_path
+    \>
+    %a{href: ""} 资料分享
+  .clearfix
+  .pull-left.content{style: "width:900px;"}
+    .top
+      .l
+        %h1
+          = @information_sharings.title
+        %p
+          #{@information_sharings.created_at.strftime("%Y-%m-%d %H:%M")}　
+      .review
+        %p.f14
+          = @information_sharings.content
+
+    .clearfix
+    .news_body
+      %p.f16.cl
+        下载地址:
+        = link_to @information_sharings.url ,"http://"+""+@information_sharings.url
+
+    / end fenxiang
+  .pull-left.ml20
+    %div{ style: "width:240px;" }
+      = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")

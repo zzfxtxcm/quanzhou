@@ -1,0 +1,9 @@
+%div{ style: "border-bottom:1px solid #CCC; margin-bottom:20px;" }
+  %p.f16.cl
+    = link_to information.title, information, :class => "f16 cl", target: "_blank"
+  %p.f12.ch 标签：
+  %p.f14
+    = information.description
+  %p.f12.ch
+    #{information.created_at.strftime("%Y-%m-%d")} - 来源：#{information.source} -
+    = link_to "预览", information

@@ -1,0 +1,196 @@
+// Place all the styles related to the NewHomes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*楼盘项目页*/
+
+.pr_title {
+  width: 1170px;
+  h2 {
+    color: #464646;
+  }
+}
+
+.prnav {
+  a {
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+    padding: 5px 18px 12px 18px;
+  }
+  .active {
+    background: #009689;
+  }
+  a1 {
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 36px;
+    padding-right: 32px;
+    padding-left: 32px;
+    color: #FFF;
+  }
+}
+
+.prdt {
+  h3 {
+    color: #fff;
+    background: #2db8ad;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+    line-height: 190%;
+  }
+  h4 {
+    color: #f65c52;
+  }
+  .prbase {
+    a1 {
+      font-weight: bolder;
+      font-size: 14px;
+      line-height: 300%;
+    }
+    a2{
+      line-height: 300%;
+      font-size: 14px;
+    }
+  }
+  .prbase2 {
+    p {
+      font-size: 14px;
+      line-height: 250%;
+    }
+    a1 {
+      font-weight: bolder;
+      font-size: 14px;
+      line-height: 100%;
+    }
+  }
+}
+
+.prhxt {
+  h4 {
+    color: #f65c52;
+  }
+  li {
+    font-size: 14px;
+    line-height: 200%;
+    margin-left: 10px;
+  }
+}
+
+.prhxtinfo {
+  width: 260px;
+  height: 250px;
+  padding: 10px;
+}
+
+a1 {
+  font-size: 16px;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.prjs {
+  th {
+    text-align: center
+  }
+  td {
+    text-align: center
+  }
+}
+
+.prlistl {
+  width: 900px;
+  a {
+    margin: 0px 5px 0px 5px;
+    color: #2db8ad;
+  }
+}
+
+.prlist2 {
+  width: 900px;
+  margin-top: 20px;
+  .nav-tabs > li > a {
+    line-height: 10px;
+  }
+}
+.pr_info {
+  border-top: 1px solid #CCC;
+  margin-top: 20px;
+}
+
+/*项目页图片展示*/
+
+.item-tab {
+  width: 340px;
+  height: 257px;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  .panel {
+    width: 340px;
+    height: 257px;
+  }
+  .tag {
+    height: 30px;
+    position: absolute;
+    top: 227px;
+    left: 0;
+    width: 340px;
+    line-height: 32px;
+    z-index: 99999;
+    overflow: hidden;
+  }
+  .cover {
+    height: 30px;
+    background: #CCC;
+    position: absolute;
+    top: 227px;
+    left: 0;
+    width: 340px;
+    filter: alpha(opacity = 60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+  }
+  .tag li {
+    float: left;
+    font-size: 14px;
+    display: inline;
+    margin-left: 30px;
+    margin-top: 5px;
+    &.on a {
+      background: #2db8ad;
+      padding: 4px 4px 3px 4px;
+      border-radius: 2px;
+      color: #FFF;
+    }
+    a {
+      color: #000;
+      padding: 4px 4px 3px 4px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.tab-warp .info {
+  padding: 10px 0 8px 10px;
+  span {
+    display: block;
+  }
+}
+
+/*end 图片*/
+.selectS {
+  width:120px;
+  height:28px;
+  font-size:12px;
+}
+.pr_info_1{ 
+  width:800px;
+  }
+.pr_info_1 P{ 
+  font-size:14px;
+  }

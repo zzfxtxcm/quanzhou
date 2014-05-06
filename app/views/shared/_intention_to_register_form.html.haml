@@ -1,0 +1,28 @@
+.panel.panel-primary
+  .panel-heading
+    %h3.panel-title
+      意向登记
+      %span.f12{style: "font-weight:normal"} |为您提供优质的房源
+  .panel-body
+    = form_for(@intention_to_register) do |f|
+      %table.table-condensed
+        %tr
+          %td 姓名:
+          %td
+            = f.text_field :name, placeholder: "请输入联系姓名", style: "width: 130px"
+        %tr
+          %td QQ :
+          %td
+            = f.text_field :qq, placeholder: "请输入联系qq", style: "width: 130px"
+        %tr
+          %td 电话:
+          %td
+            = f.text_field :tel, placeholder: "请输入联系电话", style: "width: 130px"
+        %tr
+          %td 楼盘:
+          %td
+            = f.select :new_home_id, options_for_select(new_homes_dropdown(NewHome.all)), { :prompt => "请选择喜欢楼盘" }, { :style => "width: 140px" }
+        %tr
+          %td
+          %td
+            = f.submit "立刻报名", class: "btn btn-danger btn-mini", style: "height: 28px"

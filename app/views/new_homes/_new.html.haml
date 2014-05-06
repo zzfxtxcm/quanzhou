@@ -1,0 +1,106 @@
+.prdt.pull-left.pt20
+  .title_l{align: "center", style: "width:170px;"}
+    %p.fb 销售动态
+  .title_r{align: "right", style: "width:740px;"}
+    %i.icon-plus-sign.c9C9
+    %a.pr20{href: "", style: "color:#2db8ad"} 手机订阅
+  .clearfix
+  %table{width: "908px;"}
+    %tr
+      %td{colspan: "2"}
+        %table.table.table-bordered
+          - @news.each do |item|
+            %tr
+              %td{width: "152px;"}
+                %strong
+                  = item.created_at
+              %td
+                = item.description
+  .fenye
+    .pagination.pull-right{style: "margin-top:0px;"}
+      = will_paginate @news
+    -# %p.pull-right.mt10.mr10 每页显示14条，共有1110条记录
+/ 右边
+.pull-right.pt20{style: "width:244px;"}
+  %img.img-polaroid.mb10{src: " upload/img/dt.gif"}/
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        同价位楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        周边楼盘
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 对比
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 对比
+  .panel.panel-primary
+    .panel-heading
+      %h3.panel-title
+        热门楼盘推荐
+        %a.pull-right.f14{href: "#"} 更多>
+    .panel-body
+      %table.table.table-condensed
+        %thead
+          %tr{style: "color:#f65c52"}
+            %th 楼盘名称
+            %th 均价
+            %th 板块
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 芗城
+        %tr
+          %td 华府国际
+          %td 8000元/&sup2
+          %td 芗城
+/ end 右边
