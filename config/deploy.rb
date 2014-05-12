@@ -3,7 +3,7 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'meifang'
+set :application, 'quanzhou'
 set :repo_url, 'https://github.com/zzfxtxcm/quanzhou.git'
 set :branch, 'master'
 
