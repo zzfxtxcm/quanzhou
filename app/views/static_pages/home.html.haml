@@ -274,10 +274,10 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             .pull-left.pt10{style: " width:174px;"}
-              - Information.where(information_type_id: 8).limit(2).each do |information|
+              - Information.where(information_type_id: 15).limit(2).each do |information|
                 = image_tag(information.information_thumb, alt: "", :style => "height:100px; width:175px; margin-bottom:10px;", target: "_blank")
             .loushiguandian
-              - Information.where(information_type_id: 8).limit(2).each do |information|
+              - Information.where(information_type_id: 15).limit(2).each do |information|
                 %h4
                   = link_to information.title.first(14), information, :class=> "cr", target: "_blank"
                 .mt5{style: "height:80px"}
