@@ -184,33 +184,43 @@ ActiveAdmin.register NewHome do
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.volume_rate")
       f.input :fit,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.fit")
       f.input :property,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.property")
       f.input :school,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.school")
       f.input :hospital,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.hospital")
       f.input :bank,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.bank")
       f.input :shopping,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.shopping")
       f.input :neighborhoods,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.neighborhoods")
       f.input :landscapes,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.landscapes")
       f.input :bus,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "left", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.bus")
       f.input :car,
+              :input_html => { :rows => "5" },
               :wrapper_html => { :class => "right", :style => "width:48%" },
               :label => I18n.t("active_admin.new_homes.form.car")
       f.input :property_type,
