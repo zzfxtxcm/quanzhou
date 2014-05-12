@@ -59,7 +59,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'simplecov', '0.8.2'
   gem 'email_spec', '1.5.0'
-  gem 'net-ssh', '2.7.0'
+  gem 'net-ssh', '2.9.0'
   gem 'capistrano', '3.1.0'
   gem 'capistrano-rails', '1.1.1'
   gem 'capistrano-bundler', '1.1.2'
@@ -86,6 +86,7 @@ end
 group :production do
   gem 'pg', '0.15.1'
   gem 'unicorn'
+  gem 'unicorn-rails'
   gem 'unicorn-worker-killer'
 end
 
