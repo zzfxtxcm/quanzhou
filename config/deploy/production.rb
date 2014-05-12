@@ -9,9 +9,9 @@ set :stage, :production
 # role :app, %w{wwwroot@meifang365.com}
 # role :web, %w{wwwroot@meifang365.com}
 # role :db,  %w{wwwroot@meifang365.com}
-role :app, %w{vagrant@192.168.33.10}
-role :web, %w{vagrant@192.168.33.10}
-role :db,  %w{vagrant@192.168.33.10}
+role :app, %w{quanzhou@115.28.216.223}
+role :web, %w{quanzhou@115.28.216.223}
+role :db,  %w{quanzhou@115.28.216.223}
 
 # Extended Server Syntax
 # ======================
@@ -22,7 +22,8 @@ role :db,  %w{vagrant@192.168.33.10}
 # server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 # server 'meifang365.com', user: 'wwwroot', roles: %w{web}, port: 22229
 # server 'meifang365.com', user: 'wwwroot', roles: %w{web}, port: 22
-server '192.168.33.10', user: 'vagrant', password: 'vagrant', roles: %w{web}
+set :password, ask('Server password:', nil)
+server '115.28.216.223', user: 'quanzhou', password: fetch(:password), roles: %w{app web db}
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

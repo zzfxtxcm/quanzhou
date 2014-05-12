@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '2.3.2'
 gem 'haml', '4.0.5'
 
 # 会员
-gem 'devise', github: 'plataformatec/devise', branch: 'lm-rails-4-1'
+gem 'devise'
 gem 'devise-encryptable', '0.1.2'
 
 # 后台页面

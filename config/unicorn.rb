@@ -5,7 +5,7 @@ APP_PATH = File.expand_path("../..", __FILE__)
 working_directory APP_PATH
 
 listen "/tmp/unicorn_quanzhou.sock", :backlog => 64
-listen 5001, :tcp_nopush => false
+listen 5005, :tcp_nopush => false
 
 stderr_path APP_PATH + "/log/unicorn.stderr.log"
 stdout_path APP_PATH + "/log/unicorn.stdout.log"

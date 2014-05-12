@@ -4,28 +4,31 @@
 lock '3.1.0'
 
 set :application, 'meifang'
-# set :user, 'wwwroot'
-set :user, 'vagrant'
-set :repo_url, 'https://github.com/zzfxtxcm/meifang.git'
+set :repo_url, 'https://github.com/zzfxtxcm/quanzhou.git'
 set :branch, 'master'
 
-# set :deploy_to, '/home/wwwroot/www/meifang'
-set :deploy_to, '/home/meifang/www/meifang'
+set :deploy_to, '/home/quanzhou/www'
 set :scm, :git
 
 set :format, :pretty
 set :log_level, :debug
 set :pry, true
 
+# files we want symlinking to specific entries in shared
+# set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml}
+#
+# dirs we want symlinking to shared
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets}
+
 set :keep_releases, 5
 
-set :rvm_type, :user
-set :rvm_ruby_version, 'ruby-2.1.0'
-
-set :linked_files, %w{config/database.yml}
-
-SSHKit.config.command_map[:rake]  = "bundle exec rake"
-SSHKit.config.command_map[:rails] = "bundle exec rails"
+# set :rvm_type, :user
+# set :rvm_ruby_version, 'ruby-2.1.0'
+#
+# SSHKit.config.command_map[:rake]  = "bundle exec rake"
+# SSHKit.config.command_map[:rails] = "bundle exec rails"
 
 
 # Default branch is :master
