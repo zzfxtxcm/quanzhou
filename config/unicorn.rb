@@ -1,16 +1,24 @@
 worker_processes 2
-timeout 30
 
 APP_PATH = File.expand_path("../..", __FILE__)
 working_directory APP_PATH
+shared_root = "/home/quanzhou/www/shared"
 
-listen "/tmp/unicorn_quanzhou.sock", :backlog => 64
-listen 5005, :tcp_nopush => false
+# Listen on fs socket for better performance
+listen "#{shared_root}/tmp/unicorn.sock", :backlog => 64
+listen 5595, :tcp_nopush => false
 
-stderr_path APP_PATH + "/log/unicorn.stderr.log"
-stdout_path APP_PATH + "/log/unicorn.stdout.log"
+# Nuke workers after 30 seconds instead of 60 seconds (the default)
+timeout 30
 
-pid APP_PATH + "/tmp/pids/unicorn.pid"
+# App PID
+pid "#{shared_root}/tmp/pids/unicorn.pid"
+
+# By default, the Unicorn logger will write to stderr.
+# Additionally, some applications/frameworks log to stderr or stdout,
+# so prevent them from going to /dev/null when daemonized here:
+stderr_path "#{shared_root}/log/unicorn.stderr.log"
+stdout_path "#{shared_root}/log/unicorn.stdout.log"
 
 # To save some memory and improve performance
 preload_app true
@@ -20,20 +28,20 @@ GC.respond_to?(:copy_on_write_friendly=) and
 # Force the bundler gemfile environment variable to
 # reference the Сapistrano "current" symlink
 before_exec do |_|
-  ENV["BUNDLE_GEMFILE"] = File.join(app_root, 'Gemfile')
+  ENV["BUNDLE_GEMFILE"] = File.join(APP_PATH, 'Gemfile')
 end
 
 before_fork do |server, worker|
   # 参考 http://unicorn.bogomips.org/SIGNALS.html
   # 使用USR2信号，以及在进程完成后用QUIT信号来实现无缝重启
-  # old_pid = shared_root + '/tmp/pids/unicorn.pid.oldbin'
-  # if File.exists?(old_pid) && server.pid != old_pid
-  #   begin
-  #     Process.kill("QUIT", File.read(old_pid).to_i)
-  #   rescue Errno::ENOENT, Errno::ESRCH
-  #     # someone else did our job for us
-  #   end
-  # end
+  old_pid = shared_root + '/tmp/pids/unicorn.pid.oldbin'
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
 
   # the following is highly recomended for Rails + "preload_app true"
   # as there's no need for the master process to hold a connection
