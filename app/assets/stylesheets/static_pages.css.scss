@@ -6,21 +6,7 @@ $white: #fff;
 
 /*首页 */
 
-.loginBut{
-  background:#2db8ad;
-  border: medium none;
-  color: $white;
-  cursor: pointer;
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  margin-left: 5px;
-  margin-top: 3px;
-  text-align: center;
-  vertical-align: top;
-  width: 37px;
-  font-size:9px;
-}
+
 /*左右滚轮特效stats*/
 
 .imageRotation {
@@ -310,10 +296,16 @@ $white: #fff;
 #demo1 {
   float: left;
 }
+#demo1 img{
+  float: left;
+}
 
 #demo2 {
   float: left;
 } 
+#demo2 img{
+  float: left;
+}
 
 
 /*购房百科*/

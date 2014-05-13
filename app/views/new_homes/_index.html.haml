@@ -5,18 +5,20 @@
     .item-tab
       .panel{style: "display: block;"}
         %a{href: "", target: "_blank"}    
-          = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title: "艾菲国际-艾菲国际景观示意图（12.18）")
+          = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title:@new_home.name )
       .panel{style: "display: none;"}
-        %a{href: "", target: "_blank"}
-          = image_tag("tmp/tg.jpg", alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title: "艾菲国际-艾菲国际景观示意图（12.18）")
+        -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |album|
+          %a{href: "", target: "_blank"}
+            = image_tag(album.url, alt: album.name,:style =>"width:340px; height:257px", target: "_blank" ,title: album.name)
       .panel{style: "display: none;"}
-        %a{href: "", target: "_blank"}
-          %img{src: "upload/img/138732779652b0f13498ae9.jpg", style: "width:340px; height:257px", target: "_blank", title: "艾菲国际-艾菲国际89㎡C2户型图（12.18）"}/
+        -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment| 
+          %a{href: "", target: "_blank"}
+            = image_tag(apartment.apartment_thumb, alt: apartment.name,:style =>"width:340px; height:257px", target: "_blank" ,title: apartment.name)
       %ul.tag.clearfix{style: "z-index:999"}
         %li.on
           %a{href: "", target: "_blank"} 效果图
         %li
-          %a{href: "", target: "_blank"} 交通图
+          %a{href: "", target: "_blank"} 相册图
         %li
           %a{href: "", target: "_blank"} 户型图
       .cover
@@ -26,16 +28,17 @@
           优惠信息
           %a.pull-right.f14{href: "#"} 更多>
       .panel-body
-        %p.f16.cl 锦绣华城：同安大型湿地公园就在家门口
-        %p.f14.lh180
-                  MEIFANG消息 东溪流域彻底整治、清风园扩建，今年同安东溪西洋溪段首个6万平开放式湿地公园打造在即、东溪沿岸不行、自行车...
-          %a.cl{href: ""} [详情]
-        %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
-        %ul
-          %li.f14.lh180
-            %a 漳靖打造同城化"桥头堡" 将实现30分钟内通达
-          %li.f14.lh180
-            %a 漳州地热资源丰温泉旅游地产迎来发展新机遇
+        -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 13 }]).limit(1).each do |information|
+          %p.f16.cl
+            =link_to information.title.first(19), information, :class => "cl"
+          %p.f14.lh180
+            = information.description.first(40)
+            = link_to "[详情]", information, :class => "cl", target: "_blank"
+          %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
+          %ul
+            -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 13 }]).limit(2).each do |information|
+              %li.f14.lh180
+                =link_to information.title.first(19), information, :class => "cl"   
     .panel.panel-primary.mt20{style: "width:338px"}
       .panel-heading
         %h3.panel-title 人气指数
@@ -46,7 +49,7 @@
         %p.f14.lh150 访问人数：11222人
         %p.f14.lh150 今日访问：32人
         %p.f14.lh150 昨日访问：165人
-        %p.f14.lh150 欢迎访问厦门锦绣华城网上售楼处！
+        %p.f14.lh150 欢迎访问#{@new_home.name}网上售楼处！
         %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
         %table{width: "300px"}
           %tr
@@ -63,28 +66,28 @@
               %a.btn.cw{style: "background:#f65c52"} 我已看过
             %td{style: "text-align:center"}
               %a.btn.cw{style: "background:#f65c52"} 我很想去
-    .panel.panel-primary.mt20{style: "width:338px"}
-      .panel-heading
-        %h3.panel-title
-          楼盘在线问答
-          %a.pull-right.f14{href: "#"} 更多>
-      .panel-body
-        .pr_ifno_zx
-          %p.pt20{align: "center"} 美房购房交流群：
-          %p.cl{align: "center"}
-            11122111
-            %a.cl{href: "", style: "float:right"} 进入群>  
-        %p.cr 问：乐美颂是一梯几户的 华女士(1515518****)
-        %p 答：您好,这里是House365新房中心，大华锦绣华城乐美颂是一梯三户的。(2014.02.26)
-        %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
-        %p.cr 问：请问你们靠近地铁吗？周变交通怎么样?小户型有吗？ 张先生(1865296****)
-        %p 答：您好,这里是House365新房中心，以后宁天城际二期会有地铁，鼓珍线（可达鼓...(2014.02.25)
-        %table{width: "300px"}
-          %tr
-            %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 查看回复
-            %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 我要提问
+    / .panel.panel-primary.mt20{style: "width:338px"}
+    /   .panel-heading
+    /     %h3.panel-title
+    /       楼盘在线问答
+    /       %a.pull-right.f14{href: "#"} 更多>
+    /   .panel-body
+    /     .pr_ifno_zx
+    /       %p.pt20{align: "center"} 美房购房交流群：
+    /       %p.cl{align: "center"}
+    /         11122111
+    /         %a.cl{href: "", style: "float:right"} 进入群>  
+    /     %p.cr 问：乐美颂是一梯几户的 华女士(1515518****)
+    /     %p 答：您好,这里是House365新房中心，大华锦绣华城乐美颂是一梯三户的。(2014.02.26)
+    /     %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
+    /     %p.cr 问：请问你们靠近地铁吗？周变交通怎么样?小户型有吗？ 张先生(1865296****)
+    /     %p 答：您好,这里是House365新房中心，以后宁天城际二期会有地铁，鼓珍线（可达鼓...(2014.02.25)
+    /     %table{width: "300px"}
+    /       %tr
+    /         %td{style: "text-align:center"}
+    /           %a.btn.cw{style: "background:#f65c52"} 查看回复
+    /         %td{style: "text-align:center"}
+    /           %a.btn.cw{style: "background:#f65c52"} 我要提问
   / end left
   .pull-left.ml30{style: "width:800px;"}
     .pr_info_1
@@ -104,13 +107,13 @@
           = @new_home.main_units
       %p    
         %strong.f14> 建筑类别：
-        = ConstructionCategory.find(@new_home.construction_category_id).name
+        = ConstructionCategory.find_by_id(@new_home.construction_category_id).name if @new_home.construction_category_id?
       %p
         %strong.f14 项目特色：
-        = ProjectFeatures.find(@new_home.project_features_id).name
+        = ProjectFeatures.find_by_id(@new_home.project_features_id).name if @new_home.project_features_id?
       %p
         %strong.f14> 物业类别：
-        = PropertyType.find(@new_home.property_type_id).name
+        = PropertyType.find_by_id(@new_home.property_type_id).name if @new_home.property_type_id?
       %p
         %strong.f14> 建筑面积：
         = @new_home.gfa
@@ -119,8 +122,8 @@
         = @new_home.covers
       %p
         %strong.f14> 开 发 商：
-        = Developers.find(@new_home.developers_id).name
-      %p
+        = Developers.find(@new_home.developers_id).name if @new_home.developers_id?
+      %p 
         %strong.f14> 开盘时间：
         
       %p
@@ -132,6 +135,8 @@
       %p
         %strong.f14.mb10> 售楼地址：
         = @new_home.sales_address
+        -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 2 }]).limit(1).each do |information|
+          = information.title
       %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px; "}
       %p.cl
         %a.cl{href: "", target: "_blank"} 点击查看#{@new_home.name}详细信息>>
@@ -139,175 +144,126 @@
         %a.cl.pull-right.mr20 开盘动免费态订阅
     .pull-left.mt10
       .title3_l
-        %p 活动
+        %p 最新动态
       .title3_r{align: "right", style: "width:678px;"}
-        %a{href: ""} 更多
+        %a{href: "information?information_type_id=2",target: "_blank"} 更多
       %table{border: "0", width: "800px"}
         %tr
           %td.pl15{colspan: "2"}
             %table.mt20
               %tr
                 %td{width: "290px;"}
-                  %img.img-polaroid{src: "upload/img/ad5.gif", style: "width:270px"}/
+                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                    = link_to image_tag(information.information_thumb, alt: information.title, :style => "width:270px"), information, target: "_blank"
                 %td
-                  %p.f20.cl 锦绣华城：同安大型湿地公园就在家门口
-                  %p.ch 2014年2月26日更新
-                  %p
-                    MEIFANG消息 东溪流域彻底整治、清风园扩建，今年同安东溪西洋溪段首个6万平开放式湿地公园打造在即、东溪沿岸不行、建，今年同安东溪西洋溪段首个6万平开放式湿地公园打造在即、东溪沿岸不行、自行车自行车...
-                    %a.cr [详情]
+                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                    %p
+                      = link_to information.title.first(24), information, :class => "f20 cl"
+                    %p.ch
+                      = information.updated_at.strftime("%Y-%m-%d %H:%M")
+                    %p
+                      = information.description.first(120)
+                      = link_to "[详情]", information, :class => "cl", target: "_blank"                  
         %tr
           %td{colspan: "2"}
             .ml20.mr20
-              %p.f16.lh150
-                禹州地产：连夺五项大奖 载誉全国领跑海西
-                %span.ch.pull-right.f12 2014年2月26日更新
-              %p.f16.lh150
-                禹州地产：连夺五项大奖 载誉全国领跑海西
-                %span.ch.pull-right.f12 2014年2月26日更新
-              %p.f16.lh150
-                禹州地产：连夺五项大奖 载誉全国领跑海西
-                %span.ch.pull-right.f12 2014年2月26日更新
+              -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).offset(1).limit(3).each do |information|
+                %p.f16.lh150
+                  =link_to information.title, information
+                  %span.ch.pull-right.f12 
+                    = information.updated_at.strftime("%Y-%m-%d %H:%M")
+            
       .title3_l
         %p 看房报告
       .title3_r{align: "right", style: "width:678px;"}
         %a{href: ""} 更多
       .clearfix
       .pt10.m10{style: "width:780px;"}
+      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).limit(1).each do |information|
         %p.f16.cl
           [报告]
           %span.label{style: "background:#f65c52"} 最新
-          景海湾一期别墅均封顶   4栋高层建至11-14层不等
-          %span.ch.f13 （2014-02-26）
+          =link_to information.title, information, :class => "cl"
+          %span.ch.f13 （#{information.updated_at.strftime("%Y-%m-%d %H:%M")}）
         %p
-          MEIFANG消息 东溪流域彻底整治、清风园扩建，今年同安东溪西洋溪段首个6万平开放式湿地公园打造在即、东溪沿岸不行、建，今年同安东溪西洋溪段首个6万平开放式湿地公园打造在即、东溪沿岸不行、自行车自行车...
-          %a.cr [详情]
+          = information.description.first(120)
+          = link_to "[详情]", information, :class => "cl", target: "_blank"
+      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).offset(1).limit(3).each do |information|
         %p.f16.cl
-          [报告]     景海湾一期别墅均封顶   4栋高层建至11-14层不等
-          %span.ch.f13 （2014-02-26）
-        %p.f16.cl
-          [报告]    景海湾一期别墅均封顶   4栋高层建至11-14层不等
-          %span.ch.f13 （2014-02-26）
-        %p.f16.cl
-          [报告]    景海湾一期别墅均封顶   4栋高层建至11-14层不等
-          %span.ch.f13 （2014-02-26）
-      .title3_l
-        %p 业主论坛
-      .title3_r{align: "right", style: "width:678px;"}
-        %a{href: ""} 更多
-      .clearfix
-      .mt20{style: "width:800px"}
-        %div{style: "border-bottom:1px dotted #CCC"}
-          %p.f16.lh200
-            目前大华锦绣华城有
-            %span.cr> 4844
-            名网友在线交流， 帖子总数:
-            %span.cr> 4844
-            条，网友评分:
-            %span.cr ★
-            %span.cr ★
-            %span.cr ★
-            %span.cr ★
-            %span.cr ★
-          %p
-        %table.f14.lh180.mt10{width: "100%"}
-          %tr
-            %td
-              %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
-            %td
-            %td 43/1049
-            %td 2014-03-07
-          %tr
-            %td
-              %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
-            %td
-            %td 43/1049
-            %td 2014-03-07
-          %tr
-            %td
-              %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
-            %td
-            %td 43/1049
-            %td 2014-03-07
+          [报告]
+          =link_to information.title, information, :class => "cl"
+          %span.ch.f13 （#{information.updated_at.strftime("%Y-%m-%d %H:%M")}）
+      / .title3_l
+      /   %p 业主论坛
+      / .title3_r{align: "right", style: "width:678px;"}
+      /   %a{href: ""} 更多
+      / .clearfix
+      / .mt20{style: "width:800px"}
+      /   %div{style: "border-bottom:1px dotted #CCC"}
+      /     %p.f16.lh200
+      /       目前大华锦绣华城有
+      /       %span.cr> 4844
+      /       名网友在线交流， 帖子总数:
+      /       %span.cr> 4844
+      /       条，网友评分:
+      /       %span.cr ★
+      /       %span.cr ★
+      /       %span.cr ★
+      /       %span.cr ★
+      /       %span.cr ★
+      /     %p
+      /   %table.f14.lh180.mt10{width: "100%"}
+      /     %tr
+      /       %td
+      /         %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
+      /       %td
+      /       %td 43/1049
+      /       %td 2014-03-07
+      /     %tr
+      /       %td
+      /         %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
+      /       %td
+      /       %td 43/1049
+      /       %td 2014-03-07
+      /     %tr
+      /       %td
+      /         %a 【韶韶茶馆-江宁分馆】三八女神节，留下你对心中女神
+      /       %td
+      /       %td 43/1049
+      /       %td 2014-03-07
   .clearfix
   / 底部左边
   .prhxtall.pull-left.mt20
-    .title3_l
-      %p 鸟瞰图
-    .title3_r{align: "right", style: "width:785px;"}
-    .clearfix
-    %div{style: "margin:20px 0px 20px 20px;"}
-      %img.img-rounded{src: "upload/img/nk.gif", style: "width:800px;"}/
     .title3_l
       %p 户型图
     .title3_r{align: "right", style: "width:785px;"}
       %a{href: ""} 更多
     .clearfix
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %table{align: "center"}
-        %tr
-          %td{colspan: "2"}
-            %h4.cl 画虎国际f-3 e-2户型图 92m²
-        %tr
-          %td 户型 ：3室 2厅
-          %td 面积96m²
-        %tr
-          %td 浏览：1660次
-          %td
-            %span.label.label-important 查看评论
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %table{align: "center"}
-        %tr
-          %td{colspan: "2"}
-            %h4.cl 画虎国际f-3 e-2户型图 92m²
-        %tr
-          %td 户型 ：3室 2厅
-          %td 面积96m²
-        %tr
-          %td 浏览：1660次
-          %td
-            %span.label.label-important 查看评论
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/hxt.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %table{align: "center"}
-        %tr
-          %td{colspan: "2"}
-            %h4.cl 画虎国际f-3 e-2户型图 92m²
-        %tr
-          %td 户型 ：3室 2厅
-          %td 面积96m²
-        %tr
-          %td 浏览：1660次
-          %td
-            %span.label.label-important 查看评论
+    -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment|
+      .prhxtinfo.pull-left.ml10.mr10
+        = image_tag(apartment.apartment_thumb, alt: apartment.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        %table{align: "center"}
+          %tr
+            %td{colspan: "2"}
+              %h4.cl
+                = apartment.name
+          %tr
+            %td
+              = apartment.apartment_name
+            %td
+              = apartment.area          
     .clearfix
     .title3_l
       %p 楼盘相册
     .title3_r{align: "right", style: "width:785px;"}
       %a{href: ""} 更多
     .clearfix
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/ad7.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %h4.cl{align: "center"} 画虎国际f-3 e-2户型图 92m²
-      %p{align: "center"}
-        浏览：
-        %span.cr> 1660
-        次
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/ad7.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %h4.cl{align: "center"} 画虎国际f-3 e-2户型图 92m²
-      %p{align: "center"}
-        浏览：
-        %span.cr> 1660
-        次
-    .prhxtinfo.pull-left.ml10.mr10
-      %img.img-polaroid{src: "upload/img/ad7.gif", style: "padding:20px 10px 20px 10px; width:236px ; height:118px"}/
-      %h4.cl{align: "center"} 画虎国际f-3 e-2户型图 92m²
-      %p{align: "center"}
-        浏览：
-        %span.cr> 1660
-        次
+    -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |album|
+      .prhxtinfo.pull-left.ml10.mr10{style:"height:205px;"}
+        = image_tag(album.url, alt: album.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        %h4.cl{align: "center"}
+          = album.name
+        %p{align: "center"}
     .clearfix
     .title3_l
       %p 周边地图
@@ -315,19 +271,20 @@
       %a{href: ""} 更多
     .clearfix
     .m10{style: "width:780px;"}
-      %img.ml30.mt10.mb10{src: "upload/img/jtdt.gif"}/
+      #property-map.mb10{style: "width:870px; height:300px"}
       %p.f14
         %strong 周边交通：
-      %p.f14 公交：现场售楼处：柳州路198号（公交132、151、175路"威尼斯水城"站下）；
-      %p.f14 地铁：三号线 浦珠路站
-      %p.f14 从新街口到威尼斯水城的自驾路线：先上汉中路，再进入虎踞南路，沿虎踞南路行驶400米，直行进入虎                踞路，沿虎踞路行驶2.2公里，进入虎踞北路。
+      %p.f14 公交：#{@new_home.bus}
+      %p.f14 地铁：
+      %p.f14 自驾路线：#{@new_home.car}
       %p.f14
         %strong 周边配套：
-      %p.f14 小区内部配套:游艇码头、社区巴士、学校、幼儿园
-      %p.f14 中小学:小学两所，中学一所
-      %p.f14 幼儿园:9所
-      %p.f14 综合商场:超市、酒店
+      %p.f14 小区内部配套:#{@new_home.neighborhoods}
+      %p.f14 中小学:#{@new_home.school}
+      %p.f14 综合商场:#{@new_home.shopping}
+      %p.f14 医院:#{@new_home.hospital}
     .clearfix
+    %a{name: "tuangou"}
     .title3_l
       %p 我要团购
     .title3_r{align: "right", style: "width:785px;"}
@@ -380,27 +337,13 @@
             %tr{style: "color:#f65c52"}
               %th 楼盘名称
               %th 均价
-              %th 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
+              %th 板块
+            -NewHome.where(["price <= :new_id and price >= :new_id1",{ new_id: @new_home.price+1000,new_id1: @new_home.price-1000}]).limit(5).each do |new|
+              %tr
+                %td #{new.name.first(7)}
+                %td #{new.price}元/m&sup2
+                %td 
+                  = Area.find(new.area_id).name
     .panel.panel-primary
       .panel-heading
         %h3.panel-title
@@ -412,31 +355,18 @@
             %tr{style: "color:#f65c52"}
               %th 楼盘名称
               %th 均价
-              %th 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 对比
+              %th 板块
+          -NewHome.where("area_id = ? ", @new_home.area_id).limit(5).each do |new|
+            %tr
+              %td #{new.name.first(7)}
+              %td #{new.price}元/m&sup2
+              %td 
+                = Area.find(new.area_id).name
+          
     .panel.panel-primary
       .panel-heading
         %h3.panel-title
-          热门楼盘推荐
+          最新楼盘推荐
           %a.pull-right.f14{href: "#"} 更多>
       .panel-body
         %table.table.table-condensed
@@ -445,71 +375,60 @@
               %th 楼盘名称
               %th 均价
               %th 板块
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 芗城
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 芗城
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 芗城
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 芗城
-          %tr
-            %td 华府国际
-            %td 8000元/m&sup2
-            %td 芗城
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title
-          购房工具
-          %a.pull-right.f14{href: "#"} 更多>
-      .panel-body
-        %table{style: "width:215px;"}
-          %tr
-            %td
-              %a.m20{href: ""}
-                %img{src: "img/tool1.gif"}/
-            %td
-              %a.m20{href: ""}
-                %img{src: "img/tool2.gif"}/
-          %tr
-            %td
-              %a.m20{href: ""}
-                %img{src: "img/tool3.gif"}/
-            %td
-              %a.m20{href: ""}
-                %img{src: "img/tool4.gif"}/
-          %tr
-            %td
-              %a.m20{href: ""}
-                %img{src: "img/tool5.gif"}/
-            %td
+          -NewHome.order("id DESC").limit(5).each do |new|
+            %tr
+              %td #{new.name.first(7)}
+              %td #{new.price}元/m&sup2
+              %td 
+                = Area.find(new.area_id).name
+    
+    / .panel.panel-primary
+    /   .panel-heading
+    /     %h3.panel-title
+    /       购房工具
+    /       %a.pull-right.f14{href: "#"} 更多>
+    /   .panel-body
+    /     %table{style: "width:215px;"}
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool1.gif"}/
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool2.gif"}/
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool3.gif"}/
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool4.gif"}/
+    /       %tr
+    /         %td
+    /           %a.m20{href: ""}
+    /             %img{src: "img/tool5.gif"}/
+    /         %td
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
       .panel-body.ml20
-        %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
-        %select#area.selectS{name: "area", style: "margin:3px 0px 0px 0px"}
-          %option{value: ""} 芗城区
-          %option{value: "1"} 5漳州港
-          %option{value: "2"} 龙海
-        %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
-        %select#area.selectS{name: "area", style: "margin:3px 0px 0px 0px"}
-          %option{value: ""} 芗城区
-          %option{value: "1"} 5漳州港
-          %option{value: "2"} 龙海
-        %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 类型
-        %select#area.selectS{name: "area", style: "margin:3px 0px 0px 0px"}
-          %option{value: ""} 芗城区
-          %option{value: "1"} 5漳州港
-          %option{value: "2"} 龙海
-        %input#keyword.form-control.mt10{name: "keyword", placeholder: "请输入关键字", style: "width:110px;", type: "text"}/
-        %button.btn.btn-danger.btn-mini{style: "height:28px; width:58px", type: "submit"} 搜索
+        = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
+          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
+          = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 3px 0 0 0"
+          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
+          = select_tag :section_id, options_from_collection_for_select(@sections, 'id', 'name'), prompt: "请选择版块", class: "selectS", id: "area", style: "margin: 3px 0"
+          = text_field_tag :keyword, params[:keyword], :class => "form-control mt10", :id => "keyword", :style => "width: 110px", :placeholder => "请输入关键字"
+          %button.btn.btn-danger.btn-mini.mt10{ type: "submit", style: "height: 28px; width: 58px" }
+            搜索
   / end 底部
+:javascript
+  // 百度地图API功能
+  var map = new BMap.Map("property-map");
+  var point = new BMap.Point(#{@new_home.map_address});
+  map.centerAndZoom(point,16);
+  map.enableScrollWheelZoom();
+  var marker1 = new BMap.Marker(point);
+  map.addOverlay(marker1);
+  var infoWindow1 = new BMap.InfoWindow("#{@new_home.name} - #{@new_home.project_address}");
+  marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
+  map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));

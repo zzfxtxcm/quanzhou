@@ -25,6 +25,8 @@ class NewHomesController < ApplicationController
   end
 
   def show
+    @areas = Area.all
+    @sections = Section.all
     @new_home = NewHome.find(params[:id])
     @apartments = Apartment.all
     @news = Information.where(new_home_id: params[:id])

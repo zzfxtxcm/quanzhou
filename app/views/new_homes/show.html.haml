@@ -1,4 +1,4 @@
--provide(:title, '泉州新房,泉州房产网')
+-provide(:title, '漳州新房,漳州房产网')
 %script{src: "http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo", type: "text/javascript"}
 .container
   .pr_title.pull-left.mb10
@@ -6,6 +6,11 @@
       = @new_home.name
     %input.btn.pull-left.mt20.f12.ml10{style: " background:#f65c52; color:#FFF", type: "button", value: "在售"}/
     %p.pull-left.pt30.pl10 (项目名称:#{@new_home.name})
+    %p.pull-right.mt20
+      售楼电话：
+      %strong.cr{style: "font-size:34px"}  #{@new_home.tel}
+      找售楼处
+      %a.btn{href: "?type=index#tuangou", style: " background:#f65c52; color:#FFF"} 团购报名
   .clearfix
   .prnav
     .pull-left{style: "background: url(#{asset_path 'bootstrap/prt.gif'}); height: 40px; width: 104px;"}
@@ -14,7 +19,7 @@
       = link_to "项目介绍", new_home_path(@new_home.id, :type => "introduce")
       = link_to "户型图", new_home_path(@new_home.id, :type => "apartment")
       = link_to "销售动态", new_home_path(@new_home.id, :type => "new")
-      %a{href: "#"} 价格行情
+      / %a{href: "#"} 价格行情
       = link_to "交通配套", new_home_path(@new_home.id, :type => "traffic")
       = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album")
   - type = params[:type]

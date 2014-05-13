@@ -14,7 +14,9 @@ class StaticPagesController < ApplicationController
   def map
     @map_keyword = params[:map_keyword]
     unless @map_keyword.blank?
-      @new_homes = NewHome.where("name LIKE ? AND map_address IS NOT NULL", '%'+@map_keyword+'%')
+      @new_homes = NewHome.where("name LIKE ? AND map_address IS NOT NULL", '%' + @map_keyword + '%')
+    else
+      @new_homes = NewHome.where("map_address IS NOT NULL")
     end
   end
 end
