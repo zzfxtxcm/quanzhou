@@ -289,13 +289,12 @@
             %ul
               - Information.where(information_type_id: 15).limit(6).offset(1).each do |information|
                 %li
-                  = link_to information.title, information, target: "_blank"
+                  = link_to information.title.first(27), information, target: "_blank"
       .pt10{style: "width:465px"}
         - if mobile?
           = image_tag("tmp/sx.gif", alt: "", :style => "width:465px;height:320px")      
         - else
-          %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", type: "application/x-shockwave-flash", width: "465px"}
-
+          %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", wmode: "transparent", type: "application/x-shockwave-flash", width: "465px"}
       / %div{style: "width:465px;"}
       /   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
       /     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
