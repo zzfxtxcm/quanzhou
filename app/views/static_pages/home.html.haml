@@ -1,4 +1,4 @@
-- provide(:title, '漳州房产网,漳州买房，漳州新房，漳州房价，漳州楼盘，漳州二手房，漳州租房')
+- provide(:title, '泉州房产网,泉州买房，泉州新房，泉州房价，泉州楼盘，泉州二手房，泉州租房')
 .container
   / 左边
   .pull-left{style: "width:242px;"}
@@ -291,7 +291,11 @@
                 %li
                   = link_to information.title, information, target: "_blank"
       .pt10{style: "width:465px"}
-        %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", type: "application/x-shockwave-flash", width: "465px"}
+        - if mobile?
+          = image_tag("tmp/sx.gif", alt: "", :style => "width:465px;height:320px")      
+        - else
+          %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", type: "application/x-shockwave-flash", width: "465px"}
+
       / %div{style: "width:465px;"}
       /   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
       /     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
@@ -305,7 +309,7 @@
       /         %h4
       /           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
       /         %p.f14.m0
-      /           4月7日，漳州角美万达广场商铺投资经营体验会将在角美万达广场营销,漳州角美万达广场商铺投资经营体验会将在角美万达广场营销
+      /           4月7日，泉州角美万达广场商铺投资经营体验会将在角美万达广场营销,泉州角美万达广场商铺投资经营体验会将在角美万达广场营销
       /           %a.cl{href: ""} [详情]
       /       .clearfix
       /       .mb10{style: "border-top:1px dotted #333;"}
