@@ -1,4 +1,4 @@
--provide(:title, '泉州房产网,泉州买房，泉州新房，泉州房价，泉州楼盘，泉州二手房，泉州租房')
+- provide(:title, '泉州房产网,泉州买房，泉州新房，泉州房价，泉州楼盘，泉州二手房，泉州租房')
 .container
   / 左边
   .pull-left{style: "width:242px;"}
@@ -287,11 +287,14 @@
             .clearfix
             .mb10{style: "border-top:1px dotted #333;"}
             %ul
-              - Information.where(information_type_id: 8).limit(6).offset(1).each do |information|
+              - Information.where(information_type_id: 15).limit(6).offset(1).each do |information|
                 %li
-                  = link_to information.title, information, target: "_blank"
+                  = link_to information.title.first(27), information, target: "_blank"
       .pt10{style: "width:465px"}
-        = image_tag("tmp/newh.jpg", alt: "",:style =>" height:320px;width:465px;")
+        - if mobile?
+          = image_tag("tmp/sx.gif", alt: "", :style => "width:465px;height:320px")      
+        - else
+          %embed{align: "middle", allowscriptaccess: "sameDomain", bgcolor: "#ffffff", height: "320px", name: "mymovie", pluginspage: "http://www.macromedia.com/go/getflashplayer", quality: "high", src: "#{asset_path 'tmp/sx.swf'}", wmode: "transparent", type: "application/x-shockwave-flash", width: "465px"}
       / %div{style: "width:465px;"}
       /   %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
       /     %li.active{style: "border-bottom: 1px solid #2db8ad;"}
@@ -305,7 +308,7 @@
       /         %h4
       /           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
       /         %p.f14.m0
-      /           4月7日，漳州角美万达广场商铺投资经营体验会将在角美万达广场营销,漳州角美万达广场商铺投资经营体验会将在角美万达广场营销
+      /           4月7日，泉州角美万达广场商铺投资经营体验会将在角美万达广场营销,泉州角美万达广场商铺投资经营体验会将在角美万达广场营销
       /           %a.cl{href: ""} [详情]
       /       .clearfix
       /       .mb10{style: "border-top:1px dotted #333;"}
@@ -326,6 +329,15 @@
   / end 右边右
   / end 右边
   / -二楼end
+  .clearfix
+  .mt10
+    - if mobile?
+      = image_tag("swf/4.gif", alt: "", :style => "width:1170px", :class =>"pb10")
+      = image_tag("swf/5.gif", alt: "", :style => "width:1170px")
+    - else
+      %embed{height: "75px;", src:"#{asset_path 'swf/5.swf'}", width: "1170px;",wmode:"opaque"}
+      %embed{height: "75px;", src:"#{asset_path 'swf/4.swf'}", width: "1170px;",wmode:"opaque"}
+
   / 三楼地产圈
   .dcq
     .clearfix
@@ -395,7 +407,17 @@
                 = link_to sharp.title.first(17), sharp, target: "_blank"
       .clearfix
       .pull-left
-        = link_to image_tag("tmp/xw.gif", alt: "", :style => "height:260px; width:226px;"),'about#join', target: "_blank"
+        = link_to image_tag("tmp/xw.jpg", alt: "", :style => "height:260px; width:226px;"),'about#join', target: "_blank"
+    /[if IE 8]
+      <style type="text/css">
+      \#demo1 {
+      float: none;
+      }
+
+      \#demo2  {
+      float: none;
+      }
+      </style>
     .pull-left.mt10
       .title3_l
         %p 品牌展示

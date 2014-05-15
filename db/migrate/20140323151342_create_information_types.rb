@@ -17,6 +17,7 @@ class CreateInformationTypes < ActiveRecord::Migration
       InformationType.create!(name: '首页-楼盘评测')
       InformationType.create!(name: '首页-房事八卦')
       InformationType.create!(name: '首页-家居轶事')
+      InformationType.create!(name: '首页-楼盘活动')
     end
   end
 

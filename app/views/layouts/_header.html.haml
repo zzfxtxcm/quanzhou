@@ -1,19 +1,32 @@
 #miniTop
   .miniLogin
-    %label 用户名：
-    %input#username.loginTxtInt{ name: "username", type: "text" }
-    %label 密码：
-    %input#password.loginTxtInt{ name: "password", type: "password" }
-    %input{ name: "action", type: "hidden", value: "login" }
-    %input{ name: "r", type: "hidden", value: "3" }
-    %input.loginBut{ type: "submit", value: "登录" }
-    %a.regBut 注册
+    / %label 用户名：
+    / %input#username.loginTxtInt{ name: "username", type: "text" }
+    / %label 密码：
+    / %input#password.loginTxtInt{ name: "password", type: "password" }
+    / %input{ name: "action", type: "hidden", value: "login" }
+    / %input{ name: "r", type: "hidden", value: "3" }
+    / %input.loginBut{ type: "submit", value: "登录" }
+    / %a.regBut 注册
+    %p
+      馨窝网各地分站： 
+      = link_to "厦门", "http://xm.xinwo360.com", target: "_blank"
+      |
+      = link_to "漳州", "http://zz.xinwo360.com", target: "_blank"
+      |
+      = link_to "泉州", "http://qz.xinwo360.com", target: "_blank", :class => "cr"
+      |
+      = link_to "广州", "http://gz.xinwo360.com", target: "_blank"
+      |
+      = link_to "深圳", "http://sz.xinwo360.com", target: "_blank"
+      |
   .miniright
     = link_to "首页", root_path
     = link_to "新房", new_homes_path
     = link_to "二手房", "#"
     = link_to "团购", group_buyings_path
 .clearfix
+=render 'layouts/header_ad' if params[:controller]=="static_pages"
 .container
   .pull-left.mt20
     = link_to image_tag("logo.png"), "/"
