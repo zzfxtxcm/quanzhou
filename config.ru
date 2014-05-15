@@ -1,7 +1,7 @@
 # This file is used by Rack-based servers to start the application.
 
 
-if ENV['RAILS_ENV'] == 'production'
+if Rails.env.production?
   require 'unicorn/oob_gc'
   require 'unicorn/worker_killer'
 
