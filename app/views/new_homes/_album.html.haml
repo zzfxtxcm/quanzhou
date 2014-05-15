@@ -3,35 +3,32 @@
     .panel-heading
       %h3.panel-title 相册分类
     .panel-body
-      %h4.f16.mt5.mb5 效果图（4）
-      %h4.f16.mt5.mb5 交通图（1）
-      %h4.f16.mt5.mb5 户型图（4）
-      %h4.f16.mt5.mb5 实景图（61）
-      %h4.f16.mt5.mb5 样板图（32）
-      %a
-        %li 客厅 (2)
-      %a
-        %li 厨房(2)
-      %a
-        %li 卧室 (2)
-      %a
-        %li 卫浴 (2)
-      %a
-        %li 书房(2)
-      %a
-        %li 阳台(3)
-      %a
-        %li 餐厅(2)
-      %a
-        %li 其他(2)
+      %h4
+        = link_to "所有图片",new_home_path(@new_home.id, :type => "album"),:class =>"f16 mt5 mb5 cr"
+      %h4
+        = link_to "效果图（#{@albums1.size}）",new_home_path(@new_home.id, :type => "album",:pic =>1),:class =>"f16 mt5 mb5 cr"
+      %h4
+        = link_to "户型鉴赏（#{@albums2.size}）",new_home_path(@new_home.id, :type => "album",:pic =>2) ,:class =>"f16 mt5 mb5 cr"
+      %h4
+        = link_to "园林景观（#{@albums3.size}）",new_home_path(@new_home.id, :type => "album",:pic =>3) ,:class =>"f16 mt5 mb5 cr"
+      %h4
+        = link_to "样板房（#{@albums4.size}）",new_home_path(@new_home.id, :type => "album",:pic =>4),:class =>"f16 mt5 mb5 cr"
+      %h4 
+        = link_to "建设进度（#{@albums5.size}）",new_home_path(@new_home.id, :type => "album",:pic =>5) ,:class =>"f16 mt5 mb5 cr"
+      %h4 
+        = link_to "配套图片（#{@albums6.size}）",new_home_path(@new_home.id, :type => "album",:pic =>6) ,:class =>"f16 mt5 mb5 cr"
+      %h4 
+        = link_to "广告图（#{@albums7.size}）",new_home_path(@new_home.id, :type => "album",:pic =>7),:class =>"f16 mt5 mb5 cr"
+      %h4 
+        = link_to "活动图片（#{@albums8.size}）",new_home_path(@new_home.id, :type => "album",:pic =>8),:class =>"f16 mt5 mb5 cr"
 / 全部户型图
 .prhxtall.pull-left.ml20.mt20{style: "width:907px;"}
   .title3_l
     %p 实景图
   .title3_r{align: "right", style: "width:785px;"}
-    %a.cl{href: ""} 浏览最多
-    %span.cl |
-    %a.pl10.pr10.cl{href: ""} 切换列表页
+    / %a.cl{href: ""} 浏览最多
+    / %span.cl |
+    / %a.pl10.pr10.cl{href: ""} 切换列表页
   %table{border: "0", width: "907px"}
     %tr
       %td{colspan: "2"}

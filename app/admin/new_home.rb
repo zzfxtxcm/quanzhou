@@ -250,6 +250,7 @@ ActiveAdmin.register NewHome do
     f.inputs I18n.t("active_admin.alubms.alubms") do
       f.has_many :albums do |album|
         album.input :name, :label => "名称"
+        album.input :album_class, :label => "分类", :prompt => true
         album.input :url, :as => :file,
                           :label => "相册地址",
                           :hint => album.object.url.nil? \
