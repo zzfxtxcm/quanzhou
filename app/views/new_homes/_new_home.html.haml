@@ -9,11 +9,18 @@
           = link_to new_home.name, new_home, target: "_blank" , :class => "cl"
           %span.label.label-important.ml10{style: "background:#f65c52"}
             = Status.find(new_home.status_id).name
-        %p 
+        %p
         楼盘动态：
         -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: new_home.id, c_id: 26 }]).limit(1).each do |information|
           = link_to information.title.first(24), information, target: "_blank"
         %p 售楼电话：#{new_home.tel}
+        %p 项目地址：#{new_home.project_address}
+        %p
+          开发商信息：
+          = Developers.find(new_home.developers_id).name
+        %p
+          物业类型：
+          = PropertyType.find(new_home.property_type_id).name
         %p
           户型图
           %span.cr (8)
