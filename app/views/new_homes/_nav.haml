@@ -1,0 +1,24 @@
+.prnav
+  .pull-left{style: "background: url(#{asset_path 'bootstrap/prt.gif'}); height: 40px; width: 104px;"}
+    = link_to "楼盘首页", new_home_path(@new_home.id), :class => "ml10", :style => "padding: 0"
+  .pull-left{style: "background: url(#{asset_path 'bootstrap/prt1.gif'}); height:40px; width: 1066px; background-repeat: repeat-x"}
+    = link_to "项目介绍", new_home_path(@new_home.id, :type => "introduce")
+    = link_to "户型图", new_home_path(@new_home.id, :type => "apartment")
+    = link_to "销售动态", new_home_path(@new_home.id, :type => "new")
+    / %a{href: "#"} 价格行情
+    = link_to "交通配套", new_home_path(@new_home.id, :type => "traffic")
+    = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album")
+- type = params[:type]
+- if type == "apartment"
+  = render "apartment"
+- elsif type == "new"
+  = render "new"
+- elsif type == "album"
+  = render "album"
+- elsif type == "introduce"
+  = render "introduce"
+- elsif type == "traffic"
+  = render "traffic"
+- else
+  = render "index"
+/ con end
