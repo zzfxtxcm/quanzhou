@@ -10,9 +10,9 @@
           %span.label.label-important.ml10{style: "background:#f65c52"}
             = Status.find(new_home.status_id).name
         %p
-        楼盘动态：
-        -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: new_home.id, c_id: 26 }]).limit(1).each do |information|
-          = link_to information.title.first(24), information, target: "_blank"
+        / 楼盘动态：
+        / -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: new_home.id, c_id: 26 }]).limit(1).each do |information|
+        /   = link_to information.title.first(24), information, target: "_blank"
         %p 售楼电话：#{new_home.tel}
         %p 项目地址：#{new_home.project_address}
         %p
@@ -23,17 +23,17 @@
           = PropertyType.find(new_home.property_type_id).name
         %p
           户型图
-          %span.cr (8)
-          实景图
-          %span.cr> (31)
-          动态
-          %span.cr (23)
-          点评
-          %span.cr (5)
-          问房
-          %span.cr (2)
-          团购
-          %span.cr> (56)
+          %span.cr (#{Apartment.where(new_home_id: new_home.id).size})
+          效果图
+          %span.cr> (#{Album.where(new_home_id: new_home.id ,album_class_id:1).size})
+          户型鉴赏
+          %span.cr (#{Album.where(new_home_id: new_home.id ,album_class_id:2).size})
+          园林景观
+          %span.cr (#{Album.where(new_home_id: new_home.id ,album_class_id:3).size})
+          样板房
+          %span.cr (#{Album.where(new_home_id: new_home.id ,album_class_id:4).size})
+          建设进度
+          %span.cr> (#{Album.where(new_home_id: new_home.id ,album_class_id:5).size})
           地图
       %td{style: "text-align:center"}
         %h3.mt20.cr #{new_home.price}元/m ²
