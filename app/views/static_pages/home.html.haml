@@ -96,17 +96,21 @@
       .clearfix
       .imageRotation
         .imageBox{style: "width: 924px;"}
-          %a{href: "http://qz.xinwowang.com/information/68", target: "_blank"}
-            = image_tag("tmp/gad1.jpg")
-          %a{href: "", target: "_blank"}
-            = image_tag("tmp/gad2.jpg")
+          - Information.where(information_type_id: 16).limit(4).each do |information|
+            = link_to image_tag(information.information_thumb) ,information, target: "_blank"
         .titleBox
           %p.active{style: "bottom:0px;"}
-            %span 本地化房产团购、电商门户
-          %p{style: "bottom: -40px;"} 电商第一门户为目标
+            - Information.where(information_type_id: 16).limit(1).each do |information|
+              %span
+                =information.title.first(32)
+          - Information.where(information_type_id: 16).offset(1).limit(3).each do |information|
+            %p{style: "bottom: -40px;"}
+              =information.title.first(32)
         .icoBox
           %span{rel: "1"} 1
           %span{rel: "2"} 2
+          %span{rel: "3"} 3
+          %span{rel: "4"} 4
       :javascript
         $(document).ready(function() {
           $(".imageRotation").each(function(){
@@ -131,7 +135,7 @@
             // 图片轮换函数
             var rotate=function(clickID){
               if(clickID){ nextID = clickID; }
-              else{ nextID=activeID<=1 ? activeID+1 : 1; }
+              else{ nextID=activeID<=3 ? activeID+1 : 1; }
               // 交换图标
               $(icoArr[activeID-1]).removeClass("active");
               $(icoArr[nextID-1]).addClass("active");

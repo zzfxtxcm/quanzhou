@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_title(page_title)
-    base_title = "馨窝网www.xinwo360.com 泉州房地产团购、电商第一门户"
+    base_title = "泉州馨窝网qz.xinwo360.com 泉州房地产团购、电商第一门户"
     if page_title.empty?
       base_title
     else
@@ -10,7 +10,7 @@ module ApplicationHelper
   end
   
   def full_key(page_key)
-    base_key = "漳州房产网,漳州房产,漳州房地产,漳州买房,漳州新房,漳州房价,漳州楼盘,角美房产网,漳州开发区房产网"
+    base_key = "泉州房产网,泉州房产,泉州房地产,泉州买房,泉州新房,泉州房价,泉州楼盘,泉州开发区房产网"
     if page_key.empty?
       base_key
     else
