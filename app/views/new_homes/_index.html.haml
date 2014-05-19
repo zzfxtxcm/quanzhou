@@ -4,14 +4,14 @@
   .pull-left.mt20
     .item-tab
       .panel{style: "display: block;"}
-        %a{href: "", target: "_blank"}    
+        %a{href: "", target: "_blank"}
           = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title:@new_home.name )
       .panel{style: "display: none;"}
         -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |album|
           %a{href: "", target: "_blank"}
             = image_tag(album.url, alt: album.name,:style =>"width:340px; height:257px", target: "_blank" ,title: album.name)
       .panel{style: "display: none;"}
-        -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment| 
+        -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment|
           %a{href: "", target: "_blank"}
             = image_tag(apartment.apartment_thumb, alt: apartment.name,:style =>"width:340px; height:257px", target: "_blank" ,title: apartment.name)
       %ul.tag.clearfix{style: "z-index:999"}
@@ -38,7 +38,7 @@
           %ul
             -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 13 }]).limit(2).each do |information|
               %li.f14.lh180
-                =link_to information.title.first(19), information, :class => "cl"   
+                =link_to information.title.first(19), information, :class => "cl"
     .panel.panel-primary.mt20{style: "width:338px"}
       .panel-heading
         %h3.panel-title 人气指数
@@ -91,7 +91,7 @@
   / end left
   .pull-left.ml30{style: "width:800px;"}
     .pr_info_1
-      %h4.pt20 
+      %h4.pt20
         = @new_home.name+""+"基本信息"
       %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
       %p
@@ -105,7 +105,7 @@
         %strong.f14 主力户型：
         %span.cl
           = @new_home.main_units
-      %p    
+      %p
         %strong.f14> 建筑类别：
         = ConstructionCategory.find_by_id(@new_home.construction_category_id).name if @new_home.construction_category_id?
       %p
@@ -123,9 +123,9 @@
       %p
         %strong.f14> 开 发 商：
         = Developers.find(@new_home.developers_id).name if @new_home.developers_id?
-      %p 
+      %p
         %strong.f14> 开盘时间：
-        
+
       %p
         %strong.f14> 公   摊：
         = @new_home.pool_area
@@ -163,16 +163,16 @@
                       = information.updated_at.strftime("%Y-%m-%d %H:%M")
                     %p
                       = information.description.first(120)
-                      = link_to "[详情]", information, :class => "cl", target: "_blank"                  
+                      = link_to "[详情]", information, :class => "cl", target: "_blank"
         %tr
           %td{colspan: "2"}
             .ml20.mr20
               -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).offset(1).limit(3).each do |information|
                 %p.f16.lh150
                   =link_to information.title, information
-                  %span.ch.pull-right.f12 
+                  %span.ch.pull-right.f12
                     = information.updated_at.strftime("%Y-%m-%d %H:%M")
-            
+
       .title3_l
         %p 看房报告
       .title3_r{align: "right", style: "width:678px;"}
@@ -251,7 +251,7 @@
             %td
               = apartment.apartment_name
             %td
-              = apartment.area          
+              = apartment.area
     .clearfix
     .title3_l
       %p 楼盘相册
@@ -342,7 +342,7 @@
               %tr
                 %td #{new.name.first(7)}
                 %td #{new.price}元/m&sup2
-                %td 
+                %td
                   = Area.find(new.area_id).name
     .panel.panel-primary
       .panel-heading
@@ -360,9 +360,9 @@
             %tr
               %td #{new.name.first(7)}
               %td #{new.price}元/m&sup2
-              %td 
+              %td
                 = Area.find(new.area_id).name
-          
+
     .panel.panel-primary
       .panel-heading
         %h3.panel-title
@@ -379,9 +379,9 @@
             %tr
               %td #{new.name.first(7)}
               %td #{new.price}元/m&sup2
-              %td 
+              %td
                 = Area.find(new.area_id).name
-    
+
     / .panel.panel-primary
     /   .panel-heading
     /     %h3.panel-title
@@ -425,10 +425,26 @@
   // 百度地图API功能
   var map = new BMap.Map("property-map");
   var point = new BMap.Point(#{@new_home.map_address});
+
   map.centerAndZoom(point,16);
   map.enableScrollWheelZoom();
   var marker1 = new BMap.Marker(point);
   map.addOverlay(marker1);
+
+  var opts = {
+    position : point,    // 指定文本标注所在的地理位置
+    offset   : new BMap.Size(10, -30)    //设置文本偏移量
+  }
+  var label = new BMap.Label("#{@new_home.name}", opts);  // 创建文本标注对象
+    	label.setStyle({
+    		 color : "red",
+    		 fontSize : "12px",
+    		 height : "20px",
+    		 lineHeight : "20px",
+    		 fontFamily:"微软雅黑"
+    	});
+  map.addOverlay(label);
+
   var infoWindow1 = new BMap.InfoWindow("#{@new_home.name} - #{@new_home.project_address}");
   marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
   map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));
