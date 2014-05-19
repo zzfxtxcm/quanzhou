@@ -415,8 +415,8 @@
         = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
           %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
           = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 3px 0 0 0"
-          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
-          = select_tag :section_id, options_from_collection_for_select(@sections, 'id', 'name'), prompt: "请选择版块", class: "selectS", id: "area", style: "margin: 3px 0"
+          / %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
+          / = select_tag :section_id, options_from_collection_for_select(@sections, 'id', 'name'), prompt: "请选择版块", class: "selectS", id: "area", style: "margin: 3px 0"
           = text_field_tag :keyword, params[:keyword], :class => "form-control mt10", :id => "keyword", :style => "width: 110px", :placeholder => "请输入关键字"
           %button.btn.btn-danger.btn-mini.mt10{ type: "submit", style: "height: 28px; width: 58px" }
             搜索
