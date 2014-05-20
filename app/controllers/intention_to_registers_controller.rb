@@ -13,6 +13,13 @@ class IntentionToRegistersController < ApplicationController
   private
 
     def intention_to_register_params
-      params.require(:intention_to_register).permit(:name, :qq, :tel, :new_home_id)
+      params.require(:intention_to_register).permit(:name,
+                                                    :qq,
+                                                    :tel,
+                                                    :new_home_id,
+                                                    :sex,
+                                                    :budget,
+                                                    :area,
+                                                    :email)      
     end
 end

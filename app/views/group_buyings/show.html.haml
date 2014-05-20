@@ -1,6 +1,6 @@
 - new_home = NewHome.find(@group_buying.new_home_id)
 - developers = Developers.find(new_home.developers_id)
--provide(:title, '泉州房地产团购列表')
+- provide(:title, '泉州房地产团购列表')
 / 导航
 .tgnav
   .container
@@ -48,7 +48,7 @@
         .progress.progress-info
           .bar{style: "width: 70%; background:#2db8ad;"}
         %p{align: "center"}
-          %a.btn.cw.btn-large{style: "background:#f65c52"} 立即抢购
+          = link_to "立即参加", "/new_homes/#{@group_buying.new_home_id}#group_buying", class: "btn btn-large cw", style: "background:#f65c52", target: "_blank"
         %p{a: "", align: "center"}
           %span.cr.f20> 20000
           人关注
@@ -250,5 +250,5 @@
                 %td
                   %span.label.label-important 查看评论
     .m20{style: "margin-left:300px;"}
-      %a.btn.cw.btn-large{style: "background:#f65c52"} 我要参与
+      = link_to "我要参加", "/new_homes/#{@group_buying.new_home_id}#group_buying", class: "btn btn-large cw", style: "background:#f65c52", target: "_blank"
   / end 右边

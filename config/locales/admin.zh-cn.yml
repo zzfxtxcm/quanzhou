@@ -211,6 +211,10 @@ zh-CN:
         name: "姓名"
         tel: "联系电话"
         qq: "QQ"
+        sex: "性别"
+        budget: "预算"
+        area: "面积"
+        email: "邮箱"        
       search:
         new_home: "所属楼盘"
         created_at: "填写时间"

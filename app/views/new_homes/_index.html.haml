@@ -289,40 +289,43 @@
       %p 我要团购
     .title3_r{align: "right", style: "width:785px;"}
     .clearfix
-    %table{style: "font-size:14px; margin-top:10px;"}
-      %tr
-        %td{width: "300px;"}
-          姓名：
-          %input{type: "text"}/
-          %span.cr *
-        %td{width: "300px;"}
-          性别：
-          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
-          男
-          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
-          女
-        %td
-      %tr
-        %td
-          预算：
-          %input{type: "text"}/
-          万元
-        %td
-          面积：
-          %input{type: "text"}/
-          m²
-        %td
-          %input.btn.cw{style: "width:96px; background:#f65c52", value: "我要贷款"}/
-      %tr
-        %td
-          手机：
-          %input{type: "text"}/
-          %span.cr *
-        %td
-          邮箱：
-          %input{type: "text"}/
-        %td
-          %input.btn.cw{style: "width:96px;background:#f65c52", value: "我要团购"}/
+    %div{name: "group_buying", id: "group_buying"}
+    = form_for(@intention_to_register) do |f|
+      %input{:type => "hidden", :id => "intention_to_register_new_home_id", :name => "intention_to_register[new_home_id]", :value => "#{@new_home.id}"}/
+      %table{style: "font-size:14px; margin-top:10px;"}
+        %tr
+          %td{width: "300px;"}
+            姓名：
+            = f.text_field :name, placeholder: "请输入联系姓名"
+            %span.cr *
+          %td{width: "300px;"}
+            性别：
+            = f.radio_button :sex, 1, :checked => true
+            男
+            = f.radio_button :sex, 0
+            女
+          %td
+        %tr
+          %td
+            预算：
+            = f.text_field :budget, placeholder: "请输入预算"
+            万元
+          %td
+            面积：
+            = f.text_field :area, placeholder: "请输入面积"
+            m²
+          %td
+            -# %input.btn.cw{style: "width:96px; background:#f65c52", value: "我要贷款"}/
+        %tr
+          %td
+            手机：
+            = f.text_field :tel, placeholder: "请输入联系电话"
+            %span.cr *
+          %td
+            邮箱：
+            = f.text_field :email, placeholder: "请输入邮箱"
+          %td
+            = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"    
   / end 底部左边
   / 底部右边
   .pull-left.ml20{style: "width:243px;"}

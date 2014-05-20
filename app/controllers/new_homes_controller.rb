@@ -29,6 +29,7 @@ class NewHomesController < ApplicationController
     @sections = Section.all
     @new_home = NewHome.find(params[:id])
     @apartments = Apartment.where(new_home_id: params[:id])
+    @intention_to_register = IntentionToRegister.new
     @news = Information.where(new_home_id: params[:id])
                        .order('created_at DESC')
                        .paginate(page: params[:page])
@@ -42,7 +43,7 @@ class NewHomesController < ApplicationController
     @albums6=Album.where(new_home_id: params[:id] ,album_class_id:6)
     @albums7=Album.where(new_home_id: params[:id] ,album_class_id:7)
     @albums8=Album.where(new_home_id: params[:id] ,album_class_id:8)
-    if params[:pic] 
+    if params[:pic]
       @albums = Album.where(new_home_id: params[:id],album_class_id:params[:pic])
                    .order('created_at DESC')
                    .paginate(page: params[:page])
@@ -53,6 +54,6 @@ class NewHomesController < ApplicationController
                    .paginate(page: params[:page])
                    .per_page(9)
     end
-    
+
   end
 end
