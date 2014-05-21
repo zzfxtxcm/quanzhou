@@ -96,7 +96,7 @@ ActiveAdmin.register NewHome do
                               </div>".html_safe
       f.form_buffers.last << javascript_tag("
                                              var map = new BMap.Map(\"l-map\");
-                                             var point = new BMap.Point(117.676205,24.517065);
+                                             var point = new BMap.Point(118.601512, 24.914237);
 
                                              map.centerAndZoom(point, 13);
 
