@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def full_title(page_title)
-    base_title = "泉州馨窝网qz.xinwo360.com 泉州房地产团购、电商第一门户"
+    base_title = "泉州馨窝网qz.xinwowang.com 泉州房地产团购、电商第一门户"
     if page_title.empty?
       base_title
     else
