@@ -20,7 +20,7 @@
           = Developers.find(new_home.developers_id).name
         %p
           物业类型：
-          = PropertyType.find(new_home.property_type_id).name
+          = PropertyType.find(new_home.property_type_id).name if new_home.property_type_id.nil?
         %p
           户型图
           %span.cr (#{Apartment.where(new_home_id: new_home.id).size})
