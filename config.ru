@@ -5,7 +5,7 @@
 #
 # use Unicorn::OobGC, 5
 #
-# use Unicorn::WorkerKiller::MaxRequests, 3072, 4096
+# use Unicorn::WorkerKiller::MaxRequests, 6072, 7096
 #
 # use Unicorn::WorkerKiller::Oom, (192*(1024**2)), (256*(1024**2))
 
