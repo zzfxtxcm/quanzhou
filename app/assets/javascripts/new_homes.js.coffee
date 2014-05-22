@@ -3,3 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 //= require custom/2012newHome
+//= require custom/tinybox

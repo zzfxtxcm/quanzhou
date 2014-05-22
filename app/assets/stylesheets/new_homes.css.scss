@@ -3,7 +3,54 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /*楼盘项目页*/
+/*new house tuan start*/
+.divcss5_list_title {
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  padding: 1em;
+}
 
+.divcss5_list_content {
+  padding: 1em;
+}
+
+#tinybox {
+  position: absolute;
+  display: none;
+  padding: 10px;
+  background: white url(image/preload.gif) no-repeat 50% 50%;
+  border: 10px solid #e3e3e3;
+  z-index: 9999;
+}
+
+#tinymask {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  z-index: 9999;
+}
+
+#tinycontent {
+  background: #ffffff;
+  font-size: 1.1em;
+}
+
+#n {
+  margin: 10px auto;
+  width: 920px;
+  border: 1px solid #CCC;
+  font-size: 12px;
+  line-height: 30px;
+  a {
+    padding: 0 4px;
+    color: #333333;
+  }
+}
+/*new house tuan end*/
 .pr_title {
   width: 1170px;
   h2 {
@@ -203,7 +250,7 @@ a1 {
 }
 .pr_info_1{ 
   width:800px;
-}
+  }
 .pr_info_1 P{ 
   font-size:14px;
-}
+  }
