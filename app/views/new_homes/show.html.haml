@@ -1,3 +1,4 @@
+- type = params[:type]
 -provide(:title, "#{@new_home.name}-打折优惠-团购登记-价格分析-馨窝网")
 -provide(:key, "#{@new_home.name},泉州#{@new_home.name},#{@new_home.name}团购")
 %script{src: "http://api.map.baidu.com/api?v=2.0&ak=NXagVEyXSs6AmnrCNXl7pKHo", type: "text/javascript"}
@@ -23,7 +24,6 @@
       / %a{href: "#"} 价格行情
       = link_to "交通配套", new_home_path(@new_home.id, :type => "traffic"), :class => (type == "traffic" ? "active" : "")
       = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album"), :class => (type == "album" ? "active" : "")
-  - type = params[:type]
   - if type == "apartment"
     = render "apartment"
   - elsif type == "new"
