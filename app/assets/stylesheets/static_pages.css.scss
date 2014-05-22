@@ -6,6 +6,58 @@ $white: #fff;
 
 /*首页 */
 
+/*left nav*/
+
+.left_area {
+  float: left;
+  width: 240px;
+}
+
+.left_area1 {
+  width: 214px;
+  padding: 12px;
+  border: 1px solid #CBCBCB;
+}
+
+.newhousedig {
+  width: 214px;
+  height: 500px;
+  overflow: hidden;
+  .title {
+    width: 214px;
+    background: url(asset_path("icon_switch.gif")) no-repeat 196px 0;
+    cursor: pointer;
+  }
+  .title_active {
+    background-position: 196px -20px;
+  }
+  .lists {
+    width: 214px;
+    height: 20px;
+    overflow: hidden;
+    .inner {
+      width: 214px;
+      line-height: 20px;
+      line-height: 20px;
+      overflow: hidden;
+      a {
+        display: block;
+        margin-right: 12px;
+        float: left;
+        line-height: 20px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+.seperate_line3 {
+  width: 214px;
+  height: 1px;
+  line-height: 1px;
+  overflow: hidden;
+  background: url(asset_path("i_dot.gif")) 0 0px;
+  margin: 8px 0 10px;
+}
 
 /*左右滚轮特效stats*/
 

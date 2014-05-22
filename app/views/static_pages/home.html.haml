@@ -8,12 +8,42 @@
           楼盘推荐
           = link_to "更多>", new_homes_path, :class => "pull-right f14"
       .panel-body
-        - @areas[0..5].each do |area|
-          %div{style: "border-bottom: 1px solid #EEEEEE; height:75px;"}
-            %h4.f16.mt5.mb5{style: "color:#f65c52"} #{area.name}
-            %p
-              - NewHome.where(area_id: area.id).limit(4).each do |new_home|
-                = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"
+        .newhousedig
+          - @areas[0..5].each do |area|
+            .dig_area
+              .title
+                %h4.f14.mt5.mb5{style: "color:#f65c52"}#{area.name}
+              .lists{oldheight: "40", style: "height: 40px;"}
+                .inner
+                  - NewHome.where(area_id: area.id).each do |new_home|
+                    = link_to new_home.name, new_home, :class => "areaa", :style => "color: #333", target: "_blank"  
+            .seperate_line3 
+        %script{language: "javascript", type: "text/javascript"}
+          function slideUpDown(obj){
+          var t = obj.children(':first'),
+          l = obj.children(':eq(1)'),
+          i = l.children(':first');
+          
+          var full = t.is('.title_active');
+          t.toggleClass('title_active');
+          
+          var oldheight = l.attr('oldheight');
+          if (!oldheight) {
+          oldheight = l.height();
+          l.attr('oldheight', oldheight);
+          }
+          
+          var h = full ? oldheight : i.height();
+          if ((h *= 1) >= (oldheight *= 1) && h != l.height() * 1) {
+          l.animate({'height': h}, 'fast');
+          }
+          \//！！最后一个无法完全显示
+          
+          }
+          $('.newhousedig .dig_area').hover(
+          function(){ slideUpDown($(this)); },
+          function(){ slideUpDown($(this)); }
+          );       
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
@@ -538,7 +568,6 @@
               %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
           %td.yqlj
             %a 百度贴吧
-
       / end友情链接
   / end楼购房百科
 / con end
