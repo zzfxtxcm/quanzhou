@@ -20,7 +20,7 @@
   <!--[if lte IE 7]>
     <%= stylesheet_link_tag "bootstrap/ie.css", media: "all", "data-turbolinks-track" => true %>
   <![endif]-->
-  
+
   <% if mobile? %>
     <%= javascript_include_tag "application",
                             params[:controller],
@@ -41,9 +41,9 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |key, value| %>
-      <div class="alert alert-#{key}">
-        <button class="close" data-dismiss="alert" type="button"><%= value %></button>
-      </div>
+      <SCRIPT LANGUAGE="JavaScript">
+        alert("<%= value %>")
+      </script>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
