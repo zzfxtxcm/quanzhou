@@ -4,24 +4,35 @@
   .pull-left.mt20
     .item-tab
       .panel{style: "display: block;"}
-        %a{href: "", target: "_blank"}
+        %a#click_test2{style: "cursor:pointer;"}
           = image_tag(@new_home.new_home_thumb, alt: "",:style =>"width:340px; height:257px", target: "_blank" ,title:@new_home.name )
+        :javascript
+            var content2 = "<img  style='width:460px; height:300px;'  src='#{@new_home.new_home_thumb}' />";
+            T$('click_test2').onclick = function(){TINY.box.show(content2,0,0,0,1)}
       .panel{style: "display: none;"}
-        -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |album|
-          %a{href: "", target: "_blank"}
+        -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(1).each do |album|
+          %a#click_test3{style: "cursor:pointer;"}
             = image_tag(album.url, alt: album.name,:style =>"width:340px; height:257px", target: "_blank" ,title: album.name)
+          :javascript
+            var content3 = "<img style='width:460px; height:300px;' src='#{album.url}' />";
+            T$('click_test3').onclick = function(){TINY.box.show(content3,0,0,0,1)}
       .panel{style: "display: none;"}
-        -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment|
-          %a{href: "", target: "_blank"}
+        -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(1).each do |apartment|
+          %a#click_test4{style: "cursor:pointer;"}
             = image_tag(apartment.apartment_thumb, alt: apartment.name,:style =>"width:340px; height:257px", target: "_blank" ,title: apartment.name)
+          :javascript
+            var content4 = "<img style='width:460px; height:300px;' src='#{apartment.apartment_thumb}' />";
+            T$('click_test4').onclick = function(){TINY.box.show(content4,0,0,0,1)}
       %ul.tag.clearfix{style: "z-index:999"}
         %li.on
-          %a{href: "", target: "_blank"} 效果图
+          %a{style: "cursor:pointer;"} 效果图
         %li
-          %a{href: "", target: "_blank"} 相册图
+          = link_to "楼盘相册", new_home_path(@new_home.id, :type => "album")
         %li
-          %a{href: "", target: "_blank"} 户型图
+          = link_to "户型图", new_home_path(@new_home.id, :type => "apartment")
       .cover
+      %a#click_test2.ml20 效果预览
+    
     .panel.panel-primary.mt20{style: "width:338px"}
       .panel-heading
         %h3.panel-title
@@ -153,10 +164,10 @@
             %table.mt20
               %tr
                 %td{width: "290px;"}
-                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).limit(1).each do |information|
                     = link_to image_tag(information.information_thumb, alt: information.title, :style => "width:270px"), information, target: "_blank"
                 %td
-                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                  -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).limit(1).each do |information|
                     %p
                       = link_to information.title.first(24), information, :class => "f20 cl"
                     %p.ch
@@ -167,7 +178,7 @@
         %tr
           %td{colspan: "2"}
             .ml20.mr20
-              -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).offset(1).limit(3).each do |information|
+              -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).offset(1).limit(3).each do |information|
                 %p.f16.lh150
                   =link_to information.title, information
                   %span.ch.pull-right.f12
@@ -179,7 +190,7 @@
         %a{href: ""} 更多
       .clearfix
       .pt10.m10{style: "width:780px;"}
-      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).limit(1).each do |information|
+      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 15 }]).limit(1).each do |information|
         %p.f16.cl
           [报告]
           %span.label{style: "background:#f65c52"} 最新
@@ -188,7 +199,7 @@
         %p
           = information.description.first(120)
           = link_to "[详情]", information, :class => "cl", target: "_blank"
-      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 12 }]).offset(1).limit(3).each do |information|
+      -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 15 }]).offset(1).limit(3).each do |information|
         %p.f16.cl
           [报告]
           =link_to information.title, information, :class => "cl"
@@ -241,7 +252,10 @@
     .clearfix
     -Apartment.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |apartment|
       .prhxtinfo.pull-left.ml10.mr10
-        = image_tag(apartment.apartment_thumb, alt: apartment.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        %a{id:"#{apartment.apartment_thumb}", style:"cursor:pointer;"}
+          = image_tag(apartment.apartment_thumb, alt: apartment.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        :javascript
+            T$('#{apartment.apartment_thumb}').onclick = function(){TINY.box.show("<img style='width:460px; height:300px;' src='#{apartment.apartment_thumb}' />",0,0,0,1)}
         %table{align: "center"}
           %tr
             %td{colspan: "2"}
@@ -260,7 +274,10 @@
     .clearfix
     -Album.where(["new_home_id = :home_id ",{ home_id: @new_home.id}]).limit(3).each do |album|
       .prhxtinfo.pull-left.ml10.mr10{style:"height:205px;"}
-        = image_tag(album.url, alt: album.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        %a{id:"#{album.url}", style:"cursor:pointer;"}
+          = image_tag(album.url, alt: album.name, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px ; height:118px")
+        :javascript
+            T$('#{album.url}').onclick = function(){TINY.box.show("<img style='width:460px; height:300px;' src='#{album.url}' />",0,0,0,1)}
         %h4.cl{align: "center"}
           = album.name
         %p{align: "center"}
@@ -325,65 +342,12 @@
             邮箱：
             = f.text_field :email, placeholder: "请输入邮箱"
           %td
-            = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"    
+            = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"
+
   / end 底部左边
   / 底部右边
   .pull-left.ml20{style: "width:243px;"}
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title
-          同价位楼盘
-          %a.pull-right.f14{href: "#"} 更多>
-      .panel-body
-        %table.table.table-condensed
-          %thead
-            %tr{style: "color:#f65c52"}
-              %th 楼盘名称
-              %th 均价
-              %th 板块
-            -NewHome.where(["price <= :new_id and price >= :new_id1",{ new_id: @new_home.price+1000,new_id1: @new_home.price-1000}]).limit(5).each do |new|
-              %tr
-                %td #{new.name.first(7)}
-                %td #{new.price}元/m&sup2
-                %td
-                  = Area.find(new.area_id).name
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title
-          周边楼盘位楼盘
-          %a.pull-right.f14{href: "#"} 更多>
-      .panel-body
-        %table.table.table-condensed
-          %thead
-            %tr{style: "color:#f65c52"}
-              %th 楼盘名称
-              %th 均价
-              %th 板块
-          -NewHome.where("area_id = ? ", @new_home.area_id).limit(5).each do |new|
-            %tr
-              %td #{new.name.first(7)}
-              %td #{new.price}元/m&sup2
-              %td
-                = Area.find(new.area_id).name
-
-    .panel.panel-primary
-      .panel-heading
-        %h3.panel-title
-          最新楼盘推荐
-          %a.pull-right.f14{href: "#"} 更多>
-      .panel-body
-        %table.table.table-condensed
-          %thead
-            %tr{style: "color:#f65c52"}
-              %th 楼盘名称
-              %th 均价
-              %th 板块
-          -NewHome.order("id DESC").limit(5).each do |new|
-            %tr
-              %td #{new.name.first(7)}
-              %td #{new.price}元/m&sup2
-              %td
-                = Area.find(new.area_id).name
+    = render "right"
 
     / .panel.panel-primary
     /   .panel-heading
@@ -414,10 +378,10 @@
     .panel.panel-primary
       .panel-heading
         %h3.panel-title 帮你找房
-      .panel-body.ml20
+      .panel-body.ml20{style:"height:100px;"}
         = form_tag new_homes_path, :method => :get, :class => "form-inline m0",name: "myform", :role => "form" do
-          %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 区域
-          = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 3px 0 0 0"
+          %button.btn.btn-mini{style: "height:28px; width:58px;margin-top:10px;", type: "button"} 区域
+          = select_tag :area_id, options_from_collection_for_select(@areas, 'id', 'name'), prompt: "请选择地区", class: "selectS", id: "area", style: "margin: 13px 0 0 0"
           / %button.btn.btn-mini{style: "height:28px; width:58px", type: "button"} 板块
           / = select_tag :section_id, options_from_collection_for_select(@sections, 'id', 'name'), prompt: "请选择版块", class: "selectS", id: "area", style: "margin: 3px 0"
           = text_field_tag :keyword, params[:keyword], :class => "form-control mt10", :id => "keyword", :style => "width: 110px", :placeholder => "请输入关键字"
@@ -430,7 +394,6 @@
   var point = new BMap.Point(#{@new_home.map_address});
 
   map.centerAndZoom(point,16);
-  map.enableScrollWheelZoom();
   var marker1 = new BMap.Marker(point);
   map.addOverlay(marker1);
 
@@ -439,15 +402,14 @@
     offset   : new BMap.Size(10, -30)    //设置文本偏移量
   }
   var label = new BMap.Label("#{@new_home.name}", opts);  // 创建文本标注对象
-    	label.setStyle({
-    		 color : "red",
-    		 fontSize : "12px",
-    		 height : "20px",
-    		 lineHeight : "20px",
-    		 fontFamily:"微软雅黑"
-    	});
+      label.setStyle({
+         color : "red",
+         fontSize : "12px",
+         height : "20px",
+         lineHeight : "20px",
+         fontFamily:"微软雅黑"
+      });
   map.addOverlay(label);
-
   var infoWindow1 = new BMap.InfoWindow("#{@new_home.name} - #{@new_home.project_address}");
   marker1.addEventListener("click", function(){this.openInfoWindow(infoWindow1);});
   map.addControl(new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL}));

@@ -25,7 +25,11 @@
     / %a.pl10.pr10.cl{href: ""} 切换列表页
   - @apartments.each do |item|
     .prhxtinfo.pull-left.ml5.mr5
-      = image_tag(item.apartment_thumb, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px; height:118px")
+      %a{id:"#{item.apartment_thumb}", style:"cursor:pointer;"}
+        = image_tag(item.apartment_thumb, :class => "img-polaroid", :style => "padding:20px 10px 20px 10px; width:236px; height:118px")
+      :javascript
+        T$('#{item.apartment_thumb}').onclick = function(){TINY.box.show("<img style='width:460px; height:300px;' src='#{item.apartment_thumb}' />",0,0,0,1)}
+      
       %table
         %tr
           %td{colspan: "2"}
