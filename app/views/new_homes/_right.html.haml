@@ -1,0 +1,58 @@
+.panel.panel-primary
+  .panel-heading
+    %h3.panel-title
+      同价位楼盘
+      %a.pull-right.f14{href: "#"} 更多>
+  .panel-body
+    %table.table.table-condensed
+      %thead
+        %tr{style: "color:#f65c52"}
+          %th 楼盘名称
+          %th 均价
+          %th 板块
+        -NewHome.where(["price <= :new_id and price >= :new_id1",{ new_id: @new_home.price+1000,new_id1: @new_home.price-1000}]).limit(5).each do |new|
+          %tr
+            %td
+              = link_to new.name.first(7), new_home_path
+            %td #{new.price}元/m&sup2
+            %td
+              = Area.find(new.area_id).name
+.panel.panel-primary
+  .panel-heading
+    %h3.panel-title
+      周边楼盘位楼盘
+      %a.pull-right.f14{href: "#"} 更多>
+  .panel-body
+    %table.table.table-condensed
+      %thead
+        %tr{style: "color:#f65c52"}
+          %th 楼盘名称
+          %th 均价
+          %th 板块
+      -NewHome.where("area_id = ? ", @new_home.area_id).limit(5).each do |new|
+        %tr
+          %td
+            = link_to new.name.first(7), new_home_path
+          %td #{new.price}元/m&sup2
+          %td
+            = Area.find(new.area_id).name
+
+.panel.panel-primary
+  .panel-heading
+    %h3.panel-title
+      最新楼盘推荐
+      %a.pull-right.f14{href: "#"} 更多>
+  .panel-body
+    %table.table.table-condensed
+      %thead
+        %tr{style: "color:#f65c52"}
+          %th 楼盘名称
+          %th 均价
+          %th 板块
+      -NewHome.order("id DESC").limit(5).each do |new|
+        %tr
+          %td
+            = link_to new.name.first(7), new_home_path
+          %td #{new.price}元/m&sup2
+          %td
+            = Area.find(new.area_id).name
