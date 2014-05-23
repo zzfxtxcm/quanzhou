@@ -1,4 +1,7 @@
 class NewHomesController < ApplicationController
+  add_breadcrumb "馨窝网首页", :root_path
+  add_breadcrumb "新房咨询", :new_homes_path
+
   def index
     @new_homes = NewHome.order('created_at DESC')
                         .paginate(page: params[:page])
@@ -55,5 +58,6 @@ class NewHomesController < ApplicationController
                    .per_page(9)
     end
 
+    add_breadcrumb "正文", new_home_path    
   end
 end

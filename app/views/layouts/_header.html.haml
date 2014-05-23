@@ -9,7 +9,7 @@
     / %input.loginBut{ type: "submit", value: "登录" }
     / %a.regBut 注册
     %p
-      馨窝网各地分站： 
+      馨窝网各地分站：
       = link_to "厦门", "http://xm.xinwowang.com", target: "_blank"
       |
       = link_to "漳州", "http://zz.xinwowang.com", target: "_blank"
@@ -24,7 +24,7 @@
     = link_to "首页", root_path
     = link_to "新房", new_homes_path
     = link_to "二手房", "#"
-    = link_to "团购", group_buyings_path
+    = link_to "团购", '#'
 .clearfix
 =render 'layouts/header_ad' if params[:controller]=="static_pages"
 .container
@@ -70,7 +70,7 @@
   |
   = link_to "新房", new_homes_path, target: "_blank"
   |
-  = link_to "团购", group_buyings_path, target: "_blank"
+  = link_to "团购", '#', target: "_blank"
   |
   = link_to "地图找房", map_path, target: "_blank"
   |

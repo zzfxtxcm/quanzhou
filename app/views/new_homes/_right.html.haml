@@ -13,7 +13,7 @@
         -NewHome.where(["price <= :new_id and price >= :new_id1",{ new_id: @new_home.price+1000,new_id1: @new_home.price-1000}]).limit(5).each do |new|
           %tr
             %td
-              = link_to new.name.first(7), new_home_path
+              = link_to new.name.first(7), new_home_path(new.id)
             %td #{new.price}元/m&sup2
             %td
               = Area.find(new.area_id).name
@@ -32,7 +32,7 @@
       -NewHome.where("area_id = ? ", @new_home.area_id).limit(5).each do |new|
         %tr
           %td
-            = link_to new.name.first(7), new_home_path
+            = link_to new.name.first(7), new_home_path(new.id)
           %td #{new.price}元/m&sup2
           %td
             = Area.find(new.area_id).name
@@ -52,7 +52,7 @@
       -NewHome.order("id DESC").limit(5).each do |new|
         %tr
           %td
-            = link_to new.name.first(7), new_home_path
+            = link_to new.name.first(7), new_home_path(new.id)
           %td #{new.price}元/m&sup2
           %td
             = Area.find(new.area_id).name
