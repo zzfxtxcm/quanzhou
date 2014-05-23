@@ -2,11 +2,7 @@
 .container
   .mb20.pull-left
     当前位置：
-    %a{href: ""} 馨窝网
-    \>
-    %a{href: ""} 房产
-    \>
-    %a 新闻
+    = render_breadcrumbs
   .clearfix
   .pull-left{ style: "width: 900px;" }
     - @information.each do |information|

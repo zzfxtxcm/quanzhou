@@ -2,13 +2,7 @@
 .container
   .mb20.pull-left
     当前位置：
-    %a{href: ""} 馨窝网
-    \>
-    %a{href: ""} 泉州房产
-    \>
-    = succeed ">" do
-      %a 泉州新闻
-    %a.cl 正文
+    = render_breadcrumbs
   .clearfix
   .pull-left.content{style: "width:900px;"}
     .top
