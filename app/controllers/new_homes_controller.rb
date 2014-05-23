@@ -33,7 +33,7 @@ class NewHomesController < ApplicationController
     @news = Information.where(new_home_id: params[:id])
                        .order('created_at DESC')
                        .paginate(page: params[:page])
-                       .per_page(9)
+                       .per_page(15)
 
     @albums1=Album.where(new_home_id: params[:id] ,album_class_id:1)
     @albums2=Album.where(new_home_id: params[:id] ,album_class_id:2)
