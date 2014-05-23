@@ -13,16 +13,14 @@
             %tr
               %td{width: "152px;"}
                 %strong
-                  = item.created_at
+                  = item.created_at.strftime("%Y-%m-%d")
               %td
-                = item.description
+                = link_to item.description ,item ,target: "_blank"
   .fenye
     .pagination.pull-right{style: "margin-top:0px;"}
       = will_paginate @news
     -# %p.pull-right.mt10.mr10 每页显示14条，共有1110条记录
 / 右边
 .pull-right.pt20{style: "width:244px;"}
-  %img.img-polaroid.mb10{src: " upload/img/dt.gif"}/
   = render "right"
-  
 / end 右边

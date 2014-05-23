@@ -47,7 +47,7 @@
             = link_to "[详情]", information, :class => "cl", target: "_blank"
           %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
           %ul
-            -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 13 }]).limit(2).each do |information|
+            -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 13 }]).offset(1).limit(2).each do |information|
               %li.f14.lh180
                 =link_to information.title.first(19), information, :class => "cl"
     .panel.panel-primary.mt20{style: "width:338px"}
@@ -305,48 +305,52 @@
     .title3_l
       %p 我要团购
     .title3_r{align: "right", style: "width:785px;"}
+      %p.mr10.cr{style:"line-height:32px;"} *全部为必填
     .clearfix
     %div{name: "group_buying", id: "group_buying"}
-    = form_for(@intention_to_register) do |f|
-      %input{:type => "hidden", :id => "intention_to_register_new_home_id", :name => "intention_to_register[new_home_id]", :value => "#{@new_home.id}"}/
-      %table{style: "font-size:14px; margin-top:10px;"}
-        %tr
-          %td{width: "300px;"}
-            姓名：
-            = f.text_field :name, placeholder: "请输入联系姓名"
-            %span.cr *
-          %td{width: "300px;"}
-            性别：
-            = f.radio_button :sex, 1, :checked => true
-            男
-            = f.radio_button :sex, 0
-            女
-          %td
-        %tr
-          %td
-            预算：
-            = f.text_field :budget, placeholder: "请输入预算"
-            万元
-          %td
-            面积：
-            = f.text_field :area, placeholder: "请输入面积"
-            m²
-          %td
-            -# %input.btn.cw{style: "width:96px; background:#f65c52", value: "我要贷款"}/
-        %tr
-          %td
-            手机：
-            = f.text_field :tel, placeholder: "请输入联系电话"
-            %span.cr *
-          %td
-            邮箱：
-            = f.text_field :email, placeholder: "请输入邮箱"
-          %td
-            = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"
+    .pt20.pl20{style: "background:#2db8ad; border: 1px solid none; margin-left:1px; height:155px;"}
+      = form_for(@intention_to_register) do |f|
+        %input{:type => "hidden", :id => "intention_to_register_new_home_id", :name => "intention_to_register[new_home_id]", :value => "#{@new_home.id}"}/
+        %table{style: "font-size:14px;"}
+          %tr
+            %td{width: "350px;"}
+              姓名：
+              = f.text_field :name, placeholder: "请输入联系姓名"
+              %span.cr *
+            %td{width: "350px;"}
+              性别：
+              = f.radio_button :sex, 1, :checked => true
+              男
+              = f.radio_button :sex, 0
+              女
+            %td
+          %tr
+            %td
+              预算：
+              = f.text_field :budget, placeholder: "请输入预算"
+              万元
+            %td
+              面积：
+              = f.text_field :area, placeholder: "请输入面积"
+              m²
+            %td
+              -# %input.btn.cw{style: "width:96px; background:#f65c52", value: "我要贷款"}/
+          %tr
+            %td
+              手机：
+              = f.text_field :tel, placeholder: "请输入联系电话"
+              %span.cr *
+            %td
+              邮箱：
+              = f.text_field :email, placeholder: "请输入邮箱"
+            %td
+              = f.submit "我要团购", class: "btn cw", style: "width: 96px; background:#f65c52"
+
   / end 底部左边
   / 底部右边
   .pull-left.ml20{style: "width:243px;"}
-    = render "right" 
+    = render "right"
+
     / .panel.panel-primary
     /   .panel-heading
     /     %h3.panel-title
