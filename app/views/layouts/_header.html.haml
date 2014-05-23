@@ -30,6 +30,19 @@
 .container
   .pull-left.mt20
     = link_to image_tag("logo.png"), "http://www.xinwowang.com", target: "_blank"
+  .pull-left.f16.pt55.btn-group
+    %button.btn.btn-mini.dropdown-toggle{"data-toggle" => "dropdown"}
+      泉州站
+      %span.caret
+    %ul.dropdown-menu{style: "z-index:99999"}
+      %li
+        %a{href: "http://xm.xinwowang.com", target: "_blank"} 厦门站
+      %li
+        %a{href: "http://zz.xinwowang.com", target: "_blank"} 漳州站
+      %li
+        %a{href: "http://gz.xinwowang.com", target: "_blank"} 广州站
+      %li
+        %a{href: "http://sz.xinwowang.com", target: "_blank"} 深圳站
   .pull-left.mt30.ml30
     .tabbable
       %ul.nav.nav-tabs#myTab{ style: "margin:0;" }
