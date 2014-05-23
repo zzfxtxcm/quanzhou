@@ -15,6 +15,7 @@ class Information < ActiveRecord::Base
 
   searchable do
     integer :information_type_id
+    integer :category_id
     text :title, :boost => 5
     text :description
     text :content
