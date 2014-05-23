@@ -1,0 +1,11 @@
+.pull-left.ml20
+  %div{ style: "width:240px;" }
+    %div.well{ style: "padding: 8px 0" }
+      %ul.nav.nav-list
+        %li.nav_header.f16
+          &gt;
+          %strong &nbsp;&nbsp;网站导航
+        - Category.all.each do |list|
+          %li.f14.mt10
+            = link_to " "+list.name, '#'
+    = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
