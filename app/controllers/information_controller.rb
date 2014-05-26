@@ -1,6 +1,6 @@
 class InformationController < ApplicationController
   add_breadcrumb "馨窝网首页", :root_path
-  add_breadcrumb "咨询", :information_index_path
+  add_breadcrumb "资讯列表", :information_index_path
 
   def index
     @information = Information.order('created_at DESC')

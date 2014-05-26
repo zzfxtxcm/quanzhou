@@ -1,6 +1,6 @@
 class NewHomesController < ApplicationController
   add_breadcrumb "馨窝网首页", :root_path
-  add_breadcrumb "新房咨询", :new_homes_path
+  add_breadcrumb "新房列表", :new_homes_path
 
   def index
     @new_homes = NewHome.order('created_at DESC')
