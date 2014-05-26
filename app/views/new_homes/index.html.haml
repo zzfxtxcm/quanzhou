@@ -70,7 +70,7 @@
                 - if @new_homes.any?
                   共有
                   %span.cr>
-                    = @new_homes.count
+                    = @new_homes.total_entries
                   个楼盘
           - @new_homes.each do |new_home|
             = render new_home

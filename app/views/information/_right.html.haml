@@ -1,0 +1,16 @@
+.pull-left.ml20
+  %div{ style: "width:240px;" }
+    %div.well{ style: "padding: 8px 0" }
+      %ul.nav.nav-list
+        %li.nav_header.f16
+          &gt;
+          %strong &nbsp;&nbsp;网站导航
+        %li.f14.mt10
+          = link_to " 楼盘速递", information_index_path(:category_id => 12)
+          = link_to " 楼盘优惠", information_index_path(:category_id => 13)
+          = link_to " 楼盘评测", information_index_path(:category_id => 15)
+          = link_to " 楼盘活动", information_index_path(:category_id => 19)
+          = link_to " 新房", information_index_path(:category_id => 11)
+          = link_to " 楼市资讯", information_index_path(:category_id => 28)
+          = link_to " 楼市观点", information_index_path(:category_id => 30)
+    = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")

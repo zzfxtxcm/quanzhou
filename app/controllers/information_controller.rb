@@ -11,6 +11,7 @@ class InformationController < ApplicationController
     @keyword = Sunspot.search(Information) do
       keywords params[:keyword]
       with(:information_type_id).equal_to(params[:information_type_id]) if params[:information_type_id].present?
+      with(:category_id).equal_to(params[:category_id]) if params[:category_id].present?
       order_by :created_at, :desc
       paginate :page => params[:page], :per_page => 10
     end
@@ -27,6 +28,6 @@ class InformationController < ApplicationController
   def show
     @information = Information.find(params[:id])
 
-    add_breadcrumb "正文", information_path    
+    add_breadcrumb "正文", information_path
   end
 end
