@@ -3,8 +3,6 @@ class Information < ActiveRecord::Base
   belongs_to :new_home
   belongs_to :information_type
 
-  default_scope -> { order('created_at DESC') }
-
   validates :category, presence: true
   validates :title, presence: true
   validates :content, presence: true

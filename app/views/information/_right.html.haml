@@ -13,4 +13,40 @@
           = link_to " 新房", information_index_path(:category_id => 11)
           = link_to " 楼市资讯", information_index_path(:category_id => 28)
           = link_to " 楼市观点", information_index_path(:category_id => 30)
-    = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 热门资讯
+      .panel-body
+        %ul
+          - @hot.each do |hot|
+            %li
+              = link_to hot.title.first(16), hot, :class => "lh200"
+         
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title 资讯排行榜
+      .panel-body
+        %ul
+          - @list.each do |list|
+            %li
+              = link_to list.title.first(16), list, :class => "lh200"
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          楼盘推荐
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 区属
+              %th 价格
+            - NewHome.limit(8).each do |item|
+              %tr
+                %td
+                  = link_to item.name, item
+                %td
+                  = Area.find(item.area_id).name
+                %td #{ item.price }元/m&sup2
+    / = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
