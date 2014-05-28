@@ -215,7 +215,7 @@
           - 6.times do |n|
             %h4{ id: "activity#{ n }" }
               #{ (Time.now + n.month).strftime("%m").to_i }月份
-            - Activity.where("opening_time >= ? AND opening_time <= ?", Time.now.beginning_of_month+n.month, Time.now.end_of_month+n.month).each do |item|
+            - Activity.where("opening_time >= ? AND opening_time <= ?", Time.now.beginning_of_month+n.month, Time.now.end_of_month+n.month).order('created_at desc').each do |item|
               %p
                 = link_to item.title+" (#{item.opening_time.strftime("%Y-%m-%d")})"
   / end 右边右

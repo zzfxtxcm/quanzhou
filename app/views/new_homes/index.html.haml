@@ -30,18 +30,36 @@
             = render_option_of_single_area_range(item.name, item.id)
     .prlist2
       %ul#myTab.nav.nav-tabs.mb5{style: "border-bottom: 1px solid #2db8ad;"}
-        %li.active{style: "border-bottom: 1px solid #2db8ad;"}
-          %a{"data-toggle" => "tab", href: "#d_hot"} 全部
-        / %li{style: "border-bottom: 1px solid #2db8ad;"}
-        /   %a{"data-toggle" => "tab", href: "#lou"} 热推
-        / %li{style: "border-bottom: 1px solid #2db8ad;"}
-        /   %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
-        / %li{style: "border-bottom: 1px solid #2db8ad;"}
-        /   %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
-        / %li{style: "border-bottom: 1px solid #2db8ad;"}
-        /   %a{"data-toggle" => "tab", href: "#w_new"} 已售完
+        - if params[:status_id].blank?
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_total_status_id()
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_total_status_id()
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#lou"} 热推
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 即将开盘
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 优惠促销
+          / %li{style: "border-bottom: 1px solid #2db8ad;"}
+          /   %a{"data-toggle" => "tab", href: "#w_new"} 已售完
+        - if params[:status_id]== '3'
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(3)
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(3)
+        - if params[:status_id]== '2'
+          %li.active{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(2)
+        -else
+          %li{style: "border-bottom: 1px solid #2db8ad;"}
+            = render_option_of_status_id(2)
+
         %li{style: "border-bottom: 1px solid #2db8ad;"}
           %a{href: "/map"} 地图找房
+        
         %li.pull-right
           备注：0元项目为尚未公开售价
       #myTabContent.tab-content
