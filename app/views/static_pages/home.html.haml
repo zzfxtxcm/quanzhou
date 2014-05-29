@@ -79,8 +79,8 @@
     .clearfix
     .pull-left.pt10
       = image_tag("jrtt.gif")
-    .pull-left.ml10
-      - Information.where(information_type_id: 1).limit(1).each do |information|
+    .pull-left.ml10{style: "width:820px;"}
+      - Information.where(information_type_id: 1).order('updated_at desc').limit(1).each do |information|
         %h3
           = link_to information.title.first(30), information, :class => "cl", target: "_blank"
           %span.cl
@@ -97,7 +97,7 @@
       = link_to '更多', information_index_path(:information_type_id => 2), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 2).limit(7).each do |information|
+        - Information.where(information_type_id: 2).order('updated_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .clearfix
@@ -107,7 +107,7 @@
       = link_to '更多', information_index_path(:information_type_id => 3), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 3).limit(7).each do |information|
+        - Information.where(information_type_id: 3).order('updated_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .clearfix
@@ -117,7 +117,7 @@
       = link_to '更多', information_index_path(:information_type_id => 4), :class => 'pull-right mt5', target: "_blank"
     .pull-left.mt10
       %ul
-        - Information.where(information_type_id: 12).limit(7).each do |information|
+        - Information.where(information_type_id: 12).order('updated_at desc').limit(7).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     / 右边右
@@ -126,14 +126,14 @@
       .clearfix
       .imageRotation
         .imageBox{style: "width: 924px;"}
-          - Information.where(information_type_id: 16).limit(4).each do |information|
+          - Information.where(information_type_id: 16).order('updated_at desc').limit(4).each do |information|
             = link_to image_tag(information.information_thumb) ,information, target: "_blank"
         .titleBox
           %p.active{style: "bottom:0px;"}
-            - Information.where(information_type_id: 16).limit(1).each do |information|
+            - Information.where(information_type_id: 16).order('updated_at desc').limit(1).each do |information|
               %span
                 =information.title.first(32)
-          - Information.where(information_type_id: 16).offset(1).limit(3).each do |information|
+          - Information.where(information_type_id: 16).offset(1).order('updated_at desc').limit(3).each do |information|
             %p{style: "bottom: -40px;"}
               =information.title.first(32)
         .icoBox
@@ -244,9 +244,9 @@
           - NewHome.limit(8).each do |item|
             %tr
               %td
-                = link_to item.name, item
+                = link_to item.name.first(6), item
               %td
-                = Area.find(item.area_id).name
+                = Area.find(item.area_id).name.first(2)
               %td #{ item.price }元/m&sup2
     = render 'shared/intention_to_register_form'
     .p5
@@ -263,7 +263,7 @@
             %a{"data-toggle" => "tab"} 今日话题
         #myTabContent.tab-content
           .tab-pane.fade.active.in
-            - Information.where(information_type_id: 5).limit(1).each do |information|
+            - Information.where(information_type_id: 5).order('updated_at desc').limit(1).each do |information|
               %h3{style: "margin:0"}
                 = link_to information.title.first(32), information ,:class => "cl",:style => "font-size:24px", target: "_blank"
               %p{style: "color:#999"} #{information.source} #{information.created_at.strftime("%Y-%m-%d")}
@@ -275,7 +275,7 @@
                 %p
                   %a.cr.pull-right{href: ""} 往期>
               %ul
-                - Information.where(information_type_id: 5).limit(3).offset(1).each do |information|
+                - Information.where(information_type_id: 5).order('updated_at desc').limit(3).offset(1).each do |information|
                   %li
                     = link_to information.title.first(26), information, target: "_blank"
       %div{style: "width:400px;"}
@@ -285,7 +285,7 @@
         #myTabContent.tab-content
           #l_hot.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 6).limit(6).each do |information|
+              - Information.where(information_type_id: 6).order('updated_at desc').limit(6).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
       %div{style: "width:400px;"}
@@ -295,7 +295,7 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             %ul
-              - Information.where(information_type_id: 7).limit(6).each do |information|
+              - Information.where(information_type_id: 7).order('updated_at desc').limit(5).each do |information|
                 %li
                   = link_to information.title.first(26), information, target: "_blank"
     / end右边中
@@ -308,20 +308,20 @@
         #myTabContent.tab-content
           #act.tab-pane.fade.active.in
             .pull-left.pt10{style: " width:174px;"}
-              - Information.where(information_type_id: 15).limit(2).each do |information|
+              - Information.where(information_type_id: 15).order('updated_at desc').limit(2).each do |information|
                 = image_tag(information.information_thumb, alt: "", :style => "height:100px; width:175px; margin-bottom:10px;", target: "_blank")
             .loushiguandian
-              - Information.where(information_type_id: 15).limit(2).each do |information|
+              - Information.where(information_type_id: 15).order('updated_at desc').limit(2).each do |information|
                 %h4
                   = link_to information.title.first(14), information, :class=> "cr", target: "_blank"
                 .mt5{style: "height:80px"}
                   %p.f14
-                    = information.description.first(50)
+                    = information.description.first(48)
                     = link_to "[查看详情]", information,:class => "cr", target: "_blank"
             .clearfix
             .mb10{style: "border-top:1px dotted #333;"}
             %ul
-              - Information.where(information_type_id: 15).limit(6).offset(2).each do |information|
+              - Information.where(information_type_id: 15).order('updated_at desc').limit(6).offset(2).each do |information|
                 %li
                   = link_to information.title.first(27), information, target: "_blank"
       .pt10{style: "width:465px"}
@@ -342,7 +342,7 @@
       /         %h4
       /           %a.cr{href: ""} 角美万达广场：消费万达 精彩无处不在
       /         %p.f14.m0
-      /           4月7日，泉州角美万达广场商铺投资经营体验会将在角美万达广场营销,泉州角美万达广场商铺投资经营体验会将在角美万达广场营销
+      /           4月7日，漳州角美万达广场商铺投资经营体验会将在角美万达广场营销,漳州角美万达广场商铺投资经营体验会将在角美万达广场营销
       /           %a.cl{href: ""} [详情]
       /       .clearfix
       /       .mb10{style: "border-top:1px dotted #333;"}
@@ -417,10 +417,10 @@
           %a{href: ""} 更多
         .clearfix.m0
         .pull-left.mt10{style: "width:265px;"}
-          - Information.where(information_type_id: 8).limit(1).each do |information|
+          - Information.where(information_type_id: 8).order('updated_at desc').limit(1).each do |information|
             = image_tag(information.information_thumb, alt: "", :style => "height:170px; width:260px;")
         .pull-left.mt10.ml10{style: "width:322px; border-right:1px solid #CCC"}
-          - Information.where(information_type_id: 8).limit(1).each do |information|
+          - Information.where(information_type_id: 8).order('updated_at desc').limit(1).each do |information|
             %h4
               = link_to information.title.first(40), information,:class => "cl f16", target: "_blank"
             %p
@@ -428,7 +428,7 @@
               = link_to "[查看详情]", information,:class => "cr", target: "_blank"
         .activity_list
           %ul
-            - Information.where(information_type_id: 8).limit(5).offset(1).each do |information|
+            - Information.where(information_type_id: 8).order('updated_at desc').limit(5).offset(1).each do |information|
               %li
                 = link_to information.title.first(17), information, target: "_blank"
     .pull-left.mt10.ml20
@@ -501,7 +501,7 @@
       .clearfix
       .mt10.mb10
         %ul
-          - Information.where(information_type_id: 9).limit(4).each do |information|
+          - Information.where(information_type_id: 9).order('updated_at desc').limit(4).each do |information|
             %li
               = link_to information.title.first(40), information, target: "_blank"
       .title3_l
@@ -511,7 +511,7 @@
       .clearfix
       .mt10.mb10
         %ul
-          - Information.where(information_type_id: 10).limit(4).each do |information|
+          - Information.where(information_type_id: 10).order('updated_at desc').limit(4).each do |information|
             %li
               = link_to information.title.first(40), information, target: "_blank"
     .pull-left.mt10{style: " width:415px; border-right:1px solid #CCC ; margin-left:15px;"}
@@ -520,7 +520,7 @@
       .title3_r{align: "right", style: "width:278px"}
         = link_to '更多', information_index_path(:information_type_id => 13), target: "_blank"
       .clearfix
-      - Information.where("information_type_id = 13 AND information_thumb IS NOT NULL").limit(1).each do |information|
+      - Information.where("information_type_id = 13 AND information_thumb IS NOT NULL").order('updated_at desc').limit(1).each do |information|
         .pull-left.pt10{style: " width:174px;"}
           = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
         %div{style: "float:left; width:212px; margin-left:10px;"}
@@ -532,7 +532,7 @@
       .clearfix
       .mb10{style: "border-top:1px dotted #333; width:400px;"}
       %ul
-        - Information.where(information_type_id: 13).limit(8).each do |information|
+        - Information.where(information_type_id: 13).order('updated_at desc').limit(8).each do |information|
           %li
             = link_to information.title.first(26), information, target: "_blank"
     .pull-left.mt10{style: " margin-left:15px;width:405px;"}
@@ -541,7 +541,7 @@
       .title3_r{align: "right", style: "width:278px"}
         = link_to '更多', information_index_path(:information_type_id => 14), target: "_blank"
       .clearfix
-        - Information.where("information_type_id = 14 AND information_thumb IS NOT NULL").limit(1).each do |information|
+        - Information.where("information_type_id = 14 AND information_thumb IS NOT NULL").order('updated_at desc').limit(1).each do |information|
           .pull-left.pt10{style: " width:174px;"}
             = link_to image_tag(information.information_thumb, alt: information.title, :class => "mb10", :style => "height:98px; width:174px"), information, target: "_blank"
           %div{style: "float:left; width:212px; margin-left:10px;"}
@@ -553,7 +553,7 @@
       .clearfix
       .mb10{style: "border-top:1px dotted #333; width:400px;"}
       %ul
-        - Information.where(information_type_id: 14).limit(8).each do |information|
+        - Information.where(information_type_id: 14).order('updated_at desc').limit(8).each do |information|
           %li
             = link_to information.title.first(26), information
     .clearfix
@@ -568,6 +568,7 @@
               %input.btn.btn-info{style: "background:#2db8ad; width:90px;", value: "申请链接>"}/
           %td.yqlj
             %a 百度贴吧
+
       / end友情链接
   / end楼购房百科
 / con end

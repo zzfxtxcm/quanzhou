@@ -17,7 +17,16 @@ module ApplicationHelper
       page_key
     end
   end
-  
+
+  def full_desc(page_desc)
+    base_desc = "漳州房地产团购、电商第一门户（www.xinwowang.com ），最专业的漳州房产信息网，汇集了漳州房地产，角美房地产，漳州开发区房地产等新房资讯及优惠信息，致力于打造信息最新最全的漳州房地产网站。"
+    if page_desc.empty?
+      base_desc
+    else
+      page_desc
+    end
+  end
+
   MOBILE_USER_AGENTS =  'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
                         'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
                         'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +

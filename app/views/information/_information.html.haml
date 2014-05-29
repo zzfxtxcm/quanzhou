@@ -1,7 +1,7 @@
 %div{ style: "border-bottom:1px solid #CCC; margin-bottom:20px;" }
   %p.f16.cl
     = link_to information.title, information, :class => "f16 cl", target: "_blank"
-  %p.f12.ch 标签：
+  %p.f12.ch 标签：#{information.keywords}
   %p.f14
     = information.description
   %p.f12.ch
