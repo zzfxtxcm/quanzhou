@@ -176,6 +176,7 @@ zh-CN:
         content: "内容"
         status: "状态"
         new_home_thumb: "缩略图"
+        best: "区域排行"
       search:
         status: "状态"
         area: "区域"

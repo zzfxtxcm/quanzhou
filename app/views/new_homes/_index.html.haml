@@ -54,29 +54,33 @@
       .panel-heading
         %h3.panel-title 人气指数
       .panel-body
-        %p.f14.lh150 区域排行榜：第8名
-        %p.f14.lh150 团购人数：64人
-        %p.f14.lh150 购房问答：52条
-        %p.f14.lh150 访问人数：11222人
-        %p.f14.lh150 今日访问：32人
-        %p.f14.lh150 昨日访问：165人
+        %p.f14.lh150 区域排行榜：第#{@new_home.best}名
+        %p.f14.lh150 团购人数：#{@intention}人
+        %p.f14.lh150 访问人数：#{@total_hit }人
+        %p.f14.lh150 今日访问：#{@today_hit }人
+        %p.f14.lh150 昨日访问：#{@yest_hit }人
         %p.f14.lh150 欢迎访问#{@new_home.name}网上售楼处！
         %div{style: "border-top:1px dotted #333; padding:0px 0px 15px 0px;"}
         %table{width: "300px"}
           %tr
             %td{style: "text-align:center"}
               共
-              %span.cr> 33
+              %span.cr> #{@read}
               人看过
             %td{style: "text-align:center"}
               共
-              %span.cr> 33
+              %span.cr> #{@want}
               人想去
           %tr
             %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 我已看过
+              %a.btn.btn-inverse.cw{style: "background:#f65c52",onclick: "abc()"} 我已看过
             %td{style: "text-align:center"}
-              %a.btn.cw{style: "background:#f65c52"} 我很想去
+              %a.btn.btn-inverse.cw{style: "background:#f65c52",onclick: "abc()"} 我很想去
+          :javascript
+            function abc(){
+              alert('谢谢参与!');
+              window.location.reload();
+            }
     / .panel.panel-primary.mt20{style: "width:338px"}
     /   .panel-heading
     /     %h3.panel-title
@@ -287,8 +291,8 @@
     .title3_r{align: "right", style: "width:785px;"}
       %a{href: ""} 更多
     .clearfix
-    .m10{style: "width:780px;"}
-      #property-map.mb10{style: "width:870px; height:300px"}
+    .mt10{style: "width:907px;"}
+      #property-map.mb10{style: "width:907px; height:300px"}
       %p.f14
         %strong 周边交通：
       %p.f14 公交：#{@new_home.bus}
