@@ -3,7 +3,156 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $white: #fff;
+/* 左侧楼盘推荐 */
 
+.J_MenuItem .lists {
+  width: 214px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.catList .title {
+  width: 214px;
+  background: url(asset_path("icon_switch.gif")) no-repeat 196px 0;
+  cursor: pointer;
+}
+
+.J_MenuItem .lists .inner {
+  width: 214px;
+  margin-left: 10px;
+  line-height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  a {
+    display: block;
+    margin-right: 12px;
+    float: left;
+    color: #666;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+}
+
+.mallCategory {
+  position: relative;
+  width: 222px;
+  background: #fff;
+  .catList {
+    z-index: 9999;
+  }
+  .border {
+    width: 222px;
+    height: 73px;
+    border: 2px solid #2db8ad;
+    position: absolute;
+    top: 370px;
+    z-index: 14;
+    display: none;
+    .mask-top {
+      width: 220px;
+      height: 39px;
+      border-right: solid 4px #FFF;
+    }
+    .mask-bottom {
+      width: 220px;
+      height: 34px;
+      border-right: solid 4px #FFF;
+    }
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+.catList li {
+  overflow: hidden;
+  padding-left: 1px;
+  height: 73px;
+  border-color: #FFF #FFF #e5e5e5 #FFF;
+  border-style: solid;
+  border-width: 1px 0 1px 0;
+  border-bottom: 1px solid #c3cde7;
+  padding-bottom: 3px;
+}
+
+.cat-subcategory {
+  position: absolute;
+  top: 29px;
+  left: 224px;
+  z-index: 10;
+  width: 457px;
+  border: 2px solid #2db8ad;
+  background: #fff;
+  display: none;
+}
+
+.shadow {
+  position: relative;
+  a {
+    color: #666;
+    &:hover {
+      color: #666;
+    }
+  }
+}
+
+.shadow-left {
+  float: left;
+  display: inline;
+  width: 232px;
+  min-height: 100px;
+  _height: 100px;
+  li {
+    float: left;
+    margin-top: 12px;
+    padding-bottom: 10px;
+    width: 220px;
+    background: url(asset_path("listbg.gif")) left bottom no-repeat;
+    line-height: 24px;
+    list-style-type: none;
+    a {
+      display: inline-block;
+      margin-right: 19px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.shadow-right {
+  float: right;
+  display: inline;
+  padding: 12px 0 0 18px;
+  width: 164px;
+  dt {
+    background: 0;
+    height: 30px;
+    b {
+      font-size: 12px;
+      font-weight: bold;
+      color: #1D1D1E;
+    }
+  }
+  a {
+    float: left;
+    margin: 4px 9px 4px -9px;
+    padding: 0 8px;
+    height: 15px;
+    border-left: 1px solid #eee;
+    white-space: nowrap;
+    line-height: 15px;
+  }
+  dd {
+    overflow: hidden;
+    width: 164px;
+  }
+}
+
+.entity-main {
+  overflow: hidden;
+  padding: 0 0 0 39px;
+  height: 100%;
+  background: url(asset_path("listbg2.gif")) right top repeat-y;
+}
 /*首页 */
 
 /*left nav*/
