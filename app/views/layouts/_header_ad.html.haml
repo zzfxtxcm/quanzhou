@@ -1,9 +1,15 @@
 .container
   - if mobile?
-    = image_tag("swf/1.gif", alt: "", :style => "width:1170px", :class =>"pb10")
-    = image_tag("swf/2.gif", alt: "", :style => "width:1170px", :class =>"pb10")
-    = image_tag("swf/3.gif", alt: "", :style => "width:1170px")
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}
+      = image_tag("swf/1.gif", alt: "")
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}
+      = image_tag("swf/2.gif", alt: "")
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}
+      = image_tag("swf/3.gif", alt: "")
   - else
-    %embed{height: "75px;", src:"#{asset_path 'swf/1.swf'}", width: "1170px;",wmode:"opaque"}
-    %embed{height: "75px;", src:"#{asset_path 'swf/2.swf'}", width: "1170px;",wmode:"opaque"}
-    %embed{height: "75px;", src:"#{asset_path 'swf/3.swf'}", width: "1170px;",wmode:"opaque"}
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}
+      %embed{height: "80px;",  src:"#{asset_path 'swf/1.swf'}", width: "1170px;",wmode:"opaque"}
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}
+      %embed{height: "80px;", src:"#{asset_path 'swf/2.swf'}", width: "1170px;",wmode:"opaque"}
+    %div{style: "border: 1px solid rgb(221, 221, 221); height:80px"}  
+      %embed{height: "80px;", src:"#{asset_path 'swf/3.swf'}", width: "1170px;",wmode:"opaque"}
