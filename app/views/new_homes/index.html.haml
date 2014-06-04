@@ -100,5 +100,63 @@
         #lou.tab-pane.fade
         #w_new.tab-pane.fade
   .pull-left.ml20
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          最新楼盘推荐
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -NewHome.order("id DESC").limit(5).each do |new|
+            %tr
+              %td
+                = link_to new.name.first(7), new_home_path(new.id)
+              %td #{new.price}元/m&sup2
+              %td
+                = Area.find(new.area_id).name
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          浏览过的楼盘
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -@list.uniq[0..5].each do |histroy|          
+            %tr
+              %td
+                = link_to NewHome.find_by_id(histroy).name.first(7), new_home_path(histroy)
+              %td #{NewHome.find_by_id(histroy).price}元/m&sup2
+              %td
+                = Area.find(NewHome.find_by_id(histroy).area_id).name
+
+      .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          感兴趣的楼盘
+          %a.pull-right.f14{href: "#"} 更多>
+      .panel-body
+        %table.table.table-condensed
+          %thead
+            %tr{style: "color:#f65c52"}
+              %th 楼盘名称
+              %th 均价
+              %th 板块
+          -@want_id.uniq[0..5].each do |histroy|          
+            %tr
+              %td
+                = link_to NewHome.find_by_id(histroy).name.first(7), new_home_path(histroy)
+              %td #{NewHome.find_by_id(histroy).price}元/m&sup2
+              %td
+                = Area.find(NewHome.find_by_id(histroy).area_id).name
     = image_tag("tmp/rightad.jpg", alt: "", :style => "height:477px; width:240px")
 / con end
