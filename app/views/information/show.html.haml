@@ -12,8 +12,7 @@
         %h1
           = @information.title
         %p
-          #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source}
-          #{@information.source} 点击量: #{@hit}
+          #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source} 点击量: #{@hit}
       .review
         %p
           = @information.description
@@ -23,6 +22,69 @@
     .clearfix
     .news_body
       = @information.content.html_safe
+    .same
+      -if !@new_home.blank?
+        .mb20{style: "border-bottom:1px  dotted #CCC"}
+          %table.mb20
+            %tr
+              %td{width: "250px;"}
+                = link_to image_tag(@new_home.new_home_thumb, alt: @new_home.name, :style => "height:150px; width:230px"), @new_home
+              %td{width: "400px"}
+                %h5.cl
+                  [#{Area.find(@new_home.area_id).name}]
+                  = link_to @new_home.name, @new_home, target: "_blank" , :class => "cl"
+                  %span.label.label-important.ml10{style: "background:#f65c52"}
+                    = Status.find(@new_home.status_id).name
+                %p 
+                楼盘动态：
+                -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                  = link_to information.title.first(24), information, target: "_blank"
+                %p 售楼电话：#{@new_home.tel}
+                %p 项目地址：#{@new_home.project_address}
+                
+              %td{style: "text-align:center"}
+                %h3.mt20.cr #{@new_home.price}元/m ²
+                = link_to "团购报名",URI.unescape(new_home_path(@new_home.id,:type =>"index#tuangou")), :class => "btn btn-inverse ", :style => "background:#f65c52; color:#FFF",:target => "_blank"
+
+
+      %h4.cr 相关阅读
+      %ul
+        - Information.where("category_id= ? and id != ?" ,@information.category_id ,@information.id).limit(6).each do |information|
+          %li
+            = link_to information.title.first(27), information, target: "_blank"
+    .clearfix
+    .bdsharebuttonbox.mt10.ml20{"data-tag" => "share_1"}
+      %a.bds_mshare{"data-cmd" => "mshare"}
+      %a.bds_qzone{"data-cmd" => "qzone", href: "#"}
+      %a.bds_tsina{"data-cmd" => "tsina"}
+      %a.bds_baidu{"data-cmd" => "baidu"}
+      %a.bds_renren{"data-cmd" => "renren"}
+      %a.bds_tqq{"data-cmd" => "tqq"}
+      %a.bds_more{"data-cmd" => "more"} 更多
+    :javascript
+      window._bd_share_config = {
+        common : {
+          bdText : "#{@information.title}", 
+          bdDesc : '#{@information.description}', 
+          bdUrl : 'www.xinwowang.com',   
+          bdPic : '#{@information.information_thumb}'
+        },
+        share : [{
+          "bdSize" : 32
+        }],
+        image : [{
+          viewType : 'list',
+          viewPos : 'top',
+          viewColor : 'black',
+          viewSize : '16',
+          viewList : ['qzone','tsina','huaban','tqq','renren']
+        }],
+        selectShare : [{
+          "bdselectMiniList" : ['qzone','tqq','kaixin001','bdxc','tqf']
+        }]
+      }
+      with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+
 
     / end fenxiang
   = render "right"

@@ -76,3 +76,25 @@
   height: 80px;
   margin-bottom:5px;
 }
+.same {
+  border: 1px solid #E4E4E4;
+  margin-top: 10px;
+  margin-left: 20px;
+  background-color: #FFFFFF;
+  padding-top: 8px;
+  padding-right: 13px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  float: left;
+  width: 822px;
+  ul li {
+    float: left;
+    width: 370px;
+    font-size: 14px;
+    line-height: 200%;
+    color: #2db8ad;
+  }
+  a {
+    color: #2db8ad;
+  }
+}
