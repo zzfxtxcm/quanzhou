@@ -53,38 +53,16 @@
           %li
             = link_to information.title.first(27), information, target: "_blank"
     .clearfix
-    .bdsharebuttonbox.mt10.ml20{"data-tag" => "share_1"}
-      %a.bds_mshare{"data-cmd" => "mshare"}
-      %a.bds_qzone{"data-cmd" => "qzone", href: "#"}
-      %a.bds_tsina{"data-cmd" => "tsina"}
-      %a.bds_baidu{"data-cmd" => "baidu"}
-      %a.bds_renren{"data-cmd" => "renren"}
-      %a.bds_tqq{"data-cmd" => "tqq"}
-      %a.bds_more{"data-cmd" => "more"} 更多
-    :javascript
-      window._bd_share_config = {
-        common : {
-          bdText : "#{@information.title}", 
-          bdDesc : '#{@information.description}', 
-          bdUrl : 'www.xinwowang.com',   
-          bdPic : '#{@information.information_thumb}'
-        },
-        share : [{
-          "bdSize" : 32
-        }],
-        image : [{
-          viewType : 'list',
-          viewPos : 'top',
-          viewColor : 'black',
-          viewSize : '16',
-          viewList : ['qzone','tsina','huaban','tqq','renren']
-        }],
-        selectShare : [{
-          "bdselectMiniList" : ['qzone','tqq','kaixin001','bdxc','tqf']
-        }]
-      }
-      with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-
+    .bshare-custom.icon-medium-plus.ml20
+      %a.bshare-qzone{title: "分享到QQ空间"}
+      %a.bshare-sinaminiblog{title: "分享到新浪微博"}
+      %a.bshare-weixin{title: "分享到微信"}
+      %a.bshare-renren{title: "分享到人人网"}
+      %a.bshare-qqmb{title: "分享到腾讯微博"}
+      %a.bshare-neteasemb{title: "分享到网易微博"}
+      %a.bshare-more.bshare-more-icon.more-style-addthis{title: "更多平台"}
+    %script{charset: "utf-8", src: "http://static.bshare.cn/b/buttonLite.js#style=-1&uuid=&pophcol=2&lang=zh", type: "text/javascript"}
+    %script{charset: "utf-8", src: "http://static.bshare.cn/b/bshareC0.js", type: "text/javascript"}
 
     / end fenxiang
   = render "right"
