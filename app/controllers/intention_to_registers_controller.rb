@@ -20,6 +20,6 @@ class IntentionToRegistersController < ApplicationController
                                                     :sex,
                                                     :budget,
                                                     :area,
-                                                    :email)      
+                                                    :email)
     end
 end

@@ -20,6 +20,8 @@ Meifang::Application.routes.draw do
   resources :characters
   resources :about
 
+  # 联动
+  match '/intention_to_registers_new_homes', to: 'static_pages#get_new_homes', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

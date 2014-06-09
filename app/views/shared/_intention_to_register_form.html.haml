@@ -3,7 +3,7 @@
     %h3.panel-title
       意向登记
       %span.f12{style: "font-weight:normal"} |为您提供优质的房源
-  .panel-body
+  .panel-body.yxdj
     = form_for(@intention_to_register) do |f|
       %table.table-condensed
         %tr
@@ -19,10 +19,27 @@
           %td
             = f.text_field :tel, placeholder: "请输入联系电话", style: "width: 130px"
         %tr
+          %td 区域
+          %td
+            = select_tag 'intention_to_register[area]', "<option value=''>#{t('请选择区域')}</option>".html_safe+options_from_collection_for_select(Area.all, "id", "name"), { onchange: "set_new_homes(this.value)", style: "width: 140px" }
+        %tr
           %td 楼盘:
           %td
-            = f.select :new_home_id, options_for_select(new_homes_dropdown(NewHome.all)), { :prompt => "请选择喜欢楼盘" }, { :style => "width: 140px" }
+            = select_tag 'intention_to_register[new_home_id]', "<option value=''>#{t('请选择楼盘')}</option>".html_safe, { style: "width: 140px" }
         %tr
           %td
           %td
             = f.submit "立刻报名", class: "btn btn-danger btn-mini", style: "height: 28px"
+
+:javascript
+  function set_new_homes(value){
+    $.ajax({
+      type: 'get',
+      url: 'intention_to_registers_new_homes?area_id=' + value,
+      data: 'text',
+      success: function(data){
+        $("#intention_to_register_new_home_id").html(data);
+      }
+    }
+  )
+  }

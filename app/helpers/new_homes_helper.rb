@@ -18,7 +18,7 @@ module NewHomesHelper
     css_class_name = "btn btn-inverse" if option.blank?
     style_name = "background: #2db8ad;color:#fff" if option.blank?
     link_to("全部", new_homes_path(:section_id => params[:section_id],
-                                   :status_id => params[:status_id],   
+                                   :status_id => params[:status_id],
                                    :area_range_id => params[:area_range_id],
                                    :property_type_id => params[:property_type_id],
                                    :mix => params[:mix],
@@ -101,8 +101,8 @@ module NewHomesHelper
                                 :max => params[:max],
                                 :utf8 => params[:utf8],
                                 :status_id => id))
-                    
-  end  
+
+  end
 
   def render_option_of_total_status_id()
     link_to("全部", new_homes_path(:area_id => params[:area_id],
@@ -157,5 +157,11 @@ module NewHomesHelper
                                 :utf8 => params[:utf8]),
                  :class => "areaa",
                  :style => "#{stylesheets}")
+  end
+
+  # 区域联动
+  def select_with_ajax
+      @areas = Area.find(:all, :select => "name,id",:conditions => ["parentID = ?", params[:parentID]])
+      render(:json => @areas.to_json,:layout => false)
   end
 end
