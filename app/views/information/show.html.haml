@@ -12,8 +12,7 @@
         %h1
           = @information.title
         %p
-          #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source}
-          #{@information.source} 点击量: #{@hit}
+          #{@information.created_at.strftime("%Y-%m-%d %H:%M")}　来源: #{@information.source} 点击量: #{@hit}
       .review
         %p
           = @information.description
@@ -23,6 +22,47 @@
     .clearfix
     .news_body
       = @information.content.html_safe
+    .same
+      -if !@new_home.blank?
+        .mb20{style: "border-bottom:1px  dotted #CCC"}
+          %table.mb20
+            %tr
+              %td{width: "250px;"}
+                = link_to image_tag(@new_home.new_home_thumb, alt: @new_home.name, :style => "height:150px; width:230px"), @new_home
+              %td{width: "400px"}
+                %h5.cl
+                  [#{Area.find(@new_home.area_id).name}]
+                  = link_to @new_home.name, @new_home, target: "_blank" , :class => "cl"
+                  %span.label.label-important.ml10{style: "background:#f65c52"}
+                    = Status.find(@new_home.status_id).name
+                %p 
+                楼盘动态：
+                -Information.where(["new_home_id = :home_id and category_id = :c_id",{ home_id: @new_home.id, c_id: 26 }]).limit(1).each do |information|
+                  = link_to information.title.first(24), information, target: "_blank"
+                %p 售楼电话：#{@new_home.tel}
+                %p 项目地址：#{@new_home.project_address}
+                
+              %td{style: "text-align:center"}
+                %h3.mt20.cr #{@new_home.price}元/m ²
+                = link_to "团购报名",URI.unescape(new_home_path(@new_home.id,:type =>"index#tuangou")), :class => "btn btn-inverse ", :style => "background:#f65c52; color:#FFF",:target => "_blank"
+
+
+      %h4.cr 相关阅读
+      %ul
+        - Information.where("category_id= ? and id != ?" ,@information.category_id ,@information.id).limit(6).each do |information|
+          %li
+            = link_to information.title.first(27), information, target: "_blank"
+    .clearfix
+    .bshare-custom.icon-medium-plus.ml20
+      %a.bshare-qzone{title: "分享到QQ空间"}
+      %a.bshare-sinaminiblog{title: "分享到新浪微博"}
+      %a.bshare-weixin{title: "分享到微信"}
+      %a.bshare-renren{title: "分享到人人网"}
+      %a.bshare-qqmb{title: "分享到腾讯微博"}
+      %a.bshare-neteasemb{title: "分享到网易微博"}
+      %a.bshare-more.bshare-more-icon.more-style-addthis{title: "更多平台"}
+    %script{charset: "utf-8", src: "http://static.bshare.cn/b/buttonLite.js#style=-1&uuid=&pophcol=2&lang=zh", type: "text/javascript"}
+    %script{charset: "utf-8", src: "http://static.bshare.cn/b/bshareC0.js", type: "text/javascript"}
 
     / end fenxiang
   = render "right"
