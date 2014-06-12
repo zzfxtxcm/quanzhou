@@ -18,10 +18,10 @@
           %td 电话:
           %td
             = f.text_field :tel, placeholder: "请输入联系电话", style: "width: 130px"
-        %tr
-          %td 区域
-          %td
-            = select_tag 'intention_to_register[area]', "<option value=''>#{t('请选择区域')}</option>".html_safe+options_from_collection_for_select(Area.all, "id", "name"), { onchange: "set_new_homes(this.value)", style: "width: 140px" }
+        / %tr
+        /   %td 区域
+        /   %td
+        /     = select_tag 'intention_to_register[area]', "<option value=''>#{t('请选择区域')}</option>".html_safe+options_from_collection_for_select(Area.all, "id", "name"), { onchange: "set_new_homes(this.value)", style: "width: 140px" }
         %tr
           %td 楼盘:
           %td

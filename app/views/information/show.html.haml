@@ -51,7 +51,8 @@
       %ul
         - Information.where("category_id= ? and id != ?" ,@information.category_id ,@information.id).limit(6).each do |information|
           %li
-            = link_to information.title.first(27), information, target: "_blank"
+            = link_to information.title.first(24), information, target: "_blank"
+            = "..." if information.title.length >24
     .clearfix
     .bshare-custom.icon-medium-plus.ml20
       %a.bshare-qzone{title: "分享到QQ空间"}

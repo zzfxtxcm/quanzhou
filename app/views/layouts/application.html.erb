@@ -41,9 +41,21 @@
   <body>
     <%= render 'layouts/header' %>
     <% flash.each do |key, value| %>
-      <SCRIPT LANGUAGE="JavaScript">
-        alert("<%= value %>")
-      </script>
+      <% if value =="您的信息我们已经收到，会尽快的联系您。是否继续完成信息登记？" %>
+        <SCRIPT LANGUAGE="JavaScript">
+          var bln=confirm("是否继续完善登记信息，是点击“确定” 否点击“取消”？")
+          if (bln==true){
+            window.open('/intention_to_registers');
+          }
+          else{
+
+         }   
+        </script>
+      <% else %>
+        <SCRIPT LANGUAGE="JavaScript">
+          alert("<%= value %>")
+        </script>
+      <% end %>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>

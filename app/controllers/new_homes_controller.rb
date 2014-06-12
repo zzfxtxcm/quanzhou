@@ -58,7 +58,7 @@ class NewHomesController < ApplicationController
                        .per_page(15)
     if IntentionToRegister.where(new_home_id: params[:id]).blank?
       (rand(9) + 1).times do
-        IntentionToRegister.create!(new_home_id: params[:id])
+        IntentionToRegister.create!(new_home_id: params[:id],tel: 00)
       end
     end
 
