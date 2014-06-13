@@ -1,11 +1,10 @@
 class IntentionToRegistersController < ApplicationController
-
+  $id =0
   def create
     @intention_to_register = IntentionToRegister.new(intention_to_register_params)
     if @intention_to_register.save
-      session[:inention_id]=@intention_to_register.id
-      flash[:success] = "您的信息我们已经收到，会尽快的联系您。是否继续完成信息登记？"
-      redirect_to root_url
+      $id=@intention_to_register.id
+      redirect_to '/intention_to_registers'
     else
 
       flash[:err] = "请填写相关信息再提交!"
@@ -15,7 +14,7 @@ class IntentionToRegistersController < ApplicationController
 
   def index
     @areas = Area.all
-    @inention_id=session[:inention_id]
+    @inention_id=$id
     @intention_to_register = IntentionToRegister.find(@inention_id)
   end
 
