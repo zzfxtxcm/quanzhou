@@ -3,6 +3,34 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $white: #fff;
+/*底部导航*/
+.newnavb {
+  background: #2db8ad;
+  height: 36px;
+  color: #60eadf;
+  min-width: 1170px;
+  width: 100%;
+  font-weight: bolder;
+  font-size: 14px;
+  line-height: 36px;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  _position: absolute;
+  /* for IE6 */
+  _top: expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight);
+  /* for IE6 */
+  overflow: visible;
+  a {
+    font-size: 12px;
+    line-height: 36px;
+    padding-right: 32px;
+    padding-left: 32px;
+    color: #FFF;
+  }
+}
+/*end*/
 /* 左侧楼盘推荐 */
 
 .J_MenuItem .lists {

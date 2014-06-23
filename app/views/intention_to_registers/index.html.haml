@@ -1,0 +1,57 @@
+.container
+  .mb20.pull-left
+    当前位置：
+    %a{href: ""} 馨窝网
+    \>
+    %a.cl 意向登记
+  .clearfix
+  .hero-unit
+    %h4.cr 意向登记：
+    / %p.f14
+    /   姓名：
+    /   %input.input-small.mt5{placeholder: "登记姓名", type: "text"}/
+    /   电话：
+    /   %input.input-small.mt5{placeholder: "电话号码", type: "text"}/
+    / %p.f14
+    /   意向区域：
+    /   %select.span2.mt5
+    /     %option 1
+    /   项目名称：
+    /   %select.span2.mt5
+    /     %option 1
+    = form_for(@intention_to_register) do |f|
+      %p.f14
+        物业类型:
+        = radio_button_tag "intention_to_register[property_type]" ,"公寓", true
+        公寓
+        = radio_button_tag "intention_to_register[property_type]" ,"别墅"
+        别墅
+        = radio_button_tag "intention_to_register[property_type]" ,"商铺"
+        商铺
+        = radio_button_tag "intention_to_register[property_type]" ,"写字楼"
+        写字楼
+      %p.f14
+        求购面积:
+        = radio_button_tag "intention_to_register[area]" ,"60m²以下"
+        60m²以下
+        = radio_button_tag "intention_to_register[area]" ,"60m²-80m²"
+        60m²-80m²
+        = radio_button_tag "intention_to_register[area]" ,"60m²以下"
+        80m²-100m²
+        = radio_button_tag "intention_to_register[area]" ,"60m²以下", true
+        80m²-100m²
+        = radio_button_tag "intention_to_register[area]" ,"100m²-120m²"
+        100m²-120m²
+        = radio_button_tag "intention_to_register[area]" ,"120m²以上"
+        120m²以上
+      %p.f14
+        意向户型:
+        = radio_button_tag "intention_to_register[units]" ,"一居室"
+        一居室
+        = radio_button_tag "intention_to_register[units]" ,"二居室", true
+        二居室
+        = radio_button_tag "intention_to_register[units]" ,"三居室以上"
+        三居室以上
+      %input.btn.btn-danger{type: "submit", value: "提交"}/
+      %a.btn.btn-danger{href: "javascript:history.go(-1);"}
+        返回

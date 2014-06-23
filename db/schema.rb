@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530011745) do
+ActiveRecord::Schema.define(version: 20140612015416) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -226,6 +226,8 @@ ActiveRecord::Schema.define(version: 20140530011745) do
     t.integer  "budget"
     t.string   "area"
     t.string   "email"
+    t.string   "property_type"
+    t.string   "units"
   end
 
   add_index "intention_to_registers", ["new_home_id"], name: "index_intention_to_registers_on_new_home_id"
