@@ -21,18 +21,6 @@
     <%= stylesheet_link_tag "bootstrap/ie.css", media: "all", "data-turbolinks-track" => true %>
   <![endif]-->
 
-  <% if mobile? %>
-    <%= javascript_include_tag "application",
-                            params[:controller],
-                            "custom/ad_ls",
-                            "data-turbolinks-track" => true %>
-  <% else %>
-    <%= javascript_include_tag "application",
-                              params[:controller],
-                              "custom/ad_ls",
-                              "custom/stickUp.min",
-                              "data-turbolinks-track" => true %>
-  <% end %>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -48,6 +36,19 @@
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>
+    <% if mobile? %>
+      <%= javascript_include_tag "application",
+                              params[:controller],
+                              "custom/ad_ls",
+                              "data-turbolinks-track" => true %>
+    <% else %>
+      <%= javascript_include_tag "application",
+                                params[:controller],
+                                "custom/ad_ls",
+                                "custom/stickUp.min",
+                                "data-turbolinks-track" => true %>
+    <% end %>
+
     <!--[if lte IE 6]>
       <%= javascript_include_tag "bootstrap/bootstrap-ie.js", "data-turbolinks-track" => true %>
     <![endif]-->
