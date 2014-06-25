@@ -2,12 +2,12 @@
 source 'http://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.1'
 gem 'bootstrap-sass', '2.3.2'
 gem 'haml', '4.0.5'
 
 # 会员
-gem 'devise'
+gem 'devise', '3.2.4'
 gem 'devise-encryptable', '0.1.2'
 
 # 后台页面
@@ -23,10 +23,10 @@ gem 'cancancan', '1.7'
 gem 'ancestry', '2.0.0'
 
 # 表单
-gem 'simple_form', '3.0.1'
+gem 'simple_form', '3.0.2'
 
 # 编辑器
-gem 'ckeditor', '4.0.10'
+gem 'ckeditor', '4.0.11'
 
 # 图片上传
 gem 'carrierwave', '0.10.0'
@@ -67,6 +67,7 @@ group :development, :test do
   gem 'capistrano-rails', '1.1.1'
   gem 'capistrano-bundler', '1.1.2'
   gem 'capistrano-rvm', '0.1.1'
+  gem 'spring'  
 end
 
 group :test do
